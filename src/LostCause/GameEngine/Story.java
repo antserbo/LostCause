@@ -1,5 +1,7 @@
 package LostCause.GameEngine;
 
+import LostCause.GameFiles.Player;
+
 import javax.swing.*;
 
 public class Story {
@@ -8,9 +10,12 @@ public class Story {
     UI ui;
     VisibilityManager vm;
 
+    Player player = new Player();
+
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
+    boolean waterfallZoneDiscovered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -21,6 +26,8 @@ public class Story {
 
     public void defaultSetup() {
 
+        player.hp = 15;
+        player.weapon = "Fists";
 
     }
 
@@ -39,6 +46,8 @@ public class Story {
             case "waterfallZone_2_WeaponTake" -> waterfallZone_2_WeaponTake();
             case "waterfallZone_2_SearchSkeleton_Success" -> waterfallZone_2_SearchSkeleton_Success();
             case "waterfallZone_2_SearchSkeleton_Failure" -> waterfallZone_2_SearchSkeleton_Failure();
+            case "waterfallZone_3" -> waterfallZone_3();
+            case "waterfallZone_3_DrinkWater" -> waterfallZone_3_DrinkWater();
 
         }
     }
@@ -103,8 +112,14 @@ public class Story {
     }
 
     public void startingZone_7() {
+        // TODO: add location names once discovered. Once you get to the end of waterfall, f.e., you no longer see "go west", rather "to / waterfall"
         ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
+        ui.choiceOne.setVisible(true);
+
+        ui.image = new ImageIcon(".//res//crossroad.jpg");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
 
         ui.mainTextArea.setText("Where do you want to go?");
 
@@ -112,7 +127,11 @@ public class Story {
         ui.choiceOne.setText("Go north");
         ui.choiceTwo.setText("Go east");
         ui.choiceThree.setText("Go south");
-        ui.choiceFour.setText("Go west");
+        if (waterfallZoneDiscovered) {
+            ui.choiceFour.setText("To waterfall");
+        } else {
+            ui.choiceFour.setText("Go west");
+        }
 
         game.nextPositionOne = "fromStartingZoneNorth";
         game.nextPositionTwo = "fromStartingZoneEast";
@@ -122,8 +141,8 @@ public class Story {
     }
 
     public void waterfallZone() {
-        ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
 
         ui.mainTextArea.setText("You enter a secluded area with a waterfall.");
 
@@ -138,8 +157,8 @@ public class Story {
     }
 
     public void waterfallZone_2() {
-        ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
 
         ui.mainTextArea.setText("Your eye catches a resting skeleton of a long-forgotten adventurer.\n" +
@@ -216,8 +235,46 @@ public class Story {
 
 
     public void waterfallZone_3() {
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceOne.setVisible(false);
+        waterfallZoneDiscovered = true;
 
-        System.out.println("working on this");
+        ui.mainTextArea.setText("You step closer to the waterfall. \n" +
+                "The sound of it makes you feel some sort of relief...");
+
+        ui.choiceTwo.setText("Drink water");
+        game.nextPositionTwo = "waterfallZone_3_DrinkWater";
+
+
+        ui.choiceThree.setText("Meditate (save)");
+        game.nextPositionThree = "waterfallZone_3_Meditate";
+
+
+        ui.choiceFour.setText("Head back");
+        game.nextPositionFour = "startingZone_7";
+
+
+    }
+
+    public void waterfallZone_3_DrinkWater() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        if (player.hp < 15) {
+            ui.mainTextArea.setText("""
+                    You take a sip of water and a rejuvenating effect rushes though your body
+
+                    (you get healed by 3 HP)""");
+        } else {
+            ui.mainTextArea.setText("""
+                    You take a sip of water, but it does not affect you in any possible way.
+
+                    (current hp is maximum)""");
+        }
+
+        ui.continueButton.setText("Stop drinking");
+        game.continuePosition = "waterfallZone_3";
 
     }
 }

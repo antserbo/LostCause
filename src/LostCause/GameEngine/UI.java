@@ -121,7 +121,7 @@ public class UI {
         choiceButtonPanel = new JPanel();
         choiceButtonPanel.setBounds(600, 650, 300, 150);
         choiceButtonPanel.setBackground(Color.black);
-        choiceButtonPanel.setLayout(new GridLayout(4, 1));
+        choiceButtonPanel.setLayout(new GridLayout(4, 1, 0, 1));
 
         window.add(choiceButtonPanel);
 
@@ -360,7 +360,7 @@ public class UI {
         worldMapWindow.setVisible(true);
 
         // we can manipulate, it is working. the game object is not empty!
-        game.ui.ringNameLabel.setText("fucking dicks");
+        game.ui.ringNameLabel.setText("Devotion ring (e)");
     }
 
 }
