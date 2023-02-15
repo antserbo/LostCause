@@ -15,7 +15,10 @@ public class Story {
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
+    int goblinVillageEntranceGuardSilverRing = 0;
+    int goblinVillageEntranceGuardBugged = 0;
     boolean waterfallZoneDiscovered = false;
+    boolean goblinVillageEntranceDiscovered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -48,6 +51,15 @@ public class Story {
             case "waterfallZone_2_SearchSkeleton_Failure" -> waterfallZone_2_SearchSkeleton_Failure();
             case "waterfallZone_3" -> waterfallZone_3();
             case "waterfallZone_3_DrinkWater" -> waterfallZone_3_DrinkWater();
+            case "goblinVillageEntrance" -> goblinVillageEntrance();
+            case "goblinVillageEntrance_2" -> goblinVillageEntrance_2();
+            case "goblinVillageEntrance_2_ClimbGate" -> goblinVillageEntrance_2_ClimbGate();
+            case "goblinVillageEntrance_2_ClimbGate_2" -> goblinVillageEntrance_2_ClimbGate_2();
+            case "goblinVillageEntrance_3" -> goblinVillageEntrance_3();
+            case "goblinVillageEntrance_4" -> goblinVillageEntrance_4();
+            case "goblinVillageEntrance_5" -> goblinVillageEntrance_5();
+            case "goblinVillageEntrance_6" -> goblinVillageEntrance_6();
+            case "goblinVillageEntrance_6_GuardBugged" -> goblinVillageEntrance_6_GuardBugged();
 
         }
     }
@@ -116,6 +128,7 @@ public class Story {
         ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
         ui.choiceOne.setVisible(true);
+        ui.choiceTwo.setVisible(true);
 
         ui.image = new ImageIcon(".//res//crossroad.jpg");
         ui.imageLabel.setIcon(ui.image);
@@ -125,18 +138,23 @@ public class Story {
 
 
         ui.choiceOne.setText("Go north");
-        ui.choiceTwo.setText("Go east");
-        ui.choiceThree.setText("Go south");
         if (waterfallZoneDiscovered) {
-            ui.choiceFour.setText("To waterfall");
+            ui.choiceTwo.setText("To waterfall");
+        } else {
+            ui.choiceTwo.setText("Go east");
+        }
+        ui.choiceThree.setText("Go south");
+        if (goblinVillageEntranceDiscovered) {
+            ui.choiceFour.setText("To Goblin Village Entrance");
         } else {
             ui.choiceFour.setText("Go west");
         }
 
+
         game.nextPositionOne = "fromStartingZoneNorth";
-        game.nextPositionTwo = "fromStartingZoneEast";
+        game.nextPositionTwo = "waterfallZone";
         game.nextPositionThree = "fromStartingZoneSouth";
-        game.nextPositionFour = "waterfallZone";
+        game.nextPositionFour = "goblinVillageEntrance";
 
     }
 
@@ -233,7 +251,6 @@ public class Story {
         game.continuePosition = "waterfallZone_2";
     }
 
-
     public void waterfallZone_3() {
         ui.choiceButtonPanel.setVisible(true);
         ui.continueButtonPanel.setVisible(false);
@@ -276,5 +293,171 @@ public class Story {
         ui.continueButton.setText("Stop drinking");
         game.continuePosition = "waterfallZone_3";
 
+    }
+
+    public void goblinVillageEntrance() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("You have been following the narrow path to the west for almost an hour.\n" +
+                "The eerie feeling is intensifying, more and more strange noises are surrounding you. ");
+
+        ui.image = new ImageIcon(".//res//narrowForestPath.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = "goblinVillageEntrance_2";
+
+    }
+
+    public void goblinVillageEntrance_2() {
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceButtonPanel.setVisible(true);
+        ui.choiceOne.setVisible(false);
+
+        ui.mainTextArea.setText("You approach a primitive gate made out of wood.\n" +
+                "The design is not the best, ugly to be frank, but it sure looks sturdy enough.");
+
+        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.choiceTwo.setText("Knock the gate");
+        game.nextPositionTwo = "goblinVillageEntrance_3";
+        ui.choiceThree.setText("Try to climb the gate");
+        game.nextPositionThree = "goblinVillageEntrance_2_ClimbGate";
+        ui.choiceFour.setText("Return to crossroad");
+        game.nextPositionFour = "startingZone_7";
+
+        game.continuePosition = "goblinVillageEntrance_3";
+
+    }
+
+    public void goblinVillageEntrance_2_ClimbGate() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("You are beginning to think that it is not the best idea that you've ever come up with.\n" +
+                "Yet you try to climb up as if were born to do this.");
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = "goblinVillageEntrance_2_ClimbGate_2";
+
+
+    }
+
+    public void goblinVillageEntrance_2_ClimbGate_2() {
+
+        ui.mainTextArea.setText("""
+                As your tired body refused to let you hold a better grip, you fall down...
+                Your fall did sure get someone's attention.
+                (you take 3 damage)""");
+
+        player.hp -= 3;
+        // add to label of hp
+        ui.continueButton.setText("Try to get up");
+
+        game.continuePosition = "goblinVillageEntrance_3";
+    }
+
+    public void goblinVillageEntrance_3() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("Goblin guard: Oi, who goes 'ere? What do you want, 'uman? Speak business or me shoot you in the knee! \n" +
+                "*The goblin was holding its bow while waiting for a reply.*");
+
+        ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = "goblinVillageEntrance_4";
+    }
+
+    public void goblinVillageEntrance_4() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("*After telling the goblin how you ended up like this, the goblin replied...*\n" +
+                "Goblin guard: This is some gibberish story, 'uman. 'owever i can let you in, if you 'elp in a certain matter.");
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = "goblinVillageEntrance_5";
+    }
+
+    public void goblinVillageEntrance_5() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("Goblin guard: You see.. I've recently lost me prized trinket - a silver ring which was meant for me wifey\n" +
+                "Get that ring for me and I'll grant you passage to our village, 'uman. Look for it in the Great Forest!");
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = "goblinVillageEntrance_6";
+    }
+
+    public void goblinVillageEntrance_6() {
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceTwo.setVisible(false);
+
+        ui.mainTextArea.setText("""
+                Goblin guard: Now begone!
+                *The goblin hides his head and apparently decides to take a nap from the tiresome dialogue*
+                Goblin guard:...I've important guard business to attend to.""");
+
+        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+
+        if (goblinVillageEntranceGuardBugged < 6) {
+            ui.choiceThree.setText("Draw the goblin's attention");
+            game.nextPositionThree = "goblinVillageEntrance_6_GuardBugged";
+        } else if (goblinVillageEntranceGuardBugged == 6) {
+            ui.choiceThree.setText("See what happens...");
+            game.nextPositionThree = "goblinVillageEntrance_6_GuardBugged";
+        } else {
+            ui.choiceThree.setText("");
+            game.nextPositionThree = "";
+        }
+
+        ui.choiceFour.setText("Return to crossroad");
+        game.nextPositionFour = "startingZone_7";
+    }
+
+    public void goblinVillageEntrance_6_GuardBugged() {
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+
+        if (goblinVillageEntranceGuardBugged < 5) {
+            ui.mainTextArea.setText("The goblin appears to be already sleeping and does not care.");
+        } else if (goblinVillageEntranceGuardBugged == 5) {
+            ui.mainTextArea.setText("Goblin guard: Oi, me going to shoot you in the knee! Stop that, 'uman!");
+            ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
+            ui.imageLabel.setIcon(ui.image);
+            ui.mainImagePanel.add(ui.imageLabel);
+        } else {
+            ui.mainTextArea.setText("Goblin guard: You asked for it!\n" +
+                    "*You get hit by the arrow and suffer 5 damage*");
+            player.hp -= 5;
+            ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
+            ui.imageLabel.setIcon(ui.image);
+            ui.mainImagePanel.add(ui.imageLabel);
+
+
+        }
+
+        goblinVillageEntranceGuardBugged += 1;
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_6";
     }
 }

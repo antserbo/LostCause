@@ -19,7 +19,7 @@ public class ChoiceHandler implements ActionListener {
             case "start":
                 game.vm.showGameScreen();
                 // game.story.startingZone();
-                game.story.startingZone();
+                game.story.goblinVillageEntrance();
                 break;
             case "map":
                 game.ui.createWorldMap(game);

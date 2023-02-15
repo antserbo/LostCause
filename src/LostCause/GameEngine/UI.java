@@ -21,7 +21,7 @@ public class UI {
             characterButton, worldMapButton, inventoryButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
-    Font normalFont = new Font("Times New Roman", Font.ITALIC, 36);
+    Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
     Font iconFont = new Font("Times New Roman", Font.ITALIC, 24);
     ImageIcon image, armorHeadIcon, necklaceIcon, weaponIcon, armorChestIcon, armorShieldIcon, ringIcon,
             healthIcon, manaIcon, goldIcon, characterIcon, worldMapIcon, inventoryIcon;
@@ -34,6 +34,10 @@ public class UI {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setTitle("Lost Cause");
         window.getContentPane().setBackground(Color.black);
+        // window.setUndecorated(true); in order to get rid of borders
+        //window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        //window.setUndecorated(true);
+        //window.setVisible(true);
 
         // Title screen
         titleNamePanel = new JPanel();
@@ -119,7 +123,7 @@ public class UI {
     public void createChoices(ChoiceHandler cHandler) {
 
         choiceButtonPanel = new JPanel();
-        choiceButtonPanel.setBounds(600, 650, 300, 150);
+        choiceButtonPanel.setBounds(450, 650, 500, 150);
         choiceButtonPanel.setBackground(Color.black);
         choiceButtonPanel.setLayout(new GridLayout(4, 1, 0, 1));
 
@@ -168,8 +172,9 @@ public class UI {
     public void createContinue(ChoiceHandler cHandler) {
 
         continueButtonPanel = new JPanel();
-        continueButtonPanel.setBounds(600, 750, 300, 100);
+        continueButtonPanel.setBounds(450, 750, 500, 100);
         continueButtonPanel.setBackground(Color.black);
+
 
         window.add(continueButtonPanel);
 
@@ -289,7 +294,7 @@ public class UI {
     public void createUtilityIcons(ChoiceHandler cHandler) {
 
         utilityIconPanel = new JPanel();
-        utilityIconPanel.setBounds(100, 105, 64,395);
+        utilityIconPanel.setBounds(300, 105, 64,395); // initial value x = 100
         utilityIconPanel.setBackground(Color.black);
         utilityIconPanel.setLayout(new GridLayout(6, 1, 0, 0));
 
