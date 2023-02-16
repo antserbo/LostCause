@@ -6,7 +6,7 @@ import java.awt.*;
 public class UI {
 
     JFrame window, worldMapWindow;
-    JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel, choiceButtonPanel, playerPanel, continueButtonPanel, equipmentIconPanel, utilityIconPanel, iconLabelPanel, worldMapPanel;
+    JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel, choiceButtonPanel, playerPanel, continueButtonPanel, equipmentIconPanel, utilityIconPanel, utilityLabelPanel, iconLabelPanel, worldMapPanel;
     JLabel titleNameLabel, imageLabel,
             weaponLabel, weaponNameLabel,
             armorHeadLabel, armorHeadNameLabel,
@@ -16,7 +16,8 @@ public class UI {
             ringLabel, ringNameLabel,
             healthLabel, healthNumberLabel,
             manaLabel, manaNumberLabel,
-            goldLabel, goldNumberLabel;
+            goldLabel, goldNumberLabel,
+            currentLocationLabel;
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton, inventoryButton;
     JTextArea mainTextArea;
@@ -90,6 +91,8 @@ public class UI {
         createIconLabels();
 
         createUtilityIcons(cHandler);
+
+        createUtilityLabels(cHandler);
 
 
         window.setVisible(true);
@@ -342,6 +345,22 @@ public class UI {
         inventoryButton.setFocusable(true);
         utilityIconPanel.add(inventoryButton);
 
+    }
+
+    public void createUtilityLabels (ChoiceHandler cHandler) {
+        utilityLabelPanel = new JPanel();
+        utilityLabelPanel.setBounds(90, 368, 200,64); // initial value 100, 105, 200,395
+        utilityLabelPanel.setBackground(Color.black);
+        utilityLabelPanel.setLayout(new GridLayout(1, 1, 0, 0));
+
+        window.add(utilityLabelPanel);
+
+        // add current location label
+        currentLocationLabel = new JLabel("Unknown yet", SwingConstants.RIGHT);
+        currentLocationLabel.setFont(iconFont);
+        currentLocationLabel.setForeground(Color.white);
+        currentLocationLabel.setToolTipText("");
+        utilityLabelPanel.add(currentLocationLabel);
     }
 
     public void createWorldMap(Game game) {

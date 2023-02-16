@@ -12,13 +12,15 @@ public class Story {
 
     Player player = new Player();
 
+    String playerLocation = "";
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
-    int goblinVillageEntranceGuardSilverRing = 0;
     int goblinVillageEntranceGuardBugged = 0;
+    boolean startingZoneDiscovered = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -59,12 +61,20 @@ public class Story {
             case "goblinVillageEntrance_4" -> goblinVillageEntrance_4();
             case "goblinVillageEntrance_5" -> goblinVillageEntrance_5();
             case "goblinVillageEntrance_6" -> goblinVillageEntrance_6();
-            case "goblinVillageEntrance_6_GuardBugged" -> goblinVillageEntrance_6_GuardBugged();
+            case "goblinVillageEntrance_7" -> goblinVillageEntrance_7();
+            case "goblinVillageEntrance_7_GuardBugged" -> goblinVillageEntrance_7_GuardBugged();
+            case "goblinVillageEntrance_8_SilverRingDialogue" -> goblinVillageEntrance_8_SilverRingDialogue();
+            case "goblinVillageEntrance_8_SilverRingDialogue_2" -> goblinVillageEntrance_8_SilverRingDialogue_2();
+            case "goblinVillageEntrance_8_SilverRingDialogue_3" -> goblinVillageEntrance_8_SilverRingDialogue_3();
+            case "goblinVillageEntrance_8_SilverRingDialogue_4" -> goblinVillageEntrance_8_SilverRingDialogue_4();
+            case "goblinVillageEntrance_8_SilverRingDialogue_5" -> goblinVillageEntrance_8_SilverRingDialogue_5();
 
         }
     }
 
     public void startingZone() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("You wake up to the noise of the waterfall in the distance.\n" +
                 "The only vague memory you have is of your name, despite the aching body you try to get up...");
 
@@ -76,6 +86,8 @@ public class Story {
     }
 
     public void startingZone_2() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("With legs trembling you somehow manage to stand up.\n" +
                 "No idea how you ended up in this place. However, you need to act...");
 
@@ -87,6 +99,8 @@ public class Story {
     }
 
     public void startingZone_3() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("After looking around you determine that to your right there is a waterfall in the distance.");
 
 
@@ -97,6 +111,8 @@ public class Story {
     }
 
     public void startingZone_4() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("Beside you there is a dead-end, fallen trees are blocking the southern route.");
 
 
@@ -105,6 +121,8 @@ public class Story {
     }
 
     public void startingZone_5() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("To your left lies a narrow path, which gives you an eerie feeling.");
 
 
@@ -114,6 +132,8 @@ public class Story {
     }
 
     public void startingZone_6() {
+        playerLocation = "startingZone";
+        worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("The northern direction introduces a road which leads deeper into the forest.");
 
 
@@ -124,6 +144,9 @@ public class Story {
     }
 
     public void startingZone_7() {
+        playerLocation = "startingZone";
+        startingZoneDiscovered = true;
+        worldMapLocationDeterminerHelper();
         // TODO: add location names once discovered. Once you get to the end of waterfall, f.e., you no longer see "go west", rather "to / waterfall"
         ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
@@ -140,25 +163,28 @@ public class Story {
         ui.choiceOne.setText("Go north");
         if (waterfallZoneDiscovered) {
             ui.choiceTwo.setText("To waterfall");
+            game.nextPositionTwo = "waterfallZone_3";
         } else {
             ui.choiceTwo.setText("Go east");
+            game.nextPositionTwo = "waterfallZone";
         }
         ui.choiceThree.setText("Go south");
         if (goblinVillageEntranceDiscovered) {
             ui.choiceFour.setText("To Goblin Village Entrance");
+            game.nextPositionFour = "goblinVillageEntrance_7";
         } else {
             ui.choiceFour.setText("Go west");
+            game.nextPositionFour = "goblinVillageEntrance";
         }
 
-
         game.nextPositionOne = "fromStartingZoneNorth";
-        game.nextPositionTwo = "waterfallZone";
         game.nextPositionThree = "fromStartingZoneSouth";
-        game.nextPositionFour = "goblinVillageEntrance";
 
     }
 
     public void waterfallZone() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -175,6 +201,8 @@ public class Story {
     }
 
     public void waterfallZone_2() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(true);
         ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
@@ -212,6 +240,8 @@ public class Story {
     }
 
     public void waterfallZone_2_WeaponTake() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
@@ -225,6 +255,8 @@ public class Story {
     }
 
     public void waterfallZone_2_SearchSkeleton_Success() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
@@ -237,6 +269,8 @@ public class Story {
     }
 
     public void waterfallZone_2_SearchSkeleton_Failure() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
@@ -252,10 +286,12 @@ public class Story {
     }
 
     public void waterfallZone_3() {
+        playerLocation = "waterfallZone";
+        waterfallZoneDiscovered = true;
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(true);
         ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
-        waterfallZoneDiscovered = true;
 
         ui.mainTextArea.setText("You step closer to the waterfall. \n" +
                 "The sound of it makes you feel some sort of relief...");
@@ -275,6 +311,8 @@ public class Story {
     }
 
     public void waterfallZone_3_DrinkWater() {
+        playerLocation = "waterfallZone";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -296,6 +334,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -313,6 +353,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_2() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
         ui.choiceOne.setVisible(false);
@@ -336,6 +378,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_2_ClimbGate() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -350,6 +394,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_2_ClimbGate_2() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
 
         ui.mainTextArea.setText("""
                 As your tired body refused to let you hold a better grip, you fall down...
@@ -364,6 +410,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_3() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -380,6 +428,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_4() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -392,6 +442,8 @@ public class Story {
     }
 
     public void goblinVillageEntrance_5() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -404,8 +456,11 @@ public class Story {
     }
 
     public void goblinVillageEntrance_6() {
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(false);
 
         ui.mainTextArea.setText("""
@@ -418,12 +473,37 @@ public class Story {
         ui.mainImagePanel.add(ui.imageLabel);
 
 
-        if (goblinVillageEntranceGuardBugged < 6) {
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_7";
+    }
+
+    public void goblinVillageEntrance_7() {
+        playerLocation = "goblinVillageEntrance";
+        goblinVillageEntranceDiscovered = true;
+        worldMapLocationDeterminerHelper();
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceOne.setVisible(false);
+        ui.choiceTwo.setVisible(false);
+
+        ui.mainTextArea.setText("""
+                The gate is empty, apparently the goblin guard has fallen asleep...""");
+
+        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        if (goblinVillageEntranceGuardSilverRingDiscovered) {
+            ui.choiceTwo.setVisible(true);
+            ui.choiceTwo.setText("Show the silver ring");
+            game.nextPositionTwo ="goblinVillageEntrance_8_SilverRingDialogue";
+        }
+        if (goblinVillageEntranceGuardBugged < 4) {
             ui.choiceThree.setText("Draw the goblin's attention");
-            game.nextPositionThree = "goblinVillageEntrance_6_GuardBugged";
-        } else if (goblinVillageEntranceGuardBugged == 6) {
+            game.nextPositionThree = "goblinVillageEntrance_7_GuardBugged";
+        } else if (goblinVillageEntranceGuardBugged == 4) {
             ui.choiceThree.setText("See what happens...");
-            game.nextPositionThree = "goblinVillageEntrance_6_GuardBugged";
+            game.nextPositionThree = "goblinVillageEntrance_7_GuardBugged";
         } else {
             ui.choiceThree.setText("");
             game.nextPositionThree = "";
@@ -431,15 +511,18 @@ public class Story {
 
         ui.choiceFour.setText("Return to crossroad");
         game.nextPositionFour = "startingZone_7";
+
     }
 
-    public void goblinVillageEntrance_6_GuardBugged() {
+    public void goblinVillageEntrance_7_GuardBugged() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        if (goblinVillageEntranceGuardBugged < 5) {
+        if (goblinVillageEntranceGuardBugged < 3) {
             ui.mainTextArea.setText("The goblin appears to be already sleeping and does not care.");
-        } else if (goblinVillageEntranceGuardBugged == 5) {
+        } else if (goblinVillageEntranceGuardBugged == 3) {
             ui.mainTextArea.setText("Goblin guard: Oi, me going to shoot you in the knee! Stop that, 'uman!");
             ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
             ui.imageLabel.setIcon(ui.image);
@@ -458,6 +541,92 @@ public class Story {
         goblinVillageEntranceGuardBugged += 1;
 
         ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_6";
+        game.continuePosition = "goblinVillageEntrance_7";
     }
+
+    public void goblinVillageEntrance_8_SilverRingDialogue () {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+
+        ui.mainTextArea.setText("Goblin guard: Well, it's about time you've gotten back, 'uman! Do I think what I really think it is!?\n" +
+                "Blimey! It sure is me lost ring!");
+
+        ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_2";
+    }
+
+    public void goblinVillageEntrance_8_SilverRingDialogue_2() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("Goblin guard: Now then, a deal is a deal and I promised to grant you passage to our village, 'uman.\n" +
+                "Don't stray away and get yourself lost in the slums, nasty place... Eugh!");
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_3";
+    }
+
+    public void goblinVillageEntrance_8_SilverRingDialogue_3() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("Goblin guard: If you feel pretty confident in yourself, you might as well talk to our chief Bizwalk.\n" +
+                "He might provide you with some interesting tasks in your spare time");
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_4";
+    }
+
+    public void goblinVillageEntrance_8_SilverRingDialogue_4() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("""
+                Goblin guard: Ai, before you depart, I want you to 'ave this leather armor, that I got me 'ands on some time ago.
+                You sure 'ave earned your right to wear it. Now off with you, guarding requires keeping me eyes open all the time.
+                (you receive a piece of leather chest armor)""");
+        player.armorChest = "Leather chest armor";
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_5";
+    }
+
+    public void goblinVillageEntrance_8_SilverRingDialogue_5() {
+        playerLocation = "goblinVillageEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("The goblin opens the gate for you and then disappears behind some sort of boxes, apparently willing to take a nap again...");
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "goblinVillageMainSquare";
+    }
+
+
+    public void worldMapLocationDeterminerHelper() {
+        // todo: implement further locations and add to every location_function playerLocation and this helper()
+
+        if (startingZoneDiscovered && playerLocation.equals("startingZone")) {
+            ui.currentLocationLabel.setText("Crossroad");
+            ui.currentLocationLabel.setToolTipText("Beginning of your journey");
+        } else if (goblinVillageEntranceDiscovered && playerLocation.equals("goblinVillageEntrance")) {
+            ui.currentLocationLabel.setText("GVE");
+            ui.currentLocationLabel.setToolTipText("Goblin Village Entrance");
+        } else if (waterfallZoneDiscovered && playerLocation.equals("waterfallZone")) {
+            ui.currentLocationLabel.setText("Waterfall");
+            ui.currentLocationLabel.setToolTipText("You can heal and save here");
+        }
+        else {
+            ui.currentLocationLabel.setText("Unknown yet");
+            ui.currentLocationLabel.setToolTipText("");
+        }
+    }
+
+
+
 }

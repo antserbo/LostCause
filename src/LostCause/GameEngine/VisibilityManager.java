@@ -18,6 +18,7 @@ public class VisibilityManager {
         ui.continueButtonPanel.setVisible(false);
         ui.equipmentIconPanel.setVisible(false);
         ui.iconLabelPanel.setVisible(false);
+        ui.utilityLabelPanel.setVisible(false);
         ui.mainImagePanel.setVisible(false);
     }
 
@@ -31,6 +32,7 @@ public class VisibilityManager {
         ui.equipmentIconPanel.setVisible(true);
         ui.iconLabelPanel.setVisible(true);
         ui.mainImagePanel.setVisible(true);
+        ui.utilityLabelPanel.setVisible(true);
     }
 
 }
