@@ -18,6 +18,7 @@ public class Story {
     int waterfallSkeletonAmuletTaken = 0;
     int goblinVillageEntranceGuardBugged = 0;
     boolean startingZoneDiscovered = false;
+    boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
     boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
@@ -161,9 +162,12 @@ public class Story {
 
 
         ui.choiceOne.setText("Go north");
-        if (waterfallZoneDiscovered) {
+        if (waterfallZoneDiscovered && waterfallSkeletonSearched) {
             ui.choiceTwo.setText("To waterfall");
             game.nextPositionTwo = "waterfallZone_3";
+        } else if (waterfallZoneDiscovered) {
+            ui.choiceTwo.setText("To waterfall");
+            game.nextPositionTwo = "waterfallZone_2";
         } else {
             ui.choiceTwo.setText("Go east");
             game.nextPositionTwo = "waterfallZone";
@@ -233,6 +237,7 @@ public class Story {
 
         if (((waterfallSkeletonAmuletTaken == 1) || (waterfallSkeletonTimesSearched > 2)) && waterfallSkeletonWeaponTaken == 1) {
             ui.mainTextArea.setText("There is nothing left to loot from the skeleton's remains.");
+            waterfallSkeletonSearched = true;
         }
 
         ui.choiceFour.setText("Leave skeleton");
