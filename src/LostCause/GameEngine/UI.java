@@ -15,9 +15,10 @@ public class UI {
             necklaceLabel, necklaceNameLabel,
             ringLabel, ringNameLabel,
             healthLabel, healthNumberLabel,
-            manaLabel, manaNumberLabel,
+            manaLabel, manaNumberLabel, // or this might be xp?
             goldLabel, goldNumberLabel,
-            currentLocationLabel;
+            currentLocationLabel,
+            characterLevelLabel;
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton, inventoryButton;
     JTextArea mainTextArea;
@@ -28,57 +29,14 @@ public class UI {
             healthIcon, manaIcon, goldIcon, characterIcon, worldMapIcon, inventoryIcon;
 
     public void createUI(ChoiceHandler cHandler) {
-        // Window
-        window = new JFrame();
-        window.setLayout(null);
-        window.setSize(1440, 900);
-        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        window.setTitle("Lost Cause");
-        window.getContentPane().setBackground(Color.black);
-        // window.setUndecorated(true); in order to get rid of borders
-        //window.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        //window.setUndecorated(true);
-        //window.setVisible(true);
 
-        // Title screen
-        titleNamePanel = new JPanel();
-        titleNamePanel.setBounds(415, 200, 600, 150);
-        titleNamePanel.setBackground(Color.black);
-        titleNameLabel = new JLabel("Lost Cause"); // MAP WITH JLABELS AND PINPOINT THE CURRENT LOCATION OF THE PLAYER. call location function's name, i.e. waterfall
-        titleNameLabel.setForeground(Color.white);
-        titleNameLabel.setFont(titleFont);
-        titleNamePanel.add(titleNameLabel);
+        createWindow();
 
-        // Game screen
-        mainTextPanel = new JPanel();
-        mainTextPanel.setBounds(190,500,1000,250);
-        mainTextPanel.setBackground(Color.black);
+        createTitleScreen();
 
-        mainTextArea = new JTextArea();
-        mainTextArea.setBounds(190, 500, 1000, 400);
-        mainTextArea.setBackground(Color.black);
-        mainTextArea.setForeground(Color.white);
-        mainTextArea.setFont(normalFont);
-        mainTextArea.setLineWrap(true);
-        mainTextArea.setWrapStyleWord(true);
-        mainTextArea.setEditable(false);
+        createTextPanelArea();
 
-
-
-        window.add(mainTextPanel);
-        mainTextPanel.add(mainTextArea);
-
-        // Image for the game screen
-        mainImagePanel = new JPanel();
-        mainImagePanel.setBounds(413, 100, 600,400);
-        mainImagePanel.setBackground(Color.black);
-
-        window.add(mainImagePanel);
-
-        imageLabel = new JLabel();
-        image = new ImageIcon(".//res//crossroad.jpg");
-        imageLabel.setIcon(image);
-        mainImagePanel.add(imageLabel);
+        createImagePanelLAbel();
 
         createStart(cHandler);
 
@@ -94,10 +52,65 @@ public class UI {
 
         createUtilityLabels(cHandler);
 
-
         window.setVisible(true);
 
+    }
 
+    public void createWindow() {
+        window = new JFrame();
+        window.setLayout(null);
+        window.setSize(1440, 900);
+        window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        window.setTitle("Lost Cause");
+        window.getContentPane().setBackground(Color.black);
+        /*window.setUndecorated(true); in order to get rid of borders
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        window.setUndecorated(true);*/
+    }
+
+    private void createTitleScreen() {
+        titleNamePanel = new JPanel();
+        titleNamePanel.setBounds(415, 200, 600, 150);
+        titleNamePanel.setBackground(Color.black);
+        titleNameLabel = new JLabel("Lost Cause");
+        titleNameLabel.setForeground(Color.white);
+        titleNameLabel.setFont(titleFont);
+
+        window.add(titleNamePanel);
+        titleNamePanel.add(titleNameLabel);
+    }
+
+    private void createTextPanelArea() {
+        mainTextPanel = new JPanel();
+        mainTextPanel.setBounds(190,450,1000,200); // height was 200. // y was 500
+        mainTextPanel.setBackground(Color.black);
+        // TODO: I have solved an issue, so that the buttons don't disappear, yet i have to alter my ui, there is space on top 30 - 135 pixels, i have ~100 pixels
+        // TODO: as a beginning solution, move the starting position of the image and utility/equipment panels to @80 pixels
+
+        mainTextArea = new JTextArea();
+        mainTextArea.setBounds(190, 450, 1000, 200); // height was 400. // second edit 250, now 150, // y was 500
+        mainTextArea.setBackground(Color.black);
+        mainTextArea.setForeground(Color.white);
+        mainTextArea.setFont(normalFont);
+        mainTextArea.setLineWrap(true);
+        mainTextArea.setWrapStyleWord(true);
+        mainTextArea.setEditable(false);
+
+        window.add(mainTextPanel);
+        mainTextPanel.add(mainTextArea);
+    }
+
+    private void createImagePanelLAbel() {
+        mainImagePanel = new JPanel();
+        mainImagePanel.setBounds(413, 50, 600,400); // was 100
+        mainImagePanel.setBackground(Color.black);
+
+        window.add(mainImagePanel);
+
+        imageLabel = new JLabel();
+        image = new ImageIcon(".//res//crossroad.jpg");
+        imageLabel.setIcon(image);
+        mainImagePanel.add(imageLabel);
     }
 
     public void createStart(ChoiceHandler cHandler) {
@@ -197,7 +210,7 @@ public class UI {
     public void createEquipmentIcons() {
 
         equipmentIconPanel = new JPanel();
-        equipmentIconPanel.setBounds(1060, 105, 64,395);
+        equipmentIconPanel.setBounds(1060, 50, 64,395);
         equipmentIconPanel.setBackground(Color.black);
         equipmentIconPanel.setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -245,7 +258,7 @@ public class UI {
     public void createIconLabels() {
 
         iconLabelPanel = new JPanel();
-        iconLabelPanel.setBounds(1130, 105, 280,395);
+        iconLabelPanel.setBounds(1130, 50, 280,395);
         iconLabelPanel.setBackground(Color.black);
         iconLabelPanel.setLayout(new GridLayout(6, 1));
 
@@ -297,7 +310,7 @@ public class UI {
     public void createUtilityIcons(ChoiceHandler cHandler) {
 
         utilityIconPanel = new JPanel();
-        utilityIconPanel.setBounds(300, 105, 64,395); // initial value x = 100
+        utilityIconPanel.setBounds(300, 50, 64,395); // initial value x = 100
         utilityIconPanel.setBackground(Color.black);
         utilityIconPanel.setLayout(new GridLayout(6, 1, 0, 0));
 
@@ -349,14 +362,42 @@ public class UI {
 
     public void createUtilityLabels (ChoiceHandler cHandler) {
         utilityLabelPanel = new JPanel();
-        utilityLabelPanel.setBounds(90, 368, 200,64); // initial value 100, 105, 200,395
+        utilityLabelPanel.setBounds(85, 50, 200,395); // initial value 100, 105, 200,395
         utilityLabelPanel.setBackground(Color.black);
-        utilityLabelPanel.setLayout(new GridLayout(1, 1, 0, 0));
+        utilityLabelPanel.setLayout(new GridLayout(6, 1, 0, 0));
 
         window.add(utilityLabelPanel);
 
+        // add hp number label
+        healthNumberLabel = new JLabel("", SwingConstants.RIGHT);
+        healthNumberLabel.setFont(iconFont);
+        healthNumberLabel.setForeground(Color.white);
+        healthNumberLabel.setToolTipText("This is your HP number."); // TODO: as a nice work-around, add this to show item stats!
+        utilityLabelPanel.add(healthNumberLabel);
+
+        // add mana number label
+        manaNumberLabel = new JLabel("0", SwingConstants.RIGHT);
+        manaNumberLabel.setFont(iconFont);
+        manaNumberLabel.setForeground(Color.white);
+        manaNumberLabel.setToolTipText("This is your mana number."); // TODO: as a nice work-around, add this to show item stats!
+        utilityLabelPanel.add(manaNumberLabel);
+
+        // add gold number label
+        goldNumberLabel = new JLabel("69", SwingConstants.RIGHT);
+        goldNumberLabel.setFont(iconFont);
+        goldNumberLabel.setForeground(Color.white);
+        goldNumberLabel.setToolTipText("This is your gold amount."); // TODO: as a nice work-around, add this to show item stats!
+        utilityLabelPanel.add(goldNumberLabel);
+
+        // add character level label
+        characterLevelLabel = new JLabel("1", SwingConstants.RIGHT);
+        characterLevelLabel.setFont(iconFont);
+        characterLevelLabel.setForeground(Color.white);
+        characterLevelLabel.setToolTipText("This is your character level."); // TODO: as a nice work-around, add this to show item stats!
+        utilityLabelPanel.add(characterLevelLabel);
+
         // add current location label
-        currentLocationLabel = new JLabel("Unknown yet", SwingConstants.RIGHT);
+        currentLocationLabel = new JLabel("Undiscovered", SwingConstants.RIGHT);
         currentLocationLabel.setFont(iconFont);
         currentLocationLabel.setForeground(Color.white);
         currentLocationLabel.setToolTipText("");
@@ -364,6 +405,7 @@ public class UI {
     }
 
     public void createWorldMap(Game game) {
+
         worldMapWindow = new JFrame();
         worldMapWindow.setSize(960, 960);
         worldMapWindow.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

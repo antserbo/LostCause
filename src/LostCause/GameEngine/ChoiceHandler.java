@@ -18,8 +18,8 @@ public class ChoiceHandler implements ActionListener {
         switch (yourChoice) {
             case "start":
                 game.vm.showGameScreen();
-                // game.story.startingZone();
-                game.story.goblinVillageEntrance();
+                game.story.startingZone();
+                //game.story.goblinVillageEntrance();
                 break;
             case "map":
                 game.ui.createWorldMap(game);

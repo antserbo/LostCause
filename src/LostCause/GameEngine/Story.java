@@ -33,6 +33,11 @@ public class Story {
     public void defaultSetup() {
 
         player.hp = 15;
+        player.mp = 0;
+        player.gold = 0;
+        ui.healthNumberLabel.setText("" + player.hp);
+        ui.manaNumberLabel.setText("" + player.mp);
+        ui.goldNumberLabel.setText("" + player.gold);
         player.weapon = "Fists";
 
     }
@@ -321,11 +326,24 @@ public class Story {
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        if (player.hp < 15) {
+        if (player.hp <= 12) {
+            player.hp += 3;
             ui.mainTextArea.setText("""
                     You take a sip of water and a rejuvenating effect rushes though your body
 
                     (you get healed by 3 HP)""");
+
+            ui.healthNumberLabel.setText("" + player.hp);
+        } else if (player.hp < 15) {
+            int currentHP = player.hp;
+            System.out.println(currentHP);
+            player.hp = 15;
+            int differenceHP = player.hp - currentHP;
+
+            // TODO : display the right amount of heal when you're less than 3hp away from max hp (done*)
+            ui.mainTextArea.setText("You take a sip of water and a rejuvenating effect rushes though your body\n\n" +
+                    "(you get healed by " + differenceHP + " HP)");
+            ui.healthNumberLabel.setText("" + player.hp);
         } else {
             ui.mainTextArea.setText("""
                     You take a sip of water, but it does not affect you in any possible way.
@@ -408,7 +426,7 @@ public class Story {
                 (you take 3 damage)""");
 
         player.hp -= 3;
-        // add to label of hp
+        ui.healthNumberLabel.setText("" + player.hp);
         ui.continueButton.setText("Try to get up");
 
         game.continuePosition = "goblinVillageEntrance_3";
@@ -536,6 +554,7 @@ public class Story {
             ui.mainTextArea.setText("Goblin guard: You asked for it!\n" +
                     "*You get hit by the arrow and suffer 5 damage*");
             player.hp -= 5;
+            ui.healthNumberLabel.setText("" + player.hp);
             ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
             ui.imageLabel.setIcon(ui.image);
             ui.mainImagePanel.add(ui.imageLabel);
@@ -627,8 +646,8 @@ public class Story {
             ui.currentLocationLabel.setToolTipText("You can heal and save here");
         }
         else {
-            ui.currentLocationLabel.setText("Unknown yet");
-            ui.currentLocationLabel.setToolTipText("");
+            ui.currentLocationLabel.setText("Undiscovered");
+            ui.currentLocationLabel.setToolTipText("Location yet to be discovered");
         }
     }
 
