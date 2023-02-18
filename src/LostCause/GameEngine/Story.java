@@ -21,7 +21,8 @@ public class Story {
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
-    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
+    boolean greatWoodsEntranceDiscovered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -68,12 +69,14 @@ public class Story {
             case "goblinVillageEntrance_5" -> goblinVillageEntrance_5();
             case "goblinVillageEntrance_6" -> goblinVillageEntrance_6();
             case "goblinVillageEntrance_7" -> goblinVillageEntrance_7();
+            case "startingZone_7_ToSouth" -> startingZone_7_ToSouth();
             case "goblinVillageEntrance_7_GuardBugged" -> goblinVillageEntrance_7_GuardBugged();
             case "goblinVillageEntrance_8_SilverRingDialogue" -> goblinVillageEntrance_8_SilverRingDialogue();
             case "goblinVillageEntrance_8_SilverRingDialogue_2" -> goblinVillageEntrance_8_SilverRingDialogue_2();
             case "goblinVillageEntrance_8_SilverRingDialogue_3" -> goblinVillageEntrance_8_SilverRingDialogue_3();
             case "goblinVillageEntrance_8_SilverRingDialogue_4" -> goblinVillageEntrance_8_SilverRingDialogue_4();
             case "goblinVillageEntrance_8_SilverRingDialogue_5" -> goblinVillageEntrance_8_SilverRingDialogue_5();
+            case "greatWoodsEntrance" -> greatWoodsEntrance();
 
         }
     }
@@ -163,10 +166,15 @@ public class Story {
         ui.imageLabel.setIcon(ui.image);
         ui.mainImagePanel.add(ui.imageLabel);
 
-        ui.mainTextArea.setText("Where do you want to go?");
+        ui.mainTextArea.setText("\nWhere do you want to go?");
 
-
-        ui.choiceOne.setText("Go north");
+        if (greatWoodsEntranceDiscovered) {
+            ui.choiceOne.setText("To Great Woods Entrance");
+            game.nextPositionOne = ""; // todo add a position later on...
+        } else {
+            ui.choiceOne.setText("Go north");
+            game.nextPositionOne = "greatWoodsEntrance";
+        }
         if (waterfallZoneDiscovered && waterfallSkeletonSearched) {
             ui.choiceTwo.setText("To waterfall");
             game.nextPositionTwo = "waterfallZone_3";
@@ -186,9 +194,18 @@ public class Story {
             game.nextPositionFour = "goblinVillageEntrance";
         }
 
-        game.nextPositionOne = "fromStartingZoneNorth";
-        game.nextPositionThree = "fromStartingZoneSouth";
+        game.nextPositionThree = "startingZone_7_ToSouth";
 
+    }
+
+    public void startingZone_7_ToSouth() {
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+        ui.mainTextArea.setText("You can't go there, the path is blocked...\n");
+
+        ui.continueButton.setText("Get back to crossroad");
+
+        game.continuePosition = "startingZone_7";
     }
 
     public void waterfallZone() {
@@ -629,6 +646,23 @@ public class Story {
 
         ui.continueButton.setText("Continue");
         game.continuePosition = "goblinVillageMainSquare";
+    }
+
+    public void greatWoodsEntrance() {
+        playerLocation = "greatWoodsEntrance";
+        worldMapLocationDeterminerHelper();
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+
+        ui.mainTextArea.setText("You enter the Great Woods and behold a breathtaking scenery...\n" +
+                "The gigantic trees must be thousands of years old!");
+
+        ui.image = new ImageIcon(".//res//great_woods.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "greatWoodsEntrance_2";
     }
 
 
