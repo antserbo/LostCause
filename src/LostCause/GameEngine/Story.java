@@ -1,6 +1,8 @@
 package LostCause.GameEngine;
 
+import LostCause.GameFiles.MonsterWolf;
 import LostCause.GameFiles.Player;
+import LostCause.GameFiles.SuperMonster;
 
 import javax.swing.*;
 
@@ -11,12 +13,14 @@ public class Story {
     VisibilityManager vm;
 
     Player player = new Player();
+    SuperMonster greatWoodsEntrance_4_Wolf;
 
     String playerLocation = "";
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
     int goblinVillageEntranceGuardBugged = 0;
+    int greatWoodsEntrance_4_WolfDefeated = 0;
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
@@ -77,6 +81,17 @@ public class Story {
             case "goblinVillageEntrance_8_SilverRingDialogue_4" -> goblinVillageEntrance_8_SilverRingDialogue_4();
             case "goblinVillageEntrance_8_SilverRingDialogue_5" -> goblinVillageEntrance_8_SilverRingDialogue_5();
             case "greatWoodsEntrance" -> greatWoodsEntrance();
+            case "greatWoodsEntrance_2" -> greatWoodsEntrance_2();
+            case "greatWoodsEntrance_3" -> greatWoodsEntrance_3();
+            case "greatWoodsEntrance_4" -> greatWoodsEntrance_4();
+            case "fight" -> fight(greatWoodsEntrance_4_Wolf);
+            case "playerAttack" -> playerAttack(greatWoodsEntrance_4_Wolf);
+            case "monsterAttack" -> monsterAttack(greatWoodsEntrance_4_Wolf);
+            case "win_greatWoodsEntrance_4_Wolf" -> win(greatWoodsEntrance_4_Wolf, "startingZone_7", "ass", 5);
+            // todo: come up with a smart solution of defeating several enemies and returning to the right zone
+            // todo: apparently we are going to create win cases for every single enemy entity, but in overall looks like a great solution so far...
+            case "lose" -> lose();
+            case "toTitle" -> toTitle();
 
         }
     }
@@ -665,6 +680,63 @@ public class Story {
         game.continuePosition = "greatWoodsEntrance_2";
     }
 
+    public void greatWoodsEntrance_2() {
+        playerLocation = "greatWoodsEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("This is the first time you have ever seen something so wild, but yet calming.\n" +
+                "It feels like the Great Woods is a world of its own, with its own laws and time.\n");
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "greatWoodsEntrance_3";
+    }
+
+    public void greatWoodsEntrance_3() {
+        playerLocation = "greatWoodsEntrance";
+        worldMapLocationDeterminerHelper();
+
+        ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations.\n" +
+                "The almighty nature is to be feared, yet praised for its beauty.");
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "greatWoodsEntrance_4";
+    }
+
+    public void greatWoodsEntrance_4() {
+        playerLocation = "greatWoodsEntrance";
+        worldMapLocationDeterminerHelper();
+
+        if (greatWoodsEntrance_4_WolfDefeated == 1) {
+            ui.choiceButtonPanel.setVisible(false);
+            ui.continueButtonPanel.setVisible(true);
+
+            ui.mainTextArea.setText("You walk past the defeated wolf.");
+
+            ui.image = new ImageIcon(".//res//great_woods.png"); // change to defeated wolf
+            ui.imageLabel.setIcon(ui.image);
+            ui.mainImagePanel.add(ui.imageLabel);
+
+            game.continuePosition = "greatWoodsEntrance_5";
+        } else {
+            ui.choiceButtonPanel.setVisible(true);
+            ui.continueButtonPanel.setVisible(false);
+            ui.choiceOne.setVisible(false);
+            ui.choiceTwo.setVisible(false);
+
+            ui.mainTextArea.setText("You ponder for quite a while...\n" +
+                    "When all of a sudden you are startled by a hungry wolf.");
+            greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
+
+            ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
+            ui.imageLabel.setIcon(ui.image);
+            ui.mainImagePanel.add(ui.imageLabel);
+
+            ui.choiceThree.setText("Start the battle");
+            ui.choiceFour.setText("Run");
+            game.nextPositionThree = "fight";
+            game.nextPositionFour = "startingZone_7";
+        }
+    }
 
     public void worldMapLocationDeterminerHelper() {
         // todo: implement further locations and add to every location_function playerLocation and this helper()
@@ -685,6 +757,108 @@ public class Story {
         }
     }
 
+    public void fight(SuperMonster monster) {
+        worldMapLocationDeterminerHelper();
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceOne.setVisible(false);
+        ui.choiceTwo.setVisible(false);
 
+        ui.mainTextArea.setText(monster.name + ": " + monster.hp + "\nWhat do you intend to do?");
+
+        ui.choiceThree.setText("Attack");
+        ui.choiceFour.setText("Flee from battle");
+        game.nextPositionThree = "playerAttack";
+        game.nextPositionFour = "startingZone_7";
+    }
+
+    public void playerAttack(SuperMonster monster) {
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+
+        int playerDamage = new java.util.Random().nextInt(10); // todo change to current_weapon
+
+        ui.mainTextArea.setText("You attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
+
+        monster.hp -= playerDamage;
+
+        ui.continueButton.setText("Continue");
+
+        // todo: create a big-ass checker for all the monsters that you're dealing with
+        // todo: make sure that this is needed... how do you solve the win()?
+
+        if (monster.hp > 1) {
+            game.continuePosition = "monsterAttack";
+        } else if (monster.hp < 1) {
+            if (monster.objectID.equals("greatWoodsEntrance_4_Wolf")) {
+                game.continuePosition = "win_greatWoodsEntrance_4_Wolf";
+            } else {
+                game.continuePosition = "lose";
+            }
+        }
+
+    }
+
+    public void monsterAttack(SuperMonster monster) {
+
+        int monsterDamage = new java.util.Random().nextInt(monster.attack);
+
+        ui.mainTextArea.setText("The " + monster.name + " dealt " + monsterDamage + " damage.");
+
+        player.hp -= monsterDamage;
+        ui.healthNumberLabel.setText("" + player.hp);
+
+        ui.continueButton.setText("Continue");
+
+        if (player.hp > 1) {
+            game.continuePosition = "fight";
+        } else if (player.hp < 1) {
+            game.continuePosition = "lose";
+        }
+
+    }
+
+    public void win(SuperMonster monster, String continueNextPosition, String loot, Integer coins) {
+        // todo: somehow make the fifth argument "int monsterDefeated" work, so that we don't have to implement an extra if block...
+
+        if ((!loot.isEmpty()) && ((coins != 0))) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
+                    "The " + monster.name + " has dropped a " + loot + " and " + coins + " coins.");
+        } else if ((loot.isEmpty()) && ((coins != 0))) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
+                    "The " + monster.name + " has dropped " + coins + " coins.");
+        } else if (!loot.isEmpty()) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
+                    "The " + monster.name + " has dropped " + coins + " coins.");
+        } else {
+            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
+                    "The " + monster.name + " has dropped nothing.");
+        }
+
+
+        if (monster.objectID.equals("greatWoodsEntrance_4_Wolf")) {
+            greatWoodsEntrance_4_WolfDefeated = 1;
+        }
+
+        ui.continueButton.setText("Continue");
+
+        game.continuePosition = continueNextPosition;
+
+    }
+
+    public void lose() {
+
+        ui.mainTextArea.setText("You are dead! \n\n<GAME OVER>");
+
+        ui.continueButton.setText("To the title screen");
+
+        game.nextPositionOne = "toTitle";
+    }
+
+    public void toTitle() {
+
+        defaultSetup();
+        vm.showTitleScreen();
+    }
 
 }

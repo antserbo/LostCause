@@ -91,9 +91,9 @@ public class UI {
         mainTextArea.setBounds(190, 450, 1000, 200); // height was 400. // second edit 250, now 150, // y was 500
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
-        //mainTextArea.setAlignmentX(Component.CENTER_ALIGNMENT);
+        //mainTextArea.setAlignmentX(JTextField.CENTER_ALIGNMENT);
         mainTextArea.setFont(normalFont);
-        mainTextArea.setLineWrap(true);
+        mainTextArea.setLineWrap(true); // set line wrap to false, if you want center to activate.
         mainTextArea.setWrapStyleWord(true);
         mainTextArea.setEditable(false);
 
