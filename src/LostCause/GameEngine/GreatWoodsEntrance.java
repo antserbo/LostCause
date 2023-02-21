@@ -185,7 +185,7 @@ public class GreatWoodsEntrance extends Story{
 
         ui.choiceTwo.setText("Continue walking the road");
 
-        if (game.story.greatWoodsEntranceCaveDiscovered) {
+        if (game.story.greatWoodsEntranceToCaveDiscovered) {
             ui.choiceThree.setText("Go to cave");
             game.nextPositionThree = "greatWoodsEntrance_Cave";
         } else {
@@ -303,7 +303,7 @@ public class GreatWoodsEntrance extends Story{
         ui.choiceThree.setText("Enter the cave (might be dangerous!)");
         ui.choiceFour.setText("Return to crossroad");
 
-        game.story.greatWoodsEntranceCaveDiscovered = true;
+        game.story.greatWoodsEntranceToCaveDiscovered = true;
 
         game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath_4";
         game.nextPositionFour = "startingZone_7";

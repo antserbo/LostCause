@@ -28,7 +28,7 @@ public class Story {
     boolean goblinVillageEntranceDiscovered = false;
     boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
     boolean greatWoodsEntranceDiscovered = false;
-    boolean greatWoodsEntranceCaveDiscovered = false;
+    boolean greatWoodsEntranceToCaveDiscovered = false;
     boolean greatWoodsEntrance_6_Discovered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
@@ -225,11 +225,7 @@ public class Story {
         ui.continueButton.setText("Continue");
 
         if (player.hp > 1) {
-            if (monster.objectID.equals("greatWoodsEntrance_4_Wolf")) {
-                game.continuePosition = "fight_greatWoodsEntrance_4_Wolf";
-            } else if (monster.objectID.equals("greatWoodsEntrance_6_NarrowPath_2_Wolf")) {
-                game.continuePosition = "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf";
-            }
+            game.continuePosition = "fight_" + monster.objectID;
         } else if (player.hp < 1) {
             game.continuePosition = "lose";
         }
