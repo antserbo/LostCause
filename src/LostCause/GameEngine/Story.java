@@ -1,10 +1,7 @@
 package LostCause.GameEngine;
 
-import LostCause.GameFiles.MonsterWolf;
 import LostCause.GameFiles.Player;
 import LostCause.GameFiles.SuperMonster;
-
-import javax.swing.*;
 
 public class Story {
 
@@ -16,6 +13,7 @@ public class Story {
     SuperMonster greatWoodsEntrance_4_Wolf;
     SuperMonster greatWoodsEntrance_6_NarrowPath_2_Wolf;
 
+    // todo: all variables except for playerLocation should be *game.story._*
     String playerLocation = "";
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
@@ -38,6 +36,7 @@ public class Story {
         game = g;
         ui = userInterface;
         vm = vManager;
+
     }
 
     public void defaultSetup() {
@@ -56,189 +55,72 @@ public class Story {
 
         switch (nextPosition) {
 
-            case "startingZone_2" -> startingZone_2();
-            case "startingZone_3" -> startingZone_3();
-            case "startingZone_4" -> startingZone_4();
-            case "startingZone_5" -> startingZone_5();
-            case "startingZone_6" -> startingZone_6();
-            case "startingZone_7" -> startingZone_7();
+            case "startingZone_2" -> game.startingZone.startingZone_2();
+            case "startingZone_3" -> game.startingZone.startingZone_3();
+            case "startingZone_4" -> game.startingZone.startingZone_4();
+            case "startingZone_5" -> game.startingZone.startingZone_5();
+            case "startingZone_6" -> game.startingZone.startingZone_6();
+            case "startingZone_7" -> game.startingZone.startingZone_7();
 
             case "startingZone_7_ToSouth" -> startingZone_7_ToSouth();
 
-            case "waterfallZone" -> waterfallZone();
-            case "waterfallZone_2" -> waterfallZone_2();
-            case "waterfallZone_2_WeaponTake" -> waterfallZone_2_WeaponTake();
-            case "waterfallZone_2_SearchSkeleton_Success" -> waterfallZone_2_SearchSkeleton_Success();
-            case "waterfallZone_2_SearchSkeleton_Failure" -> waterfallZone_2_SearchSkeleton_Failure();
-            case "waterfallZone_3" -> waterfallZone_3();
-            case "waterfallZone_3_DrinkWater" -> waterfallZone_3_DrinkWater();
+            case "waterfallZone" -> game.waterfallZone.waterfallZone();
+            case "waterfallZone_2" -> game.waterfallZone.waterfallZone_2();
+            case "waterfallZone_2_WeaponTake" -> game.waterfallZone.waterfallZone_2_WeaponTake();
+            case "waterfallZone_2_SearchSkeleton_Success" -> game.waterfallZone.waterfallZone_2_SearchSkeleton_Success();
+            case "waterfallZone_2_SearchSkeleton_Failure" -> game.waterfallZone.waterfallZone_2_SearchSkeleton_Failure();
+            case "waterfallZone_3" -> game.waterfallZone.waterfallZone_3();
+            case "waterfallZone_3_DrinkWater" -> game.waterfallZone.waterfallZone_3_DrinkWater();
 
-            case "goblinVillageEntrance" -> goblinVillageEntrance();
-            case "goblinVillageEntrance_2" -> goblinVillageEntrance_2();
-            case "goblinVillageEntrance_2_ClimbGate" -> goblinVillageEntrance_2_ClimbGate();
-            case "goblinVillageEntrance_2_ClimbGate_2" -> goblinVillageEntrance_2_ClimbGate_2();
-            case "goblinVillageEntrance_3" -> goblinVillageEntrance_3();
-            case "goblinVillageEntrance_4" -> goblinVillageEntrance_4();
-            case "goblinVillageEntrance_5" -> goblinVillageEntrance_5();
-            case "goblinVillageEntrance_6" -> goblinVillageEntrance_6();
-            case "goblinVillageEntrance_7" -> goblinVillageEntrance_7();
-            case "goblinVillageEntrance_7_GuardBugged" -> goblinVillageEntrance_7_GuardBugged();
-            case "goblinVillageEntrance_8_SilverRingDialogue" -> goblinVillageEntrance_8_SilverRingDialogue();
-            case "goblinVillageEntrance_8_SilverRingDialogue_2" -> goblinVillageEntrance_8_SilverRingDialogue_2();
-            case "goblinVillageEntrance_8_SilverRingDialogue_3" -> goblinVillageEntrance_8_SilverRingDialogue_3();
-            case "goblinVillageEntrance_8_SilverRingDialogue_4" -> goblinVillageEntrance_8_SilverRingDialogue_4();
-            case "goblinVillageEntrance_8_SilverRingDialogue_5" -> goblinVillageEntrance_8_SilverRingDialogue_5();
+            case "goblinVillageEntrance" -> game.goblinVillageEntrance.goblinVillageEntrance();
+            case "goblinVillageEntrance_2" -> game.goblinVillageEntrance.goblinVillageEntrance_2();
+            case "goblinVillageEntrance_2_ClimbGate" -> game.goblinVillageEntrance.goblinVillageEntrance_2_ClimbGate();
+            case "goblinVillageEntrance_2_ClimbGate_2" -> game.goblinVillageEntrance.goblinVillageEntrance_2_ClimbGate_2();
+            case "goblinVillageEntrance_3" -> game.goblinVillageEntrance.goblinVillageEntrance_3();
+            case "goblinVillageEntrance_4" -> game.goblinVillageEntrance.goblinVillageEntrance_4();
+            case "goblinVillageEntrance_5" -> game.goblinVillageEntrance.goblinVillageEntrance_5();
+            case "goblinVillageEntrance_6" -> game.goblinVillageEntrance.goblinVillageEntrance_6();
+            case "goblinVillageEntrance_7" -> game.goblinVillageEntrance.goblinVillageEntrance_7();
+            case "goblinVillageEntrance_7_GuardBugged" -> game.goblinVillageEntrance.goblinVillageEntrance_7_GuardBugged();
+            case "goblinVillageEntrance_8_SilverRingDialogue" -> game.goblinVillageEntrance.goblinVillageEntrance_8_SilverRingDialogue();
+            case "goblinVillageEntrance_8_SilverRingDialogue_2" -> game.goblinVillageEntrance.goblinVillageEntrance_8_SilverRingDialogue_2();
+            case "goblinVillageEntrance_8_SilverRingDialogue_3" -> game.goblinVillageEntrance.goblinVillageEntrance_8_SilverRingDialogue_3();
+            case "goblinVillageEntrance_8_SilverRingDialogue_4" -> game.goblinVillageEntrance.goblinVillageEntrance_8_SilverRingDialogue_4();
+            case "goblinVillageEntrance_8_SilverRingDialogue_5" -> game.goblinVillageEntrance.goblinVillageEntrance_8_SilverRingDialogue_5();
 
-            case "greatWoodsEntrance" -> greatWoodsEntrance();
-            case "greatWoodsEntrance_2" -> greatWoodsEntrance_2();
-            case "greatWoodsEntrance_3" -> greatWoodsEntrance_3();
-            case "greatWoodsEntrance_4" -> greatWoodsEntrance_4();
-            case "greatWoodsEntrance_5" -> greatWoodsEntrance_5();
-            case "greatWoodsEntrance_5_River" -> greatWoodsEntrance_5_River();
-            case "greatWoodsEntrance_6" -> greatWoodsEntrance_6();
-            case "greatWoodsEntrance_7" -> greatWoodsEntrance_7();
-            case "greatWoodsEntrance_8" -> greatWoodsEntrance_8();
-            case "greatWoodsEntrance_9" -> greatWoodsEntrance_9();
+            case "greatWoodsEntrance" -> game.greatWoodsEntrance.greatWoodsEntrance();
+            case "greatWoodsEntrance_2" -> game.greatWoodsEntrance.greatWoodsEntrance_2();
+            case "greatWoodsEntrance_3" -> game.greatWoodsEntrance.greatWoodsEntrance_3();
+            case "greatWoodsEntrance_4" -> game.greatWoodsEntrance.greatWoodsEntrance_4();
+            case "greatWoodsEntrance_5" -> game.greatWoodsEntrance.greatWoodsEntrance_5();
+            case "greatWoodsEntrance_5_River" -> game.greatWoodsEntrance.greatWoodsEntrance_5_River();
+            case "greatWoodsEntrance_6" -> game.greatWoodsEntrance.greatWoodsEntrance_6();
+            case "greatWoodsEntrance_7" -> game.greatWoodsEntrance.greatWoodsEntrance_7();
+            case "greatWoodsEntrance_8" -> game.greatWoodsEntrance.greatWoodsEntrance_8();
+            case "greatWoodsEntrance_9" -> game.greatWoodsEntrance.greatWoodsEntrance_9();
 
-            case "greatWoodsEntrance_6_NarrowPath" -> greatWoodsEntrance_6_NarrowPath();
-            case "greatWoodsEntrance_6_NarrowPath_2" -> greatWoodsEntrance_6_NarrowPath_2();
-            case "greatWoodsEntrance_6_NarrowPath_3" -> greatWoodsEntrance_6_NarrowPath_3();
-            case "greatWoodsEntrance_6_NarrowPath_4" -> greatWoodsEntrance_6_NarrowPath_4();
+            case "greatWoodsEntrance_6_NarrowPath" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath();
+            case "greatWoodsEntrance_6_NarrowPath_2" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2();
+            case "greatWoodsEntrance_6_NarrowPath_3" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_3();
+            case "greatWoodsEntrance_6_NarrowPath_4" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
 
 
-            case "fight_greatWoodsEntrance_4_Wolf" -> fight(greatWoodsEntrance_4_Wolf, "startingZone_7");
-            case "examine_greatWoodsEntrance_4_Wolf" -> examine(greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_4");
-            case "playerAttack_greatWoodsEntrance_4_Wolf" -> playerAttack(greatWoodsEntrance_4_Wolf);
-            case "monsterAttack_greatWoodsEntrance_4_Wolf" -> monsterAttack(greatWoodsEntrance_4_Wolf);
-            case "win_greatWoodsEntrance_4_Wolf" -> win(greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_5", "", 5);
+            case "fight_greatWoodsEntrance_4_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "startingZone_7");
+            case "examine_greatWoodsEntrance_4_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_4");
+            case "playerAttack_greatWoodsEntrance_4_Wolf" -> playerAttack(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf);
+            case "monsterAttack_greatWoodsEntrance_4_Wolf" -> monsterAttack(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf);
+            case "win_greatWoodsEntrance_4_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_5", "", 5);
 
-            case "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> fight(greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6");
-            case "examine_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> examine(greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_2");
-            case "playerAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> playerAttack(greatWoodsEntrance_6_NarrowPath_2_Wolf);
-            case "monsterAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> monsterAttack(greatWoodsEntrance_6_NarrowPath_2_Wolf);
-            case "win_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> win(greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_3", "ass", 4);
+            case "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6");
+            case "examine_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_2");
+            case "playerAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> playerAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
+            case "monsterAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> monsterAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
+            case "win_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_3", "ass", 4);
 
             case "lose" -> lose();
             case "toTitle" -> toTitle();
 
         }
-    }
-
-    public void startingZone() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("You wake up to the noise of the waterfall in the distance.\n" +
-                "The only vague memory you have is of your name, despite the aching body you try to get up...");
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "startingZone_2";
-
-
-    }
-
-    public void startingZone_2() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("With legs trembling you somehow manage to stand up.\n" +
-                "No idea how you ended up in this place. However, you need to act...");
-
-
-        ui.continueButton.setText("Look around");
-
-        game.continuePosition = "startingZone_3";
-
-    }
-
-    public void startingZone_3() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("After looking around you determine that to your right there is a waterfall in the distance.");
-
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "startingZone_4";
-
-    }
-
-    public void startingZone_4() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("Beside you there is a dead-end, fallen trees are blocking the southern route.");
-
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "startingZone_5";
-    }
-
-    public void startingZone_5() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("To your left lies a narrow path, which gives you an eerie feeling.");
-
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "startingZone_6";
-
-    }
-
-    public void startingZone_6() {
-        playerLocation = "startingZone";
-        worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("The northern direction introduces a road which leads deeper into the forest.");
-
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "startingZone_7";
-
-
-    }
-
-    public void startingZone_7() {
-        playerLocation = "startingZone";
-        startingZoneDiscovered = true;
-        worldMapLocationDeterminerHelper();
-        // TODO: add location names once discovered. Once you get to the end of waterfall, f.e., you no longer see "go west", rather "to / waterfall"
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceButtonPanel.setVisible(true);
-        ui.choiceOne.setVisible(true);
-        ui.choiceTwo.setVisible(true);
-
-        ui.image = new ImageIcon(".//res//crossroad.jpg");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.mainTextArea.setText("\nWhere do you want to go?");
-
-        if (greatWoodsEntranceDiscovered) {
-            ui.choiceOne.setText("To Great Woods Entrance");
-            game.nextPositionOne = "greatWoodsEntrance_5";
-        } else {
-            ui.choiceOne.setText("Go north");
-            game.nextPositionOne = "greatWoodsEntrance";
-        }
-        if (waterfallZoneDiscovered && waterfallSkeletonSearched) {
-            ui.choiceTwo.setText("To waterfall");
-            game.nextPositionTwo = "waterfallZone_3";
-        } else if (waterfallZoneDiscovered) {
-            ui.choiceTwo.setText("To waterfall");
-            game.nextPositionTwo = "waterfallZone_2";
-        } else {
-            ui.choiceTwo.setText("Go east");
-            game.nextPositionTwo = "waterfallZone";
-        }
-        ui.choiceThree.setText("Go south");
-        if (goblinVillageEntranceDiscovered) {
-            ui.choiceFour.setText("To Goblin Village Entrance");
-            game.nextPositionFour = "goblinVillageEntrance_7";
-        } else {
-            ui.choiceFour.setText("Go west");
-            game.nextPositionFour = "goblinVillageEntrance";
-        }
-
-        game.nextPositionThree = "startingZone_7_ToSouth";
-
     }
 
     public void startingZone_7_ToSouth() {
@@ -251,761 +133,24 @@ public class Story {
         game.continuePosition = "startingZone_7";
     }
 
-    public void waterfallZone() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("You enter a secluded area with a waterfall.");
-
-        ui.image = new ImageIcon(".//res//waterfall.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.continueButton.setText("Look around");
-
-        game.continuePosition = "waterfallZone_2";
-
-    }
-
-    public void waterfallZone_2() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceOne.setVisible(false);
-
-        ui.mainTextArea.setText("Your eye catches a resting skeleton of a long-forgotten adventurer.\n" +
-                "Even though the skeleton's been resting for quite some time, the equipment might prove useful.");
-
-        if (waterfallSkeletonWeaponTaken == 0) {
-            ui.choiceTwo.setText("Take weapon");
-            game.nextPositionTwo = "waterfallZone_2_WeaponTake";
-        } else {
-            ui.choiceTwo.setText("");
-            game.nextPositionTwo = "";
-        }
-
-        if (waterfallSkeletonAmuletTaken == 0 && waterfallSkeletonTimesSearched < 3) {
-            int waterfallSkeletonAmuletChance = new java.util.Random().nextInt(3);
-            ui.choiceThree.setText("Search skeleton");
-            if (waterfallSkeletonAmuletChance == 2) {
-                game.nextPositionThree = "waterfallZone_2_SearchSkeleton_Success";
-            } else {
-                game.nextPositionThree = "waterfallZone_2_SearchSkeleton_Failure";
-            }
-        } else {
-            ui.choiceThree.setText("");
-            game.nextPositionThree = "";
-        }
-
-        if (((waterfallSkeletonAmuletTaken == 1) || (waterfallSkeletonTimesSearched > 2)) && waterfallSkeletonWeaponTaken == 1) {
-            ui.mainTextArea.setText("There is nothing left to loot from the skeleton's remains.");
-            waterfallSkeletonSearched = true;
-        }
-
-        ui.choiceFour.setText("Leave skeleton");
-        game.nextPositionFour = "waterfallZone_3";
-    }
-
-    public void waterfallZone_2_WeaponTake() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        ui.mainTextArea.setText("You have found a rusty iron long sword!");
-        waterfallSkeletonWeaponTaken = 1;
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "waterfallZone_2";
-
-    }
-
-    public void waterfallZone_2_SearchSkeleton_Success() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        ui.mainTextArea.setText("You have found a peculiar amulet!");
-        waterfallSkeletonAmuletTaken = 1;
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "waterfallZone_2";
-    }
-
-    public void waterfallZone_2_SearchSkeleton_Failure() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        if (waterfallSkeletonTimesSearched < 2) {
-            ui.mainTextArea.setText("You have failed in searching the skeleton.");
-        } else {
-            ui.mainTextArea.setText("The skeleton has crumbled to dust and searching it is not possible anymore");
-        }
-        waterfallSkeletonTimesSearched += 1;
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "waterfallZone_2";
-    }
-
-    public void waterfallZone_3() {
-        playerLocation = "waterfallZone";
-        waterfallZoneDiscovered = true;
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceOne.setVisible(false);
-
-        ui.mainTextArea.setText("You step closer to the waterfall. \n" +
-                "The sound of it makes you feel some sort of relief...");
-
-        ui.choiceTwo.setText("Drink water");
-        game.nextPositionTwo = "waterfallZone_3_DrinkWater";
-
-
-        ui.choiceThree.setText("Meditate (save)");
-        game.nextPositionThree = "waterfallZone_3_Meditate";
-
-
-        ui.choiceFour.setText("Head back");
-        game.nextPositionFour = "startingZone_7";
-
-
-    }
-
-    public void waterfallZone_3_DrinkWater() {
-        playerLocation = "waterfallZone";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        if (player.hp <= 12) {
-            player.hp += 3;
-            ui.mainTextArea.setText("""
-                    You take a sip of water and a rejuvenating effect rushes though your body
-
-                    (you get healed by 3 HP)""");
-
-            ui.healthNumberLabel.setText("" + player.hp);
-        } else if (player.hp < 15) {
-            int currentHP = player.hp;
-            System.out.println(currentHP);
-            player.hp = 15;
-            int differenceHP = player.hp - currentHP;
-
-            // TODO : display the right amount of heal when you're less than 3hp away from max hp (done*)
-            ui.mainTextArea.setText("You take a sip of water and a rejuvenating effect rushes though your body\n\n" +
-                    "(you get healed by " + differenceHP + " HP)");
-            ui.healthNumberLabel.setText("" + player.hp);
-        } else {
-            ui.mainTextArea.setText("""
-                    You take a sip of water, but it does not affect you in any possible way.
-
-                    (current hp is maximum)""");
-        }
-
-        ui.continueButton.setText("Stop drinking");
-        game.continuePosition = "waterfallZone_3";
-
-    }
-
-    public void goblinVillageEntrance() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("You have been following the narrow path to the west for almost an hour.\n" +
-                "The eerie feeling is intensifying, more and more strange noises are surrounding you. ");
-
-        ui.image = new ImageIcon(".//res//narrowForestPath.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "goblinVillageEntrance_2";
-
-    }
-
-    public void goblinVillageEntrance_2() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceButtonPanel.setVisible(true);
-        ui.choiceOne.setVisible(false);
-
-        ui.mainTextArea.setText("You approach a primitive gate made out of wood.\n" +
-                "The design is not the best, ugly to be frank, but it sure looks sturdy enough.");
-
-        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.choiceTwo.setText("Knock the gate");
-        game.nextPositionTwo = "goblinVillageEntrance_3";
-        ui.choiceThree.setText("Try to climb the gate");
-        game.nextPositionThree = "goblinVillageEntrance_2_ClimbGate";
-        ui.choiceFour.setText("Return to crossroad");
-        game.nextPositionFour = "startingZone_7";
-
-        game.continuePosition = "goblinVillageEntrance_3";
-
-    }
-
-    public void goblinVillageEntrance_2_ClimbGate() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("You are beginning to think that it is not the best idea that you've ever come up with.\n" +
-                "Yet you try to climb up as if were born to do this.");
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "goblinVillageEntrance_2_ClimbGate_2";
-
-
-    }
-
-    public void goblinVillageEntrance_2_ClimbGate_2() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("""
-                As your tired body refused to let you hold a better grip, you fall down...
-                Your fall did sure get someone's attention.
-                (you take 3 damage)""");
-
-        player.hp -= 3;
-        ui.healthNumberLabel.setText("" + player.hp);
-        ui.continueButton.setText("Try to get up");
-
-        game.continuePosition = "goblinVillageEntrance_3";
-    }
-
-    public void goblinVillageEntrance_3() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("Goblin guard: Oi, who goes 'ere? What do you want, 'uman? Speak business or me shoot you in the knee! \n" +
-                "*The goblin was holding its bow while waiting for a reply.*");
-
-        ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "goblinVillageEntrance_4";
-    }
-
-    public void goblinVillageEntrance_4() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("*After telling the goblin how you ended up like this, the goblin replied...*\n" +
-                "Goblin guard: This is some gibberish story, 'uman. 'owever i can let you in, if you 'elp in a certain matter.");
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "goblinVillageEntrance_5";
-    }
-
-    public void goblinVillageEntrance_5() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("Goblin guard: You see.. I've recently lost me prized trinket - a silver ring which was meant for me wifey\n" +
-                "Get that ring for me and I'll grant you passage to our village, 'uman. Look for it in the Great Forest!");
-
-        ui.continueButton.setText("Continue");
-
-        game.continuePosition = "goblinVillageEntrance_6";
-    }
-
-    public void goblinVillageEntrance_6() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(false);
-
-        ui.mainTextArea.setText("""
-                Goblin guard: Now begone!
-                *The goblin hides his head and apparently decides to take a nap from the tiresome dialogue*
-                Goblin guard:...I've important guard business to attend to.""");
-
-        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_7";
-    }
-
-    public void goblinVillageEntrance_7() {
-        playerLocation = "goblinVillageEntrance";
-        goblinVillageEntranceDiscovered = true;
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(false);
-
-        ui.mainTextArea.setText("""
-                The gate is empty, apparently the goblin guard has fallen asleep...""");
-
-        ui.image = new ImageIcon(".//res//goblinVillageEntranceNoGoblin.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        if (goblinVillageEntranceGuardSilverRingDiscovered) {
-            ui.choiceTwo.setVisible(true);
-            ui.choiceTwo.setText("Show the silver ring");
-            game.nextPositionTwo = "goblinVillageEntrance_8_SilverRingDialogue";
-        }
-        if (goblinVillageEntranceGuardBugged < 4) {
-            ui.choiceThree.setText("Draw the goblin's attention");
-            game.nextPositionThree = "goblinVillageEntrance_7_GuardBugged";
-        } else if (goblinVillageEntranceGuardBugged == 4) {
-            ui.choiceThree.setText("See what happens...");
-            game.nextPositionThree = "goblinVillageEntrance_7_GuardBugged";
-        } else {
-            ui.choiceThree.setText("");
-            game.nextPositionThree = "";
-        }
-
-        ui.choiceFour.setText("Return to crossroad");
-        game.nextPositionFour = "startingZone_7";
-
-    }
-
-    public void goblinVillageEntrance_7_GuardBugged() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        if (goblinVillageEntranceGuardBugged < 3) {
-            ui.mainTextArea.setText("The goblin appears to be already sleeping and does not care.");
-        } else if (goblinVillageEntranceGuardBugged == 3) {
-            ui.mainTextArea.setText("Goblin guard: Oi, me going to shoot you in the knee! Stop that, 'uman!");
-            ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-        } else {
-            ui.mainTextArea.setText("Goblin guard: You asked for it!\n" +
-                    "*You get hit by the arrow and suffer 5 damage*");
-            player.hp -= 5;
-            ui.healthNumberLabel.setText("" + player.hp);
-            ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-
-        }
-
-        goblinVillageEntranceGuardBugged += 1;
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_7";
-    }
-
-    public void goblinVillageEntrance_8_SilverRingDialogue() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        ui.mainTextArea.setText("Goblin guard: Well, it's about time you've gotten back, 'uman! Do I think what I really think it is!?\n" +
-                "Blimey! It sure is me lost ring!");
-
-        ui.image = new ImageIcon(".//res//goblinVillageEntrance.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_2";
-    }
-
-    public void goblinVillageEntrance_8_SilverRingDialogue_2() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("Goblin guard: Now then, a deal is a deal and I promised to grant you passage to our village, 'uman.\n" +
-                "Don't stray away and get yourself lost in the slums, nasty place... Eugh!");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_3";
-    }
-
-    public void goblinVillageEntrance_8_SilverRingDialogue_3() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("Goblin guard: If you feel pretty confident in yourself, you might as well talk to our chief Bizwalk.\n" +
-                "He might provide you with some interesting tasks in your spare time");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_4";
-    }
-
-    public void goblinVillageEntrance_8_SilverRingDialogue_4() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("""
-                Goblin guard: Ai, before you depart, I want you to 'ave this leather armor, that I got me 'ands on some time ago.
-                You sure 'ave earned your right to wear it. Now off with you, guarding requires keeping me eyes open all the time.
-                (you receive a piece of leather chest armor)""");
-        player.armorChest = "Leather chest armor";
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_5";
-    }
-
-    public void goblinVillageEntrance_8_SilverRingDialogue_5() {
-        playerLocation = "goblinVillageEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("The goblin opens the gate for you and then disappears behind some sort of boxes, apparently willing to take a nap again...");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageMainSquare";
-    }
-
-    public void greatWoodsEntrance() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        if (greatWoodsEntrance_6_Discovered) {
-            ui.mainTextArea.setText("You decide to increase your tempo.\n" +
-                            "Some time later you walk past the killed wolf.");
-
-            ui.continueButton.setText("Continue");
-            game.continuePosition = "greatWoodsEntrance_5";
-        } else {
-
-            ui.mainTextArea.setText("You enter the Great Woods and behold a breathtaking scenery...\n" +
-                    "The gigantic trees must be thousands of years old!");
-
-            ui.image = new ImageIcon(".//res//great_woods.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            ui.continueButton.setText("Continue");
-            game.continuePosition = "greatWoodsEntrance_2";
-        }
-
-    }
-
-    public void greatWoodsEntrance_2() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("This is the first time you have ever seen something so wild, but yet calming.\n" +
-                "It feels like the Great Woods is a world of its own, with its own laws and time.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_3";
-    }
-
-    public void greatWoodsEntrance_3() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations.\n" +
-                "The almighty nature is to be feared, yet praised for its beauty.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_4";
-    }
-
-    public void greatWoodsEntrance_4() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        if (greatWoodsEntrance_4_WolfDefeated == 1) {
-            ui.choiceButtonPanel.setVisible(false);
-            ui.continueButtonPanel.setVisible(true);
-
-            ui.mainTextArea.setText("You walk past the defeated wolf.");
-
-            ui.image = new ImageIcon(".//res//great_woods.png"); // change to defeated wolf
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            game.continuePosition = "greatWoodsEntrance_5";
-        } else {
-            ui.choiceButtonPanel.setVisible(true);
-            ui.continueButtonPanel.setVisible(false);
-            ui.choiceOne.setVisible(false);
-
-            ui.mainTextArea.setText("You ponder for quite a while...\n" +
-                    "When all of a sudden you are startled by a hungry wolf.");
-            greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
-
-            // todo: maybe add an option where the player can examine the foe they're fighting, so you could predict the max hit.
-
-            ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            ui.choiceTwo.setText("Examine foe");
-            ui.choiceThree.setText("Start the battle");
-            ui.choiceFour.setText("Run");
-            game.nextPositionTwo = "examine_greatWoodsEntrance_4_Wolf";
-            game.nextPositionThree = "fight_greatWoodsEntrance_4_Wolf";
-            game.nextPositionFour = "startingZone_7";
-        }
-    }
-
-    public void greatWoodsEntrance_5() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(false);
-
-        ui.mainTextArea.setText("You traverse deeper into the Great Woods and see a small river to the right.\n" +
-                "The water looks so clear, it must be coming right from that mountain with its top covered in snow");
-
-        greatWoodsEntrance_6_Discovered = true;
-
-        ui.image = new ImageIcon(".//res//great_woods.png");
-        ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
-
-        if (greatWoodsEntrance_5_RiverDrinks < 2) { // TODO: take a look, maybe you don't want that... so you could heal later
-            ui.choiceThree.setText("Drink from the river");
-            game.nextPositionThree = "greatWoodsEntrance_5_River";
-        } else {
-            ui.choiceThree.setText("");
-            game.nextPositionThree = "";
-        }
-        ui.choiceFour.setText("Continue your journey");
-        game.nextPositionFour = "greatWoodsEntrance_6";
-
-    }
-
-    public void greatWoodsEntrance_5_River() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        // todo: review this function for later, because the player's base hp might increase over time.
-        if (greatWoodsEntrance_5_RiverDrinks < 2) {
-            greatWoodsEntrance_5_RiverDrinks += 1;
-            if (player.hp <= 10) {
-                player.hp += 5;
-                ui.mainTextArea.setText("""
-                        You drink water from the river and feel better.
-
-                        (you get healed by 5 HP)""");
-
-                ui.healthNumberLabel.setText("" + player.hp);
-            } else if (player.hp < 15) {
-                int currentHP = player.hp;
-                player.hp = 15;
-                int differenceHP = player.hp - currentHP;
-
-                // TODO : display the right amount of heal when you're less than 3hp away from max hp (done*)
-                ui.mainTextArea.setText("You drink the river's water and feel better.\n\n" +
-                        "(you get healed by " + differenceHP + " HP)");
-                ui.healthNumberLabel.setText("" + player.hp);
-            } else {
-                ui.mainTextArea.setText("""
-                        You drink water from the river, but feel no effect.
-
-                        (current hp is maximum)""");
-            }
-        } else {
-            ui.mainTextArea.setText("You have already drunk several times, your stomach is full...");
-        }
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_5";
-    }
-
-    public void greatWoodsEntrance_6() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(true);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("You follow the road and then see a narrow path to the left from the road.");
-
-        ui.choiceTwo.setText("Continue walking the road");
-
-        if (greatWoodsEntranceCaveDiscovered) {
-            ui.choiceThree.setText("Go to cave");
-            game.nextPositionThree = "greatWoodsEntrance_Cave";
-        } else {
-            ui.choiceThree.setText("Take the narrow path");
-            game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath";
-        }
-
-        ui.choiceFour.setText("Return to crossroad");
-
-        game.nextPositionTwo = "greatWoodsEntrance_7";
-        game.nextPositionFour = "startingZone_7";
-
-    }
-
-    public void greatWoodsEntrance_7() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-
-        ui.mainTextArea.setText("You walk the road and constantly look at the humongous trees.\n" +
-                "These trees must have seen a lot and you feel your insignificance in this very moment.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_8";
-
-    }
-
-    public void greatWoodsEntrance_8() {
-        playerLocation = "greatWoodsEntrance";
-        greatWoodsEntranceDiscovered = true;
-        worldMapLocationDeterminerHelper();
-
-        ui.mainTextArea.setText("However, negative thoughts should not crawl into your head, as you are sure destined for something great.\n" +
-                "Taking several deep breaths in a row puts your mind at ease and you continue through this never-ending forest.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_9";
-
-    }
-
     public void greatWoodsEntrance_9() { // todo: we are entering the main area of Great Woods. change later.
 
-    }
-
-    public void greatWoodsEntrance_6_NarrowPath() {
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        ui.choiceButtonPanel.setVisible(false);
-        ui.continueButtonPanel.setVisible(true);
-        // todo: add an image of a narrow path that you're walking to the cave.
-
-        ui.mainTextArea.setText("The narrow path does not really allow you to see much in front of you due to constant turns.\n" +
-                "For a reason you sharpen your senses, as you await danger lurking not far.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_6_NarrowPath_2";
-
-    }
-
-    public void greatWoodsEntrance_6_NarrowPath_2() { // todo: edit the working image and also check for other stuff if needed
-        playerLocation = "greatWoodsEntrance";
-        worldMapLocationDeterminerHelper();
-
-        if (greatWoodsEntrance_6_NarrowPath_2_WolfDefeated == 1) {
-            ui.choiceButtonPanel.setVisible(false);
-            ui.continueButtonPanel.setVisible(true);
-
-            ui.mainTextArea.setText("You walk past the defeated wolf.");
-
-            ui.image = new ImageIcon(".//res//great_woods.png"); // change to defeated wolf
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            game.continuePosition = "greatWoodsEntrance_6_NarrowPath_3";
-        } else {
-            ui.choiceButtonPanel.setVisible(true);
-            ui.continueButtonPanel.setVisible(false);
-            ui.choiceOne.setVisible(false);
-
-            ui.mainTextArea.setText("Fortunately, this was for the best...");
-            greatWoodsEntrance_6_NarrowPath_2_Wolf = new MonsterWolf("greatWoodsEntrance_6_NarrowPath_2_Wolf");
-
-            ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            ui.choiceTwo.setText("Examine foe");
-            ui.choiceThree.setText("Start the battle");
-            ui.choiceFour.setText("Run");
-            game.nextPositionTwo = "examine_greatWoodsEntrance_6_NarrowPath_2_Wolf";
-            game.nextPositionThree = "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf";
-            game.nextPositionFour = "startingZone_7";
-        }
-
-    }
-
-    public void greatWoodsEntrance_6_NarrowPath_3() {
-        ui.continueButtonPanel.setVisible(true);
-        ui.choiceButtonPanel.setVisible(false);
-
-        ui.mainTextArea.setText("Hopefully no more surprise attacks on this narrow path.");
-
-        ui.continueButton.setText("Continue");
-        game.continuePosition = "greatWoodsEntrance_6_NarrowPath_4";
-    }
-
-    public void greatWoodsEntrance_6_NarrowPath_4() {
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceButtonPanel.setVisible(true);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(false);
-
-        ui.mainTextArea.setText("After a while the path ends and you see a cave entrance in front of you.");
-        //todo: add an image of a cave that you're about to enter.
-
-        ui.choiceThree.setText("Enter the cave (might be dangerous!)");
-        ui.choiceFour.setText("Return to crossroad");
-
-        greatWoodsEntranceCaveDiscovered = true;
-
-        game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath_4";
-        game.nextPositionFour = "startingZone_7";
     }
 
 
     public void worldMapLocationDeterminerHelper() {
         // todo: implement further locations and add to every location_function playerLocation and this helper()
 
-        if (startingZoneDiscovered && playerLocation.equals("startingZone")) {
+        if (game.story.startingZoneDiscovered && playerLocation.equals("startingZone")) {
             ui.currentLocationLabel.setText("Crossroad");
             ui.currentLocationLabel.setToolTipText("Beginning of your journey");
-        } else if (goblinVillageEntranceDiscovered && playerLocation.equals("goblinVillageEntrance")) {
+        } else if (game.story.goblinVillageEntranceDiscovered && playerLocation.equals("goblinVillageEntrance")) {
             ui.currentLocationLabel.setText("GVE");
             ui.currentLocationLabel.setToolTipText("Goblin Village Entrance");
-        } else if (waterfallZoneDiscovered && playerLocation.equals("waterfallZone")) {
+        } else if (game.story.waterfallZoneDiscovered && playerLocation.equals("waterfallZone")) {
             ui.currentLocationLabel.setText("Waterfall");
             ui.currentLocationLabel.setToolTipText("You can heal and save here");
-        } else if (greatWoodsEntranceDiscovered && playerLocation.equals("greatWoodsEntrance")) {
+        } else if (game.story.greatWoodsEntranceDiscovered && playerLocation.equals("greatWoodsEntrance")) {
             ui.currentLocationLabel.setText("GWE");
             ui.currentLocationLabel.setToolTipText("Great Woods Entrance");
         } else {
@@ -1110,9 +255,9 @@ public class Story {
 
 
         if (monster.objectID.equals("greatWoodsEntrance_4_Wolf")) {
-            greatWoodsEntrance_4_WolfDefeated = 1;
+            game.story.greatWoodsEntrance_4_WolfDefeated = 1;
         } else if (monster.objectID.equals("greatWoodsEntrance_6_NarrowPath_2_Wolf")) {
-            greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
+            game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
         }
 
         ui.continueButton.setText("Continue");
@@ -1127,11 +272,10 @@ public class Story {
 
         ui.continueButton.setText("To the title screen");
 
-        game.nextPositionOne = "toTitle";
+        game.continuePosition = "toTitle";
     }
 
     public void toTitle() {
-
         defaultSetup();
         vm.showTitleScreen();
     }
