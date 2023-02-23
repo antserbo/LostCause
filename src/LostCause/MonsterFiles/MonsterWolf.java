@@ -1,4 +1,4 @@
-package LostCause.GameFiles;
+package LostCause.MonsterFiles;
 
 public class MonsterWolf extends SuperMonster{
 

@@ -1,7 +1,6 @@
 package LostCause.GameEngine;
 
-import LostCause.GameFiles.Player;
-import LostCause.GameFiles.SuperMonster;
+import LostCause.MonsterFiles.SuperMonster;
 
 public class Story {
 
@@ -48,6 +47,9 @@ public class Story {
         ui.manaNumberLabel.setText("" + player.mp);
         ui.goldNumberLabel.setText("" + player.gold);
         player.weapon = "Fists";
+        ui.weaponNameLabel.setText(player.weapon);
+        game.inventoryStatus = "closed";
+
 
     }
 
@@ -179,7 +181,7 @@ public class Story {
         ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(false);
 
-        ui.mainTextArea.setText(monster.name + ": " + monster.hp + "\nWhat do you intend to do?");
+        ui.mainTextArea.setText(monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
 
 
         ui.choiceThree.setText("Attack");

@@ -1,4 +1,4 @@
-package LostCause.GameFiles;
+package LostCause.GameEngine;
 
 public class Player {
 

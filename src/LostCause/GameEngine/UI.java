@@ -6,7 +6,10 @@ import java.awt.*;
 public class UI {
 
     JFrame window, worldMapWindow;
-    JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel, choiceButtonPanel, playerPanel, continueButtonPanel, equipmentIconPanel, utilityIconPanel, utilityLabelPanel, iconLabelPanel, worldMapPanel;
+    JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel,
+            choiceButtonPanel, continueButtonPanel, equipmentIconPanel,
+            utilityIconPanel, utilityLabelPanel, iconLabelPanel,
+            worldMapPanel, inventoryPanelItemButtons, inventoryPanelPageButtons;
     JLabel titleNameLabel, imageLabel,
             weaponLabel, weaponNameLabel,
             armorHeadLabel, armorHeadNameLabel,
@@ -20,7 +23,9 @@ public class UI {
             currentLocationLabel,
             characterLevelLabel;
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
-            characterButton, worldMapButton, inventoryButton;
+            characterButton, worldMapButton,
+            inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
+            inventoryPagePrevButton, inventoryPageNextButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
@@ -50,7 +55,9 @@ public class UI {
 
         createUtilityIcons(cHandler);
 
-        createUtilityLabels(cHandler);
+        createUtilityLabels();
+
+        createInventoryUI(cHandler);
 
         window.setVisible(true);
 
@@ -358,11 +365,13 @@ public class UI {
         inventoryButton = new JButton(inventoryIcon);
         inventoryButton.setFocusPainted(false);
         inventoryButton.setFocusable(true);
+        inventoryButton.addActionListener(cHandler);
+        inventoryButton.setActionCommand("inventory");
         utilityIconPanel.add(inventoryButton);
 
     }
 
-    public void createUtilityLabels (ChoiceHandler cHandler) {
+    public void createUtilityLabels () {
         utilityLabelPanel = new JPanel();
         utilityLabelPanel.setBounds(85, 50, 200,395); // initial value 100, 105, 200,395
         utilityLabelPanel.setBackground(Color.black);
@@ -374,28 +383,28 @@ public class UI {
         healthNumberLabel = new JLabel("", SwingConstants.RIGHT);
         healthNumberLabel.setFont(iconFont);
         healthNumberLabel.setForeground(Color.white);
-        healthNumberLabel.setToolTipText("This is your HP number."); // TODO: as a nice work-around, add this to show item stats!
+        healthNumberLabel.setToolTipText("This is your HP number.");
         utilityLabelPanel.add(healthNumberLabel);
 
         // add mana number label
         manaNumberLabel = new JLabel("0", SwingConstants.RIGHT);
         manaNumberLabel.setFont(iconFont);
         manaNumberLabel.setForeground(Color.white);
-        manaNumberLabel.setToolTipText("This is your mana number."); // TODO: as a nice work-around, add this to show item stats!
+        manaNumberLabel.setToolTipText("This is your mana number.");
         utilityLabelPanel.add(manaNumberLabel);
 
         // add gold number label
         goldNumberLabel = new JLabel("69", SwingConstants.RIGHT);
         goldNumberLabel.setFont(iconFont);
         goldNumberLabel.setForeground(Color.white);
-        goldNumberLabel.setToolTipText("This is your gold amount."); // TODO: as a nice work-around, add this to show item stats!
+        goldNumberLabel.setToolTipText("This is your gold amount.");
         utilityLabelPanel.add(goldNumberLabel);
 
         // add character level label
         characterLevelLabel = new JLabel("1", SwingConstants.RIGHT);
         characterLevelLabel.setFont(iconFont);
         characterLevelLabel.setForeground(Color.white);
-        characterLevelLabel.setToolTipText("This is your character level."); // TODO: as a nice work-around, add this to show item stats!
+        characterLevelLabel.setToolTipText("This is your character level.");
         utilityLabelPanel.add(characterLevelLabel);
 
         // add current location label
@@ -429,6 +438,87 @@ public class UI {
 
         // we can manipulate, it is working. the game object is not empty!
         game.ui.ringNameLabel.setText("Devotion ring (e)");
+    }
+
+    public void createInventoryUI (ChoiceHandler cHandler) { // item handler here
+
+        inventoryPanelItemButtons = new JPanel();
+        inventoryPanelItemButtons.setBounds(450, 650, 500, 150);
+        inventoryPanelItemButtons.setBackground(Color.black);
+        inventoryPanelItemButtons.setLayout(new GridLayout(4, 1, 0, 1));
+
+        inventoryPanelPageButtons = new JPanel();
+        inventoryPanelPageButtons.setBounds(450, 800, 500, 30);
+        inventoryPanelPageButtons.setBackground(Color.black);
+        inventoryPanelPageButtons.setLayout(new GridLayout(1, 2, 1, 0));
+
+        // add buttons for items here
+
+        inventoryItemOneButton = new JButton("itemOne");
+        inventoryItemOneButton.setBackground(Color.black);
+        inventoryItemOneButton.setForeground(Color.white);
+        inventoryItemOneButton.setFont(normalFont);
+        inventoryItemOneButton.setFocusPainted(false);
+        inventoryItemOneButton.addActionListener(cHandler);
+        inventoryItemOneButton.setActionCommand("inventoryItemOne");
+        inventoryPanelItemButtons.add(inventoryItemOneButton);
+
+        inventoryItemTwoButton = new JButton("itemTwo");
+        inventoryItemTwoButton.setBackground(Color.black);
+        inventoryItemTwoButton.setForeground(Color.white);
+        inventoryItemTwoButton.setFont(normalFont);
+        inventoryItemTwoButton.setFocusPainted(false);
+        inventoryItemTwoButton.addActionListener(cHandler);
+        inventoryItemTwoButton.setActionCommand("inventoryItemTwo");
+        inventoryPanelItemButtons.add(inventoryItemTwoButton);
+
+        inventoryItemThreeButton = new JButton("itemThree");
+        inventoryItemThreeButton.setBackground(Color.black);
+        inventoryItemThreeButton.setForeground(Color.white);
+        inventoryItemThreeButton.setFont(normalFont);
+        inventoryItemThreeButton.setFocusPainted(false);
+        inventoryItemThreeButton.addActionListener(cHandler); // handler
+        inventoryItemThreeButton.setActionCommand("inventoryItemThree");
+        inventoryPanelItemButtons.add(inventoryItemThreeButton);
+
+        inventoryItemFourButton = new JButton("itemFour");
+        inventoryItemFourButton.setBackground(Color.black);
+        inventoryItemFourButton.setForeground(Color.white);
+        inventoryItemFourButton.setFont(normalFont);
+        inventoryItemFourButton.setFocusPainted(false);
+        inventoryItemFourButton.addActionListener(cHandler); // handler
+        inventoryItemFourButton.setActionCommand("inventoryItemFour");
+        inventoryPanelItemButtons.add(inventoryItemFourButton);
+
+
+
+        // add buttons for page scrolling here
+
+        inventoryPagePrevButton = new JButton("Prev");
+        inventoryPagePrevButton.setBackground(Color.black);
+        inventoryPagePrevButton.setForeground(Color.white);
+        inventoryPagePrevButton.setFont(normalFont);
+        inventoryPagePrevButton.setFocusPainted(false);
+        inventoryPagePrevButton.addActionListener(cHandler); // handler
+        inventoryPagePrevButton.setActionCommand("inventoryPagePrev");
+        inventoryPanelPageButtons.add(inventoryPagePrevButton);
+
+        inventoryPageNextButton = new JButton("Next");
+        inventoryPageNextButton.setBackground(Color.black);
+        inventoryPageNextButton.setForeground(Color.white);
+        inventoryPageNextButton.setFont(normalFont);
+        inventoryPageNextButton.setFocusPainted(false);
+        inventoryPageNextButton.addActionListener(cHandler); // handler
+        inventoryPageNextButton.setActionCommand("inventoryPageNext");
+
+        inventoryPanelPageButtons.add(inventoryPagePrevButton);
+        inventoryPanelPageButtons.add(inventoryPageNextButton);
+
+        window.add(inventoryPanelItemButtons);
+        window.add(inventoryPanelPageButtons);
+
+
+
     }
 
 }

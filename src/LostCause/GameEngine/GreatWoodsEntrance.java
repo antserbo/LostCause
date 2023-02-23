@@ -1,6 +1,6 @@
 package LostCause.GameEngine;
 
-import LostCause.GameFiles.MonsterWolf;
+import LostCause.MonsterFiles.MonsterWolf;
 
 import javax.swing.*;
 
@@ -270,6 +270,9 @@ public class GreatWoodsEntrance extends Story{
             ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
             ui.imageLabel.setIcon(ui.image);
             ui.mainImagePanel.add(ui.imageLabel);
+
+            // todo: check the presence of .add by labels to panels, because i don't need it, only set. it's already in the UI class
+
 
             ui.choiceTwo.setText("Examine foe");
             ui.choiceThree.setText("Start the battle");

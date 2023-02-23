@@ -7,7 +7,7 @@ public class Game {
     VisibilityManager vm = new VisibilityManager(ui);
     Story story = new Story(this, ui, vm);
 
-    // todo: for interections with player in location classes use game.story.player!
+    // todo: for interections with player in location classes use game.story.player! as an interesting item - scythe of peril (-1hp, +50% damage)
 
     StartingZone startingZone = new StartingZone(this, ui, vm);
     WaterfallZone waterfallZone = new WaterfallZone(this, ui, vm);
@@ -15,6 +15,7 @@ public class Game {
     GoblinVillageEntrance goblinVillageEntrance = new GoblinVillageEntrance(this, ui, vm);
 
     String nextPositionOne, nextPositionTwo, nextPositionThree, nextPositionFour, continuePosition;
+    String inventoryStatus;
 
     public static void main(String[] args) {
         new Game();
