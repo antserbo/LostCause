@@ -206,12 +206,10 @@ public class Story {
         // todo: create a big-ass checker for all the monsters that you're dealing with
         // todo: make sure that this is needed... how do you solve the win()?
 
-        if (monster.hp > 1) {
+        if (monster.hp > 0) {
             game.continuePosition = "monsterAttack_" + monster.objectID;
-        } else if (monster.hp < 1) {
-            game.continuePosition = "win_" + monster.objectID;
         } else {
-            game.continuePosition = "lose";
+            game.continuePosition = "win_" + monster.objectID;
         }
     }
 
@@ -226,9 +224,9 @@ public class Story {
 
         ui.continueButton.setText("Continue");
 
-        if (player.hp > 1) {
+        if (player.hp > 0) {
             game.continuePosition = "fight_" + monster.objectID;
-        } else if (player.hp < 1) {
+        } else {
             game.continuePosition = "lose";
         }
 
@@ -266,6 +264,7 @@ public class Story {
 
     public void lose() {
 
+        ui.healthNumberLabel.setText("" + player.hp);
         ui.mainTextArea.setText("You are dead! \n\n<GAME OVER>");
 
         ui.continueButton.setText("To the title screen");
