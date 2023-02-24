@@ -27,7 +27,7 @@ public class ChoiceHandler implements ActionListener {
             case "c2" -> game.story.selectPosition(game.nextPositionTwo);
             case "c3" -> game.story.selectPosition(game.nextPositionThree);
             case "c4" -> game.story.selectPosition(game.nextPositionFour);
-            case "inventory" -> {
+            /*case "inventory" -> {
                 // also call the inventory function that is going to make sure that the #pages == #items
                 if (game.inventoryStatus.equals("closed")) {
                     game.ui.choiceButtonPanel.setVisible(false);
@@ -40,7 +40,7 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.inventoryPanelPageButtons.setVisible(false);
                     game.inventoryStatus = "closed";
                 };
-            }
+            }*/
 
         }
     }

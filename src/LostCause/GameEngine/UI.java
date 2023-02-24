@@ -57,7 +57,7 @@ public class UI {
 
         createUtilityLabels();
 
-        createInventoryUI(cHandler);
+        //createInventoryUI(cHandler);
 
         window.setVisible(true);
 
@@ -440,7 +440,7 @@ public class UI {
         game.ui.ringNameLabel.setText("Devotion ring (e)");
     }
 
-    public void createInventoryUI (ChoiceHandler cHandler) { // item handler here
+        /*public void createInventoryUI (ChoiceHandler cHandler) { // item handler here
 
         inventoryPanelItemButtons = new JPanel();
         inventoryPanelItemButtons.setBounds(450, 650, 500, 150);
@@ -520,5 +520,7 @@ public class UI {
 
 
     }
+
+         */
 
 }
