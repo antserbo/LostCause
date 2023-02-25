@@ -10,7 +10,7 @@ public class UI {
             choiceButtonPanel, continueButtonPanel, equipmentIconPanel,
             utilityIconPanel, utilityLabelPanel, iconLabelPanel,
             worldMapPanel, inventoryPanelItemButtons, inventoryPanelPageButton,
-            inventoryWindowPanel;
+            inventoryWindowPanel, inventoryWeaponPanel, inventoryArmorBodyPanel, inventoryArmorShieldPanel, inventoryAmuletRingPanel, inventoryItemPanel, inventoryQuestItemPanel;
     JLabel titleNameLabel, imageLabel,
             weaponLabel, weaponNameLabel,
             armorHeadLabel, armorHeadNameLabel,
@@ -22,7 +22,8 @@ public class UI {
             manaLabel, manaNumberLabel, // or this might be xp?
             goldLabel, goldNumberLabel,
             currentLocationLabel,
-            characterLevelLabel;
+            characterLevelLabel,
+            inventoryWeaponTypeLabel, inventoryArmorBodyTypeLabel, inventoryArmorShieldTypeLabel, inventoryAmuletRingTypeLabel, inventoryItemTypeLabel, inventoryQuestItemLabel;
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton,
             inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
@@ -493,7 +494,7 @@ public class UI {
         inventoryItemFourButton.setActionCommand("inventoryItemFour");
         inventoryPanelItemButtons.add(inventoryItemFourButton);
 
-        // add buttons for inventory page here
+        // add button for inventory page here
 
         inventoryPageMainButton = new JButton("Inventory page");
         inventoryPageMainButton.setBackground(Color.black);
@@ -515,8 +516,104 @@ public class UI {
 
     public void createInventoryWindowUI (ChoiceHandler cHandler) {
         inventoryWindowPanel = new JPanel();
-        inventoryWindowPanel.setBounds(50, 30, 1200, 800);
+        inventoryWindowPanel.setBounds(50, 30, 1320, 30);
         inventoryWindowPanel.setBackground(Color.blue);
+        inventoryWindowPanel.setLayout(new GridLayout(1, 5, 0, 0));
+
+        window.add(inventoryWindowPanel);
+
+
+        inventoryWeaponPanel = new JPanel();
+        inventoryWeaponPanel.setBounds(50, 60, 220, 720);
+        inventoryWeaponPanel.setBackground(Color.darkGray);
+        window.add(inventoryWeaponPanel);
+
+        inventoryWeaponTypeLabel = new JLabel("Weapon stash", SwingConstants.CENTER);
+        inventoryWeaponTypeLabel.setBounds(50, 30, 220, 30);
+        inventoryWeaponTypeLabel.setBackground(Color.black);
+        inventoryWeaponTypeLabel.setForeground(Color.white);
+        inventoryWeaponTypeLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryWeaponTypeLabel);
+
+
+        inventoryArmorBodyPanel = new JPanel();
+        inventoryArmorBodyPanel.setBounds(270, 60, 220, 720);
+        inventoryArmorBodyPanel.setBackground(Color.green);
+        window.add(inventoryArmorBodyPanel);
+
+        inventoryArmorBodyTypeLabel = new JLabel("Body armor", SwingConstants.CENTER);
+        inventoryArmorBodyTypeLabel.setBounds(270, 30, 220, 30);
+        inventoryArmorBodyTypeLabel.setBackground(Color.black);
+        inventoryArmorBodyTypeLabel.setForeground(Color.white);
+        inventoryArmorBodyTypeLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryArmorBodyTypeLabel);
+
+
+        inventoryArmorShieldPanel = new JPanel();
+        inventoryArmorShieldPanel.setBounds(490, 60, 220, 720);
+        inventoryArmorShieldPanel.setBackground(Color.green);
+        window.add(inventoryArmorShieldPanel);
+
+        inventoryArmorShieldTypeLabel = new JLabel("Shield stash", SwingConstants.CENTER);
+        inventoryArmorShieldTypeLabel.setBounds(490, 30, 220, 30);
+        inventoryArmorShieldTypeLabel.setBackground(Color.black);
+        inventoryArmorShieldTypeLabel.setForeground(Color.white);
+        inventoryArmorShieldTypeLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryArmorShieldTypeLabel);
+
+
+        inventoryAmuletRingPanel= new JPanel();
+        inventoryAmuletRingPanel.setBounds(710, 60, 220, 720);
+        inventoryAmuletRingPanel.setBackground(Color.green);
+        window.add(inventoryAmuletRingPanel);
+
+        inventoryAmuletRingTypeLabel = new JLabel("Amulets & rings", SwingConstants.CENTER);
+        inventoryAmuletRingTypeLabel.setBounds(710, 30, 220, 30);
+        inventoryAmuletRingTypeLabel.setBackground(Color.black);
+        inventoryAmuletRingTypeLabel.setForeground(Color.white);
+        inventoryAmuletRingTypeLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryAmuletRingTypeLabel);
+
+        // todo: depending on the number of the item type, for instance, 6 swords... the layout gets divided into 6 buttons
+        // todo: each button corresponds to a weapon which the player can click on (this will equip the weapon) probably add action, like "longsword equipped."
+
+
+
+        inventoryItemPanel = new JPanel();
+        inventoryItemPanel.setBounds(930, 60, 220, 720);
+        inventoryItemPanel.setBackground(Color.green);
+        window.add(inventoryItemPanel);
+
+        inventoryItemTypeLabel = new JLabel("Items", SwingConstants.CENTER);
+        inventoryItemTypeLabel.setBounds(930, 30, 220, 30);
+        inventoryItemTypeLabel.setBackground(Color.black);
+        inventoryItemTypeLabel.setForeground(Color.white);
+        inventoryItemTypeLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryItemTypeLabel);
+
+
+        inventoryQuestItemPanel = new JPanel();
+        inventoryQuestItemPanel.setBounds(1150, 60, 220, 720);
+        inventoryQuestItemPanel.setBackground(Color.green);
+        window.add(inventoryQuestItemPanel);
+
+        inventoryQuestItemLabel = new JLabel("Quest items", SwingConstants.CENTER);
+        inventoryQuestItemLabel.setBounds(1150, 30, 220, 30);
+        inventoryQuestItemLabel.setBackground(Color.black);
+        inventoryQuestItemLabel.setForeground(Color.white);
+        inventoryQuestItemLabel.setFont(normalFont);
+
+        inventoryWindowPanel.add(inventoryQuestItemLabel);
+
+
+
+
+
     }
 
 }
