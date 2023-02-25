@@ -49,6 +49,7 @@ public class Story {
         player.weapon = "Fists";
         ui.weaponNameLabel.setText(player.weapon);
         game.inventoryStatus = "closed";
+        game.inventoryMainStatus = "closed";
 
 
     }

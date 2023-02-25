@@ -9,7 +9,8 @@ public class UI {
     JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel,
             choiceButtonPanel, continueButtonPanel, equipmentIconPanel,
             utilityIconPanel, utilityLabelPanel, iconLabelPanel,
-            worldMapPanel, inventoryPanelItemButtons, inventoryPanelPageButtons;
+            worldMapPanel, inventoryPanelItemButtons, inventoryPanelPageButton,
+            inventoryWindowPanel;
     JLabel titleNameLabel, imageLabel,
             weaponLabel, weaponNameLabel,
             armorHeadLabel, armorHeadNameLabel,
@@ -25,7 +26,7 @@ public class UI {
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton,
             inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
-            inventoryPagePrevButton, inventoryPageNextButton;
+            inventoryPageMainButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
@@ -57,7 +58,9 @@ public class UI {
 
         createUtilityLabels();
 
-        //createInventoryUI(cHandler);
+        createInventoryUI(cHandler);
+
+        createInventoryWindowUI(cHandler);
 
         window.setVisible(true);
 
@@ -440,17 +443,17 @@ public class UI {
         game.ui.ringNameLabel.setText("Devotion ring (e)");
     }
 
-        /*public void createInventoryUI (ChoiceHandler cHandler) { // item handler here
+    public void createInventoryUI (ChoiceHandler cHandler) { // item handler here
 
         inventoryPanelItemButtons = new JPanel();
         inventoryPanelItemButtons.setBounds(450, 650, 500, 150);
         inventoryPanelItemButtons.setBackground(Color.black);
         inventoryPanelItemButtons.setLayout(new GridLayout(4, 1, 0, 1));
 
-        inventoryPanelPageButtons = new JPanel();
-        inventoryPanelPageButtons.setBounds(450, 800, 500, 30);
-        inventoryPanelPageButtons.setBackground(Color.black);
-        inventoryPanelPageButtons.setLayout(new GridLayout(1, 2, 1, 0));
+        inventoryPanelPageButton = new JPanel();
+        inventoryPanelPageButton.setBounds(450, 800, 500, 30);
+        inventoryPanelPageButton.setBackground(Color.black);
+        inventoryPanelPageButton.setLayout(new GridLayout(1, 1, 0, 0));
 
         // add buttons for items here
 
@@ -490,37 +493,30 @@ public class UI {
         inventoryItemFourButton.setActionCommand("inventoryItemFour");
         inventoryPanelItemButtons.add(inventoryItemFourButton);
 
+        // add buttons for inventory page here
 
+        inventoryPageMainButton = new JButton("Inventory page");
+        inventoryPageMainButton.setBackground(Color.black);
+        inventoryPageMainButton.setForeground(Color.white);
+        inventoryPageMainButton.setFont(normalFont);
+        inventoryPageMainButton.setFocusPainted(false);
+        inventoryPageMainButton.addActionListener(cHandler); // handler
+        inventoryPageMainButton.setActionCommand("inventoryPageMain");
+        inventoryPanelPageButton.add(inventoryPageMainButton);
 
-        // add buttons for page scrolling here
-
-        inventoryPagePrevButton = new JButton("Prev");
-        inventoryPagePrevButton.setBackground(Color.black);
-        inventoryPagePrevButton.setForeground(Color.white);
-        inventoryPagePrevButton.setFont(normalFont);
-        inventoryPagePrevButton.setFocusPainted(false);
-        inventoryPagePrevButton.addActionListener(cHandler); // handler
-        inventoryPagePrevButton.setActionCommand("inventoryPagePrev");
-        inventoryPanelPageButtons.add(inventoryPagePrevButton);
-
-        inventoryPageNextButton = new JButton("Next");
-        inventoryPageNextButton.setBackground(Color.black);
-        inventoryPageNextButton.setForeground(Color.white);
-        inventoryPageNextButton.setFont(normalFont);
-        inventoryPageNextButton.setFocusPainted(false);
-        inventoryPageNextButton.addActionListener(cHandler); // handler
-        inventoryPageNextButton.setActionCommand("inventoryPageNext");
-
-        inventoryPanelPageButtons.add(inventoryPagePrevButton);
-        inventoryPanelPageButtons.add(inventoryPageNextButton);
+        inventoryPanelPageButton.add(inventoryPageMainButton);
 
         window.add(inventoryPanelItemButtons);
-        window.add(inventoryPanelPageButtons);
+        window.add(inventoryPanelPageButton);
 
 
 
     }
 
-         */
+    public void createInventoryWindowUI (ChoiceHandler cHandler) {
+        inventoryWindowPanel = new JPanel();
+        inventoryWindowPanel.setBounds(50, 30, 1200, 800);
+        inventoryWindowPanel.setBackground(Color.blue);
+    }
 
 }

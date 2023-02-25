@@ -15,7 +15,7 @@ public class Game {
     GoblinVillageEntrance goblinVillageEntrance = new GoblinVillageEntrance(this, ui, vm);
 
     String nextPositionOne, nextPositionTwo, nextPositionThree, nextPositionFour, continuePosition;
-    String inventoryStatus;
+    String inventoryStatus, inventoryMainStatus;
 
     public static void main(String[] args) {
         new Game();

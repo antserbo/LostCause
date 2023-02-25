@@ -20,8 +20,8 @@ public class VisibilityManager {
         ui.iconLabelPanel.setVisible(false);
         ui.utilityLabelPanel.setVisible(false);
         ui.mainImagePanel.setVisible(false);
-        //ui.inventoryPanelItemButtons.setVisible(false);
-        //ui.inventoryPanelPageButtons.setVisible(false);
+        ui.inventoryPanelItemButtons.setVisible(false);
+        ui.inventoryPanelPageButton.setVisible(false);
     }
 
     public void showGameScreen() {
@@ -35,8 +35,8 @@ public class VisibilityManager {
         ui.iconLabelPanel.setVisible(true);
         ui.mainImagePanel.setVisible(true);
         ui.utilityLabelPanel.setVisible(true);
-        //ui.inventoryPanelItemButtons.setVisible(false);
-        //ui.inventoryPanelPageButtons.setVisible(false);
+        ui.inventoryPanelItemButtons.setVisible(false);
+        ui.inventoryPanelPageButton.setVisible(false);
     }
 
 }
