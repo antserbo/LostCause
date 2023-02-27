@@ -73,7 +73,7 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
 
         ui.mainTextArea.setText("You have found a rusty iron long sword!");
-        game.story.waterfallSkeletonWeaponTaken = 1;
+        game.itemInventory.add(game.longSword); // adding long sword to player's inventory
 
         ui.continueButton.setText("Continue");
 

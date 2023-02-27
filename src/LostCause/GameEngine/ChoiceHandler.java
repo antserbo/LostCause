@@ -1,5 +1,8 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.SuperItem;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -44,9 +47,33 @@ public class ChoiceHandler implements ActionListener {
 
             // todo: check what should be done here. also check whether continueButtonPanel or choiceButtonPanel are active, so that inventory does not break the UI
             case "inventoryPageMain" -> {
-                System.out.println("Hi my beloved");
+
                 if (game.inventoryMainStatus.equals("closed") && game.inventoryStatus.equals("opened")) {
-                    System.out.println("we are legion");
+
+                    game.ui.inventoryWindowPanel.setVisible(true);
+                    game.ui.inventoryWeaponPanel.setVisible(true);
+                    game.ui.inventoryWeaponTypeLabel.setVisible(true);
+                    game.ui.inventoryArmorBodyPanel.setVisible(true);
+                    game.ui.inventoryArmorBodyTypeLabel.setVisible(true);
+                    game.ui.inventoryArmorShieldPanel.setVisible(true);
+                    game.ui.inventoryArmorShieldTypeLabel.setVisible(true);
+                    game.ui.inventoryAmuletRingPanel.setVisible(true);
+                    game.ui.inventoryAmuletRingTypeLabel.setVisible(true);
+                    game.ui.inventoryItemPanel.setVisible(true);
+                    game.ui.inventoryItemTypeLabel.setVisible(true);
+                    game.ui.inventoryQuestItemPanel.setVisible(true);
+                    game.ui.inventoryQuestItemLabel.setVisible(true);
+
+                    System.out.println(game.itemInventory.contains(game.longSword));
+                    System.out.println(game.itemInventory.contains(game.ass));
+                    if (game.itemInventory.contains(game.longSword)) {
+                        game.ui.weaponLongSwordButton.setVisible(true);
+                    }
+
+                    /*if (game.story.goblinSkeletonWeaponTaken == 1) {
+                        game.ui.weaponStilettoButton.setVisible(true);
+                    }*/
+
                     game.ui.inventoryPanelItemButtons.setVisible(false);
                     game.ui.inventoryPanelPageButton.setVisible(true);
                     game.ui.utilityLabelPanel.setVisible(false);
@@ -59,7 +86,21 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.inventoryPageMainButton.setText("Return back");
                     game.inventoryMainStatus = "opened";
                 } else if (game.inventoryMainStatus.equals("opened") && game.inventoryStatus.equals("opened")) {
-                    System.out.println("we are great");
+
+                    game.ui.inventoryWindowPanel.setVisible(false);
+                    game.ui.inventoryWeaponPanel.setVisible(false);
+                    game.ui.inventoryWeaponTypeLabel.setVisible(false);
+                    game.ui.inventoryArmorBodyPanel.setVisible(false);
+                    game.ui.inventoryArmorBodyTypeLabel.setVisible(false);
+                    game.ui.inventoryArmorShieldPanel.setVisible(false);
+                    game.ui.inventoryArmorShieldTypeLabel.setVisible(false);
+                    game.ui.inventoryAmuletRingPanel.setVisible(false);
+                    game.ui.inventoryAmuletRingTypeLabel.setVisible(false);
+                    game.ui.inventoryItemPanel.setVisible(false);
+                    game.ui.inventoryItemTypeLabel.setVisible(false);
+                    game.ui.inventoryQuestItemPanel.setVisible(false);
+                    game.ui.inventoryQuestItemLabel.setVisible(false);
+
                     game.ui.inventoryPanelItemButtons.setVisible(true);
                     game.ui.inventoryPanelPageButton.setVisible(true);
                     game.ui.utilityLabelPanel.setVisible(true);
@@ -74,6 +115,37 @@ public class ChoiceHandler implements ActionListener {
                 }
             }
 
+            // todo: solve cases where only button should remain green and others should be turned dark_gray
+            case "weaponLongSword" -> {
+                if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
+                    game.ui.weaponLongSwordButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.weapon = "Long Sword";
+                    game.ui.weaponNameLabel.setText("Long sword");
+                } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
+                    game.ui.weaponLongSwordButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.weapon = "Long Sword";
+                    game.ui.weaponNameLabel.setText("Long sword");
+                } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
+                    game.ui.weaponLongSwordButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.weapon = "Long Sword";
+                    game.ui.weaponNameLabel.setText("Long sword");
+                } else {
+                    game.ui.weaponLongSwordButton.setBackground(Color.green);
+                    game.story.player.weapon = "Long Sword";
+                    game.ui.weaponNameLabel.setText("Long sword");
+                }
+
+            }
+
+            case "weaponStiletto" -> {
+                game.ui.weaponStilettoButton.setBackground(Color.green);
+                game.story.player.weapon = "Stiletto";
+                game.ui.weaponNameLabel.setText("Stiletto");
+
+            }
         }
     }
 }

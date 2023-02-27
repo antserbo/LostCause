@@ -27,7 +27,7 @@ public class UI {
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton,
             inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
-            inventoryPageMainButton;
+            inventoryPageMainButton, weaponLongSwordButton, weaponStilettoButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
@@ -517,15 +517,14 @@ public class UI {
     public void createInventoryWindowUI (ChoiceHandler cHandler) {
         inventoryWindowPanel = new JPanel();
         inventoryWindowPanel.setBounds(50, 30, 1320, 30);
-        inventoryWindowPanel.setBackground(Color.blue);
+        inventoryWindowPanel.setBackground(Color.black);
         inventoryWindowPanel.setLayout(new GridLayout(1, 5, 0, 0));
 
         window.add(inventoryWindowPanel);
 
-
         inventoryWeaponPanel = new JPanel();
-        inventoryWeaponPanel.setBounds(50, 60, 220, 720);
-        inventoryWeaponPanel.setBackground(Color.darkGray);
+        inventoryWeaponPanel.setBounds(50, 70, 220, 720);
+        inventoryWeaponPanel.setBackground(Color.black);
         window.add(inventoryWeaponPanel);
 
         inventoryWeaponTypeLabel = new JLabel("Weapon stash", SwingConstants.CENTER);
@@ -537,8 +536,34 @@ public class UI {
         inventoryWindowPanel.add(inventoryWeaponTypeLabel);
 
 
+        weaponLongSwordButton = new JButton("Long sword");
+        weaponLongSwordButton.setBackground(Color.DARK_GRAY);
+        weaponLongSwordButton.setForeground(Color.white);
+        weaponLongSwordButton.setFont(normalFont);
+        weaponLongSwordButton.setFocusPainted(false);
+        weaponLongSwordButton.addActionListener(cHandler); // handler
+        weaponLongSwordButton.setActionCommand("weaponLongSword");
+        weaponLongSwordButton.setVisible(false);
+        inventoryWeaponPanel.add(weaponLongSwordButton);
+
+        weaponStilettoButton = new JButton("Stiletto");
+        weaponStilettoButton.setBackground(Color.DARK_GRAY);
+        weaponStilettoButton.setForeground(Color.white);
+        weaponStilettoButton.setFont(normalFont);
+        weaponStilettoButton.setFocusPainted(false);
+        weaponStilettoButton.addActionListener(cHandler); // handler
+        weaponStilettoButton.setActionCommand("weaponStiletto");
+        weaponStilettoButton.setVisible(false);
+        inventoryWeaponPanel.add(weaponStilettoButton);
+
+
+
+
+
+
+
         inventoryArmorBodyPanel = new JPanel();
-        inventoryArmorBodyPanel.setBounds(270, 60, 220, 720);
+        inventoryArmorBodyPanel.setBounds(270, 70, 220, 720);
         inventoryArmorBodyPanel.setBackground(Color.green);
         window.add(inventoryArmorBodyPanel);
 
@@ -552,12 +577,12 @@ public class UI {
 
 
         inventoryArmorShieldPanel = new JPanel();
-        inventoryArmorShieldPanel.setBounds(490, 60, 220, 720);
+        inventoryArmorShieldPanel.setBounds(490, 70, 220, 720);
         inventoryArmorShieldPanel.setBackground(Color.green);
         window.add(inventoryArmorShieldPanel);
 
         inventoryArmorShieldTypeLabel = new JLabel("Shield stash", SwingConstants.CENTER);
-        inventoryArmorShieldTypeLabel.setBounds(490, 30, 220, 30);
+        inventoryArmorShieldTypeLabel.setBounds(490, 70, 220, 30);
         inventoryArmorShieldTypeLabel.setBackground(Color.black);
         inventoryArmorShieldTypeLabel.setForeground(Color.white);
         inventoryArmorShieldTypeLabel.setFont(normalFont);
@@ -566,7 +591,7 @@ public class UI {
 
 
         inventoryAmuletRingPanel= new JPanel();
-        inventoryAmuletRingPanel.setBounds(710, 60, 220, 720);
+        inventoryAmuletRingPanel.setBounds(710, 70, 220, 720);
         inventoryAmuletRingPanel.setBackground(Color.green);
         window.add(inventoryAmuletRingPanel);
 
@@ -584,7 +609,7 @@ public class UI {
 
 
         inventoryItemPanel = new JPanel();
-        inventoryItemPanel.setBounds(930, 60, 220, 720);
+        inventoryItemPanel.setBounds(930, 70, 220, 720);
         inventoryItemPanel.setBackground(Color.green);
         window.add(inventoryItemPanel);
 
@@ -598,7 +623,7 @@ public class UI {
 
 
         inventoryQuestItemPanel = new JPanel();
-        inventoryQuestItemPanel.setBounds(1150, 60, 220, 720);
+        inventoryQuestItemPanel.setBounds(1150, 70, 220, 720);
         inventoryQuestItemPanel.setBackground(Color.green);
         window.add(inventoryQuestItemPanel);
 
@@ -610,9 +635,19 @@ public class UI {
 
         inventoryWindowPanel.add(inventoryQuestItemLabel);
 
-
-
-
+        inventoryWindowPanel.setVisible(false);
+        inventoryWeaponPanel.setVisible(false);
+        inventoryWeaponTypeLabel.setVisible(false);
+        inventoryArmorBodyPanel.setVisible(false);
+        inventoryArmorBodyTypeLabel.setVisible(false);
+        inventoryArmorShieldPanel.setVisible(false);
+        inventoryArmorShieldTypeLabel.setVisible(false);
+        inventoryAmuletRingPanel.setVisible(false);
+        inventoryAmuletRingTypeLabel.setVisible(false);
+        inventoryItemPanel.setVisible(false);
+        inventoryItemTypeLabel.setVisible(false);
+        inventoryQuestItemPanel.setVisible(false);
+        inventoryQuestItemLabel.setVisible(false);
 
     }
 

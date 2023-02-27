@@ -1,6 +1,10 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.ItemWeaponLongSword;
+import LostCause.ItemFiles.SuperItem;
 import LostCause.MonsterFiles.SuperMonster;
+
+import java.util.ArrayList;
 
 public class Story {
 
@@ -11,6 +15,7 @@ public class Story {
     Player player = new Player();
     SuperMonster greatWoodsEntrance_4_Wolf;
     SuperMonster greatWoodsEntrance_6_NarrowPath_2_Wolf;
+
 
     // todo: all variables except for playerLocation should be *game.story._*
     String playerLocation = "";
@@ -195,6 +200,8 @@ public class Story {
     public void playerAttack(SuperMonster monster) {
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
+
+        // todo: set the min and max hit, as well as implement the hit bounds from player's attributes.
 
         int playerDamage = new java.util.Random().nextInt(10); // todo change to current_weapon
 

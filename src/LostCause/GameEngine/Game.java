@@ -1,5 +1,10 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.ItemWeaponLongSword;
+import LostCause.ItemFiles.SuperItem;
+
+import java.util.ArrayList;
+
 public class Game {
 
     ChoiceHandler cHandler = new ChoiceHandler(this);
@@ -16,6 +21,12 @@ public class Game {
 
     String nextPositionOne, nextPositionTwo, nextPositionThree, nextPositionFour, continuePosition;
     String inventoryStatus, inventoryMainStatus;
+
+    ArrayList<SuperItem> itemInventory = new ArrayList<>();
+    ItemWeaponLongSword longSword = new ItemWeaponLongSword("longSwordOne");
+
+    ItemWeaponLongSword ass = new ItemWeaponLongSword("longSwordTwo");
+
 
     public static void main(String[] args) {
         new Game();
