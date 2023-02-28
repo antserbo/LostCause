@@ -2,10 +2,9 @@ package LostCause.ItemFiles;
 
 public class ItemWeaponLongSword extends SuperItem{
 
-    public String itemID;
-    String weaponType;
-    int minDamage;
-    int maxDamage;
+    public String weaponType;
+    public int minDamage;
+    public int maxDamage;
 
     public ItemWeaponLongSword(String itemID) {
         super(itemID);
@@ -15,6 +14,5 @@ public class ItemWeaponLongSword extends SuperItem{
         weaponType = "one-handed sword";
         minDamage = 3;
         maxDamage = 9;
-
     }
 }

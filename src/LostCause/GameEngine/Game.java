@@ -1,5 +1,6 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.ItemArmorBodyLeatherChestArmor;
 import LostCause.ItemFiles.ItemWeaponLongSword;
 import LostCause.ItemFiles.SuperItem;
 
@@ -24,8 +25,9 @@ public class Game {
 
     ArrayList<SuperItem> itemInventory = new ArrayList<>();
     ItemWeaponLongSword longSword = new ItemWeaponLongSword("longSwordOne");
-
     ItemWeaponLongSword ass = new ItemWeaponLongSword("longSwordTwo");
+
+    ItemArmorBodyLeatherChestArmor leatherChestArmor = new ItemArmorBodyLeatherChestArmor("leatherChestArmor");
 
 
     public static void main(String[] args) {

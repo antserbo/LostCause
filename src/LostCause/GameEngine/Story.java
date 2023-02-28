@@ -1,10 +1,6 @@
 package LostCause.GameEngine;
 
-import LostCause.ItemFiles.ItemWeaponLongSword;
-import LostCause.ItemFiles.SuperItem;
 import LostCause.MonsterFiles.SuperMonster;
-
-import java.util.ArrayList;
 
 public class Story {
 
@@ -30,7 +26,7 @@ public class Story {
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
-    boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
     boolean greatWoodsEntranceDiscovered = false;
     boolean greatWoodsEntranceToCaveDiscovered = false;
     boolean greatWoodsEntrance_6_Discovered = false;

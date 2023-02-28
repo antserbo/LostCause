@@ -267,7 +267,7 @@ public class GoblinVillageEntrance extends Story{
                 Goblin guard: Ai, before you depart, I want you to 'ave this leather armor, that I got me 'ands on some time ago.
                 You sure 'ave earned your right to wear it. Now off with you, guarding requires keeping me eyes open all the time.
                 (you receive a piece of leather chest armor)""");
-        game.story.player.armorChest = "Leather chest armor";
+        game.itemInventory.add(game.leatherChestArmor);
 
         ui.continueButton.setText("Continue");
         game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_5";
@@ -280,6 +280,7 @@ public class GoblinVillageEntrance extends Story{
         ui.mainTextArea.setText("The goblin opens the gate for you and then disappears behind some sort of boxes, apparently willing to take a nap again...");
 
         ui.continueButton.setText("Continue");
-        game.continuePosition = "goblinVillageMainSquare";
+        //game.continuePosition = "goblinVillageMainSquare";
+        game.continuePosition = "startingZone_7";
     }
 }
