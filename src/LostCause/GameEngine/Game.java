@@ -19,6 +19,7 @@ public class Game {
     WaterfallZone waterfallZone = new WaterfallZone(this, ui, vm);
     GreatWoodsEntrance greatWoodsEntrance = new GreatWoodsEntrance(this, ui, vm);
     GoblinVillageEntrance goblinVillageEntrance = new GoblinVillageEntrance(this, ui, vm);
+    GreatWoodsEntranceCave greatWoodsEntranceCave = new GreatWoodsEntranceCave(this, ui, vm);
 
     String nextPositionOne, nextPositionTwo, nextPositionThree, nextPositionFour, continuePosition;
     String inventoryStatus, inventoryMainStatus;

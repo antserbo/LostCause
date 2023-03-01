@@ -19,8 +19,9 @@ public class ChoiceHandler implements ActionListener {
         switch (yourChoice) {
             case "start" -> {
                 game.vm.showGameScreen();
-                //game.story.greatWoodsEntrance_4();
-                game.startingZone.startingZone_7();
+                //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
+                game.startingZone.startingZone();
+                //game.greatWoodsEntranceCave.greatWoodsEntranceCave();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);

@@ -108,6 +108,9 @@ public class Story {
             case "greatWoodsEntrance_6_NarrowPath_3" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_3();
             case "greatWoodsEntrance_6_NarrowPath_4" -> game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
 
+            case "greatWoodsEntranceCave" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave();
+            case "greatWoodsEntranceCave_2" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_2();
+
 
             case "fight_greatWoodsEntrance_4_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "startingZone_7");
             case "examine_greatWoodsEntrance_4_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_4");

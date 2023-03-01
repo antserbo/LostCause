@@ -308,7 +308,7 @@ public class GreatWoodsEntrance extends Story{
 
         game.story.greatWoodsEntranceToCaveDiscovered = true;
 
-        game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath_4";
+        game.nextPositionThree = "greatWoodsEntranceCave";
         game.nextPositionFour = "startingZone_7";
     }
 }
