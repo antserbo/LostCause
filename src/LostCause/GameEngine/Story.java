@@ -11,6 +11,7 @@ public class Story {
     Player player = new Player();
     SuperMonster greatWoodsEntrance_4_Wolf;
     SuperMonster greatWoodsEntrance_6_NarrowPath_2_Wolf;
+    SuperMonster greatWoodsEntranceCave_WolfOne;
 
 
     // todo: all variables except for playerLocation should be *game.story._*
@@ -22,14 +23,16 @@ public class Story {
     int greatWoodsEntrance_4_WolfDefeated = 0;
     int greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 0;
     int greatWoodsEntrance_5_RiverDrinks = 0;
+    int greatWoodsEntranceCave_WolfOneDefeated = 0;
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
-    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
     boolean greatWoodsEntranceDiscovered = false;
     boolean greatWoodsEntranceToCaveDiscovered = false;
     boolean greatWoodsEntrance_6_Discovered = false;
+    boolean greatWoodsEntranceCaveDiscovered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -110,6 +113,8 @@ public class Story {
 
             case "greatWoodsEntranceCave" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave();
             case "greatWoodsEntranceCave_2" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_2();
+            case "greatWoodsEntranceCave_3" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_3();
+            case "greatWoodsEntranceCave_4" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4();
 
 
             case "fight_greatWoodsEntrance_4_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "startingZone_7");
@@ -123,6 +128,12 @@ public class Story {
             case "playerAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> playerAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
             case "monsterAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> monsterAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
             case "win_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_3", "ass", 4);
+
+            case "fight_greatWoodsEntranceCave_WolfOne" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_2");
+            case "examine_greatWoodsEntranceCave_WolfOne" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_3");
+            case "playerAttack_greatWoodsEntranceCave_WolfOne" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
+            case "monsterAttack_greatWoodsEntranceCave_WolfOne" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
+            case "win_greatWoodsEntranceCave_WolfOne" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_4", "ass", 7);
 
             case "lose" -> lose();
             case "toTitle" -> toTitle();
@@ -261,6 +272,8 @@ public class Story {
             game.story.greatWoodsEntrance_4_WolfDefeated = 1;
         } else if (monster.objectID.equals("greatWoodsEntrance_6_NarrowPath_2_Wolf")) {
             game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
+        } else if (monster.objectID.equals("greatWoodsEntranceCave_WolfOne")) {
+            game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
         }
 
         ui.continueButton.setText("Continue");

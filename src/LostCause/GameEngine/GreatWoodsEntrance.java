@@ -187,7 +187,7 @@ public class GreatWoodsEntrance extends Story{
 
         if (game.story.greatWoodsEntranceToCaveDiscovered) {
             ui.choiceThree.setText("Go to cave");
-            game.nextPositionThree = "greatWoodsEntrance_Cave";
+            game.nextPositionThree = "greatWoodsEntranceCave";
         } else {
             ui.choiceThree.setText("Take the narrow path");
             game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath";
