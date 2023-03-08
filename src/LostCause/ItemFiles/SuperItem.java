@@ -9,16 +9,17 @@ public class SuperItem {
     public String name;
 
 
-    public SuperItem(String itemID) {
+    public SuperItem(String itemID, String name) {
         this.itemID = itemID;
+        this.name = name;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ItemWeaponLongSword)) return false;
+        if (!(o instanceof Weapon)) return false;
         if (!super.equals(o)) return false;
-        return itemID.equals(((ItemWeaponLongSword) o).itemID);
+        return itemID.equals(((Weapon) o).itemID);
     }
 
     @Override

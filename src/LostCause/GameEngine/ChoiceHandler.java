@@ -63,8 +63,7 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.inventoryQuestItemPanel.setVisible(true);
                     game.ui.inventoryQuestItemLabel.setVisible(true);
 
-                    System.out.println(game.itemInventory.contains(game.longSword));
-                    System.out.println(game.itemInventory.contains(game.ass));
+                    //System.out.println(game.itemInventory.contains(game.longSword));
                     if (game.itemInventory.contains(game.longSword)) {
                         game.ui.weaponLongSwordButton.setVisible(true);
                     }
@@ -123,22 +122,26 @@ public class ChoiceHandler implements ActionListener {
                 if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
-                    game.story.player.weapon = "Long Sword";
-                    game.ui.weaponNameLabel.setText("Long sword");
+                    game.story.player.weapon = game.longSword;
+                    game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
                 } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
-                    game.story.player.weapon = "Long Sword";
-                    game.ui.weaponNameLabel.setText("Long sword");
+                    game.story.player.weapon = game.longSword;
+                    game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
                 } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
-                    game.story.player.weapon = "Long Sword";
-                    game.ui.weaponNameLabel.setText("Long sword");
-                } else {
+                    game.story.player.weapon = game.longSword;
+                    game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                } else if (game.ui.weaponLongSwordButton.getBackground().equals(Color.green)) {
+                    game.ui.weaponLongSwordButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.weapon = game.fists;
+                    game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                }else {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
-                    game.story.player.weapon = game.longSword.name;
-                    game.ui.weaponNameLabel.setText(game.longSword.name);
+                    game.story.player.weapon = game.longSword;
+                    game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
                     game.ui.weaponNameLabel.setToolTipText(
                             "<html>Damage: <font color=red>" + game.longSword.minDamage + "-" + game.longSword.maxDamage +
                                     "</font><br>Class: " + game.longSword.weaponType + "</html>");
@@ -148,7 +151,7 @@ public class ChoiceHandler implements ActionListener {
 
             case "weaponStiletto" -> {
                 game.ui.weaponStilettoButton.setBackground(Color.green);
-                game.story.player.weapon = "Stiletto";
+                game.story.player.weapon.name = "Stiletto";
                 game.ui.weaponNameLabel.setText("Stiletto");
 
             }
@@ -157,13 +160,13 @@ public class ChoiceHandler implements ActionListener {
                 if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
-                    game.story.player.armorChest = game.leatherChestArmor.name;
-                    game.ui.armorChestNameLabel.setText(game.leatherChestArmor.name);
+                    game.story.player.armorChest = game.leatherChestArmor;
+                    game.ui.armorChestNameLabel.setText(game.story.player.armorChest.name);
                 } else {
                     game.ui.armorBodyLeatherArmorButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
-                    game.story.player.armorChest = game.leatherChestArmor.name;
-                    game.ui.armorChestNameLabel.setText(game.leatherChestArmor.name);
+                    game.story.player.armorChest = game.leatherChestArmor;
+                    game.ui.armorChestNameLabel.setText(game.story.player.armorChest.name);
                 }
             }
         }

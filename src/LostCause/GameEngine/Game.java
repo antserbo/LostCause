@@ -1,8 +1,6 @@
 package LostCause.GameEngine;
 
-import LostCause.ItemFiles.ItemArmorBodyLeatherChestArmor;
-import LostCause.ItemFiles.ItemWeaponLongSword;
-import LostCause.ItemFiles.SuperItem;
+import LostCause.ItemFiles.*;
 
 import java.util.ArrayList;
 
@@ -14,6 +12,7 @@ public class Game {
     Story story = new Story(this, ui, vm);
 
     // todo: for interections with player in location classes use game.story.player! as an interesting item - scythe of peril (-1hp, +50% damage)
+    // todo: try to add a special attack every 3 rounds, keep in mind about the action points
 
     StartingZone startingZone = new StartingZone(this, ui, vm);
     WaterfallZone waterfallZone = new WaterfallZone(this, ui, vm);
@@ -25,10 +24,12 @@ public class Game {
     String inventoryStatus, inventoryMainStatus;
 
     ArrayList<SuperItem> itemInventory = new ArrayList<>();
-    ItemWeaponLongSword longSword = new ItemWeaponLongSword("longSwordOne");
-    ItemWeaponLongSword ass = new ItemWeaponLongSword("longSwordTwo");
 
-    ItemArmorBodyLeatherChestArmor leatherChestArmor = new ItemArmorBodyLeatherChestArmor("leatherChestArmor");
+    WeaponFists fists = new WeaponFists("fists", "Fists");
+    WeaponLongSword longSword = new WeaponLongSword("longSwordOne", "Long sword");
+
+    ItemArmorBodyTornShirt tornShirt = new ItemArmorBodyTornShirt("tornShirt", "Torn shirt");
+    ItemArmorBodyLeatherChestArmor leatherChestArmor = new ItemArmorBodyLeatherChestArmor("leatherChestArmor", "Leather chest");
 
 
     public static void main(String[] args) {

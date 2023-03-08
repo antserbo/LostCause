@@ -95,8 +95,6 @@ public class UI {
         mainTextPanel = new JPanel();
         mainTextPanel.setBounds(190,450,1000,200); // height was 200. // y was 500
         mainTextPanel.setBackground(Color.black);
-        // TODO: I have solved an issue, so that the buttons don't disappear, yet i have to alter my ui, there is space on top 30 - 135 pixels, i have ~100 pixels
-        // TODO: as a beginning solution, move the starting position of the image and utility/equipment panels to @80 pixels
 
         mainTextArea = new JTextArea();
         mainTextArea.setBounds(190, 450, 1000, 200); // height was 400. // second edit 250, now 150, // y was 500
@@ -275,10 +273,10 @@ public class UI {
         iconLabelPanel.setBackground(Color.black);
         iconLabelPanel.setLayout(new GridLayout(6, 1));
 
-        armorHeadNameLabel = new JLabel("Helm of embers"); // TODO: change to empty later!
+        armorHeadNameLabel = new JLabel("Helm of embers");
         armorHeadNameLabel.setFont(iconFont);
         armorHeadNameLabel.setForeground(Color.white);
-        armorHeadNameLabel.setToolTipText("This is your helmet."); // TODO: as a nice work-around, add this to show item stats!
+        armorHeadNameLabel.setToolTipText("This is your helmet.");
         iconLabelPanel.add(armorHeadNameLabel);
 
         necklaceNameLabel = new JLabel("Health necklace");
@@ -314,9 +312,6 @@ public class UI {
 
 
         window.add(iconLabelPanel);
-
-
-        // TODO: create side icons of map, character, inventory and show hp/mp (maybe)
 
     }
 
@@ -533,10 +528,6 @@ public class UI {
 
         createInventoryWindowUIWeaponButtons(cHandler);
         createInventoryWindowUIArmorBodyButton(cHandler);
-
-        // todo: depending on the number of the item type, for instance, 6 swords... the layout gets divided into 6 buttons
-        // todo: each button corresponds to a weapon which the player can click on (this will equip the weapon) probably add action, like "longsword equipped."
-
 
     }
 

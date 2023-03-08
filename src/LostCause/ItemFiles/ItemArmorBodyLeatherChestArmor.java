@@ -1,15 +1,10 @@
 package LostCause.ItemFiles;
 
-public class ItemArmorBodyLeatherChestArmor extends SuperItem{
+public class ItemArmorBodyLeatherChestArmor extends ItemArmorBody{
 
-    public String armorType;
-    public int healthIncrease;
-    public int defence;
-
-    public ItemArmorBodyLeatherChestArmor(String itemID) {
-        super(itemID);
-        name = "Leather chest armor";
-        type = "weapon";
+    public ItemArmorBodyLeatherChestArmor(String itemID, String name) {
+        super(itemID, name);
+        type = "armorBody";
 
         armorType = "chest armor";
         healthIncrease = 3;

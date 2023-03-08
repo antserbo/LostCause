@@ -95,8 +95,6 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(true);
 
-        ui.mainTextArea.setText("You walk past the defeated wolf.");
-
         //ui.image = new ImageIcon(".//res//great_woods.png"); // change to defeated wolf
         //ui.imageLabel.setIcon(ui.image);
 
@@ -114,7 +112,8 @@ public class GreatWoodsEntranceCave extends Story{
     }
 
     public void greatWoodsEntranceCave_5() {
-
+        // todo: create a battle sequence with the bat. if you fail climbing the rocks, the bat should be present
+        // todo: should the player decide to run away and then return back - thus not allowing to cheat on the roll
 
 
     }

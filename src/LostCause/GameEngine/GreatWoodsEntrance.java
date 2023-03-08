@@ -84,8 +84,6 @@ public class GreatWoodsEntrance extends Story{
                     "When all of a sudden you are startled by a hungry wolf.");
             greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
 
-            // todo: maybe add an option where the player can examine the foe they're fighting, so you could predict the max hit.
-
             ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
             ui.imageLabel.setIcon(ui.image);
             ui.mainImagePanel.add(ui.imageLabel);
@@ -117,7 +115,7 @@ public class GreatWoodsEntrance extends Story{
         ui.imageLabel.setIcon(ui.image);
         ui.mainImagePanel.add(ui.imageLabel);
 
-        if (game.story.greatWoodsEntrance_5_RiverDrinks < 2) { // TODO: take a look, maybe you don't want that... so you could heal later
+        if (game.story.greatWoodsEntrance_5_RiverDrinks < 2) {
             ui.choiceThree.setText("Drink from the river");
             game.nextPositionThree = "greatWoodsEntrance_5_River";
         } else {

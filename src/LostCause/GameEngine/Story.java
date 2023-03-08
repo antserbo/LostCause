@@ -1,6 +1,9 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.WeaponLongSword;
+import LostCause.ItemFiles.Weapon;
 import LostCause.MonsterFiles.SuperMonster;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Story {
 
@@ -28,7 +31,7 @@ public class Story {
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
-    boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
     boolean greatWoodsEntranceDiscovered = false;
     boolean greatWoodsEntranceToCaveDiscovered = false;
     boolean greatWoodsEntrance_6_Discovered = false;
@@ -50,11 +53,12 @@ public class Story {
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
         ui.goldNumberLabel.setText("" + player.gold);
-        player.weapon = "Fists";
-        ui.weaponNameLabel.setText(player.weapon);
+        player.armorChest = game.tornShirt;
+        ui.armorChestNameLabel.setText(player.armorChest.name);
+        player.weapon = game.fists;
+        ui.weaponNameLabel.setText(player.weapon.name);
         game.inventoryStatus = "closed";
         game.inventoryMainStatus = "closed";
-
 
     }
 
@@ -171,11 +175,16 @@ public class Story {
         } else if (game.story.greatWoodsEntranceDiscovered && playerLocation.equals("greatWoodsEntrance")) {
             ui.currentLocationLabel.setText("GWE");
             ui.currentLocationLabel.setToolTipText("Great Woods Entrance");
+        } else if (game.story.greatWoodsEntranceCaveDiscovered && playerLocation.equals("greatWoodsEntranceCave")) {
+            ui.currentLocationLabel.setText("GWE Cave");
+            ui.currentLocationLabel.setToolTipText("Great Woods Entrance Cave");
         } else {
             ui.currentLocationLabel.setText("Undiscovered");
             ui.currentLocationLabel.setToolTipText("Location yet to be discovered");
         }
     }
+
+    // todo: implement a healing function (several healing values in vars) idea: 15 // 5, solve with modulo...
 
     public void examine(SuperMonster monster, String fromExamineTo) {
         ui.choiceButtonPanel.setVisible(false);
@@ -213,7 +222,7 @@ public class Story {
 
         // todo: set the min and max hit, as well as implement the hit bounds from player's attributes.
 
-        int playerDamage = new java.util.Random().nextInt(10); // todo change to current_weapon
+        int playerDamage = ThreadLocalRandom.current().nextInt(player.weapon.minDamage, player.weapon.maxDamage);
 
         ui.mainTextArea.setText("You attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
 
@@ -233,7 +242,11 @@ public class Story {
 
     public void monsterAttack(SuperMonster monster) {
 
-        int monsterDamage = new java.util.Random().nextInt(monster.attack);
+        // int monsterDamage = new java.util.Random().nextInt(monster.attack);
+
+        int monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence);
+        System.out.println(monster.attack);
+        System.out.println(monster.attack - player.armorChest.defence);
 
         ui.mainTextArea.setText(monster.attackMessage + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
 
