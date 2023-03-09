@@ -28,8 +28,11 @@ public class Game {
     WeaponFists fists = new WeaponFists("fists", "Fists");
     WeaponLongSword longSword = new WeaponLongSword("longSwordOne", "Long sword");
 
-    ItemArmorBodyTornShirt tornShirt = new ItemArmorBodyTornShirt("tornShirt", "Torn shirt");
-    ItemArmorBodyLeatherChestArmor leatherChestArmor = new ItemArmorBodyLeatherChestArmor("leatherChestArmor", "Leather chest");
+    ArmorBodyTornShirt tornShirt = new ArmorBodyTornShirt("tornShirt", "Torn shirt");
+    ArmorBodyLeatherChestArmor leatherChestArmor = new ArmorBodyLeatherChestArmor("leatherChestArmor", "Leather chest");
+
+    AmuletRingEmpty amuletRingEmpty = new AmuletRingEmpty("emptyAmulet", "");
+    AmuletRingShell amuletRingShell = new AmuletRingShell("shellAmulet", "Shell amulet");
 
 
     public static void main(String[] args) {

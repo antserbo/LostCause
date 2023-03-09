@@ -138,29 +138,7 @@ public class GreatWoodsEntrance extends Story{
         // todo: review this function for later, because the player's base hp might increase over time.
         if (game.story.greatWoodsEntrance_5_RiverDrinks < 2) {
             game.story.greatWoodsEntrance_5_RiverDrinks += 1;
-            if (game.story.player.hp <= 10) {
-                game.story.player.hp += 5;
-                ui.mainTextArea.setText("""
-                        You drink water from the river and feel better.
-
-                        (you get healed by 5 HP)""");
-
-                ui.healthNumberLabel.setText("" + game.story.player.hp);
-            } else if (game.story.player.hp < 15) {
-                int currentHP = game.story.player.hp;
-                game.story.player.hp = 15;
-                int differenceHP = game.story.player.hp - currentHP;
-
-                // TODO : display the right amount of heal when you're less than 3hp away from max hp (done*)
-                ui.mainTextArea.setText("You drink the river's water and feel better.\n\n" +
-                        "(you get healed by " + differenceHP + " HP)");
-                ui.healthNumberLabel.setText("" + game.story.player.hp);
-            } else {
-                ui.mainTextArea.setText("""
-                        You drink water from the river, but feel no effect.
-
-                        (current hp is maximum)""");
-            }
+            game.story.healing(5, "You drink water from the river and feel better.");
         } else {
             ui.mainTextArea.setText("You have already drunk several times, your stomach is full...");
         }

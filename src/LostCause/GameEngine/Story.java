@@ -1,7 +1,5 @@
 package LostCause.GameEngine;
 
-import LostCause.ItemFiles.WeaponLongSword;
-import LostCause.ItemFiles.Weapon;
 import LostCause.MonsterFiles.SuperMonster;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -48,6 +46,7 @@ public class Story {
     public void defaultSetup() {
 
         player.hp = 15;
+        player.maxHP = 15;
         player.mp = 0;
         player.gold = 0;
         ui.healthNumberLabel.setText("" + player.hp);
@@ -57,6 +56,12 @@ public class Story {
         ui.armorChestNameLabel.setText(player.armorChest.name);
         player.weapon = game.fists;
         ui.weaponNameLabel.setText(player.weapon.name);
+        player.amulet = game.amuletRingEmpty;
+        ui.amuletNameLabel.setText(player.amulet.name);
+        player.ring = game.amuletRingEmpty;
+        ui.amuletNameLabel.setText(player.ring.name);
+
+
         game.inventoryStatus = "closed";
         game.inventoryMainStatus = "closed";
 
@@ -82,6 +87,7 @@ public class Story {
             case "waterfallZone_2_SearchSkeleton_Failure" -> game.waterfallZone.waterfallZone_2_SearchSkeleton_Failure();
             case "waterfallZone_3" -> game.waterfallZone.waterfallZone_3();
             case "waterfallZone_3_DrinkWater" -> game.waterfallZone.waterfallZone_3_DrinkWater();
+            case "waterfallZone_3_Meditate" -> game.waterfallZone.waterfallZone_3_Meditate();
 
             case "goblinVillageEntrance" -> game.goblinVillageEntrance.goblinVillageEntrance();
             case "goblinVillageEntrance_2" -> game.goblinVillageEntrance.goblinVillageEntrance_2();
@@ -186,6 +192,27 @@ public class Story {
 
     // todo: implement a healing function (several healing values in vars) idea: 15 // 5, solve with modulo...
 
+    public void healing(int healingAmount, String healingMessage) {
+
+        if (player.hp <= player.maxHP - healingAmount) {
+            player.hp += healingAmount;
+            ui.mainTextArea.setText(healingMessage + "\n\n" +
+                    "(you get healed by " + healingAmount + " HP)");
+            ui.healthNumberLabel.setText("" + player.hp);
+        } else if (player.hp < player.maxHP) {
+            int currentHP = player.hp;
+            player.hp = player.maxHP;
+            int differenceHP = player.hp - currentHP;
+            ui.mainTextArea.setText(healingMessage + "\n\n" +
+                    "(you get healed by " + differenceHP + " HP)");
+            ui.healthNumberLabel.setText("" + player.hp);
+        } else {
+            ui.mainTextArea.setText("You take a sip of water, but it has no effect\n\n" +
+                    "(current hp is maximum)");
+        }
+
+    }
+
     public void examine(SuperMonster monster, String fromExamineTo) {
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
@@ -244,9 +271,10 @@ public class Story {
 
         // int monsterDamage = new java.util.Random().nextInt(monster.attack);
 
-        int monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence);
-        System.out.println(monster.attack);
-        System.out.println(monster.attack - player.armorChest.defence);
+        int monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence - player.amulet.defence);
+        //System.out.println(monster.attack);
+        //System.out.println(monster.attack - player.armorChest.defence);
+        //System.out.println(monster.attack - player.armorChest.defence - player.amulet.defence);
 
         ui.mainTextArea.setText(monster.attackMessage + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
 

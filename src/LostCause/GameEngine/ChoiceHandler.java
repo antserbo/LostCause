@@ -20,8 +20,8 @@ public class ChoiceHandler implements ActionListener {
             case "start" -> {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
-                //game.startingZone.startingZone7();
-                game.greatWoodsEntranceCave.greatWoodsEntranceCave();
+                game.startingZone.startingZone_7();
+                //game.greatWoodsEntranceCave.greatWoodsEntranceCave();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);
@@ -67,9 +67,13 @@ public class ChoiceHandler implements ActionListener {
                     if (game.itemInventory.contains(game.longSword)) {
                         game.ui.weaponLongSwordButton.setVisible(true);
                     }
-                    System.out.println(game.itemInventory.contains(game.leatherChestArmor));
+                    // System.out.println(game.itemInventory.contains(game.leatherChestArmor));
                     if (game.itemInventory.contains(game.leatherChestArmor)) {
                         game.ui.armorBodyLeatherArmorButton.setVisible(true);
+                    }
+
+                    if (game.itemInventory.contains(game.amuletRingShell)) {
+                        game.ui.shellAmuletButton.setVisible(true);
                     }
 
                     /*if (game.story.goblinSkeletonWeaponTaken == 1) {
@@ -167,6 +171,33 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.armorChest = game.leatherChestArmor;
                     game.ui.armorChestNameLabel.setText(game.story.player.armorChest.name);
+                }
+            }
+
+            case "shellAmulet" -> {
+                if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
+                    game.ui.shellAmuletButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.amulet = game.amuletRingShell;
+                    game.ui.amuletNameLabel.setText(game.story.player.amulet.name);
+                    game.story.player.maxHP += game.amuletRingShell.healthIncrease;
+                } else if (game.ui.shellAmuletButton.getBackground().equals(Color.green)) {
+                    game.ui.shellAmuletButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.amulet = game.amuletRingEmpty;
+                    game.ui.amuletNameLabel.setText(game.story.player.amulet.name);
+                    game.story.player.maxHP -= game.amuletRingShell.healthIncrease;
+
+                    if (game.story.player.hp > game.story.player.maxHP) {
+                        game.story.player.hp = game.story.player.maxHP;
+                    }
+
+                    game.ui.healthNumberLabel.setText("" + game.story.player.maxHP);
+                } else {
+                    game.ui.shellAmuletButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.amulet = game.amuletRingShell;
+                    game.ui.amuletNameLabel.setText(game.story.player.amulet.name);
+                    game.story.player.maxHP += game.amuletRingShell.healthIncrease;
                 }
             }
         }

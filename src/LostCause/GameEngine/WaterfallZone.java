@@ -90,6 +90,7 @@ public class WaterfallZone extends Story{
 
         ui.mainTextArea.setText("You have found a peculiar amulet!");
         game.story.waterfallSkeletonAmuletTaken = 1;
+        game.itemInventory.add(game.amuletRingShell);
 
         ui.continueButton.setText("Continue");
 
@@ -144,32 +145,27 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        if (game.story.player.hp <= 12) {
-            game.story.player.hp += 3;
-            ui.mainTextArea.setText("""
-                    You take a sip of water and a rejuvenating effect rushes though your body
 
-                    (you get healed by 3 HP)""");
+        //todo: implement a healing function so that it corresponds to random healing amount and random hp limit
 
-            ui.healthNumberLabel.setText("" + game.story.player.hp);
-        } else if (game.story.player.hp < 15) {
-            int currentHP = game.story.player.hp;
-            game.story.player.hp = 15;
-            int differenceHP = game.story.player.hp - currentHP;
-
-            // TODO : display the right amount of heal when you're less than 3hp away from max hp (done*)
-            ui.mainTextArea.setText("You take a sip of water and a rejuvenating effect rushes though your body\n\n" +
-                    "(you get healed by " + differenceHP + " HP)");
-            ui.healthNumberLabel.setText("" + game.story.player.hp);
-        } else {
-            ui.mainTextArea.setText("""
-                    You take a sip of water, but it does not affect you in any possible way.
-
-                    (current hp is maximum)""");
-        }
+        game.story.healing(3, "You take a sip of water and a rejuvenating effect rushes though your body");
 
         ui.continueButton.setText("Stop drinking");
         game.continuePosition = "waterfallZone_3";
+
+    }
+
+    public void waterfallZone_3_Meditate() {
+        ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(false);
+
+        ui.mainTextArea.setText("Progress has been saved.");
+        System.out.println(game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated);
+        System.out.println(game.story.waterfallSkeletonWeaponTaken);
+
+        ui.continueButton.setText("Continue your journey");
+        game.continuePosition = "waterfallZone_3";
+
 
     }
 

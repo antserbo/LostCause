@@ -7,6 +7,5 @@ public class SuperMonster {
     public int attack;
     public String attackMessage;
     public String objectID;
-    public boolean scales;
 
 }

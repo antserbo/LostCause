@@ -16,7 +16,7 @@ public class UI {
             armorHeadLabel, armorHeadNameLabel,
             armorChestLabel, armorChestNameLabel,
             armorShieldLabel, armorShieldNameLabel,
-            necklaceLabel, necklaceNameLabel,
+            amuletLabel, amuletNameLabel,
             ringLabel, ringNameLabel,
             healthLabel, healthNumberLabel,
             manaLabel, manaNumberLabel, // or this might be xp?
@@ -27,12 +27,12 @@ public class UI {
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton,
             inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
-            inventoryPageMainButton, weaponLongSwordButton, weaponStilettoButton, armorBodyLeatherArmorButton;
+            inventoryPageMainButton, weaponLongSwordButton, weaponStilettoButton, armorBodyLeatherArmorButton, shellAmuletButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
     Font iconFont = new Font("Times New Roman", Font.ITALIC, 24);
-    ImageIcon image, armorHeadIcon, necklaceIcon, weaponIcon, armorChestIcon, armorShieldIcon, ringIcon,
+    ImageIcon image, armorHeadIcon, amuletIcon, weaponIcon, armorChestIcon, armorShieldIcon, ringIcon,
             healthIcon, manaIcon, goldIcon, characterIcon, worldMapIcon, inventoryIcon;
 
     public void createUI(ChoiceHandler cHandler) {
@@ -234,10 +234,10 @@ public class UI {
         equipmentIconPanel.add(armorHeadLabel);
 
         // add icon necklace
-        necklaceLabel = new JLabel();
-        necklaceIcon = new ImageIcon(".//res//emerald-necklace64.png");
-        necklaceLabel.setIcon(necklaceIcon);
-        equipmentIconPanel.add(necklaceLabel);
+        amuletLabel = new JLabel();
+        amuletIcon = new ImageIcon(".//res//emerald-necklace64.png");
+        amuletLabel.setIcon(amuletIcon);
+        equipmentIconPanel.add(amuletLabel);
 
         // add icon weapon
         weaponLabel = new JLabel();
@@ -279,11 +279,11 @@ public class UI {
         armorHeadNameLabel.setToolTipText("This is your helmet.");
         iconLabelPanel.add(armorHeadNameLabel);
 
-        necklaceNameLabel = new JLabel("Health necklace");
-        necklaceNameLabel.setFont(iconFont);
-        necklaceNameLabel.setForeground(Color.white);
-        necklaceNameLabel.setToolTipText("This is your necklace.");
-        iconLabelPanel.add(necklaceNameLabel);
+        amuletNameLabel = new JLabel("Health necklace");
+        amuletNameLabel.setFont(iconFont);
+        amuletNameLabel.setForeground(Color.white);
+        amuletNameLabel.setToolTipText("This is your necklace.");
+        iconLabelPanel.add(amuletNameLabel);
 
         weaponNameLabel = new JLabel("Ultima Godsword");
         weaponNameLabel.setFont(iconFont);
@@ -527,7 +527,8 @@ public class UI {
 
 
         createInventoryWindowUIWeaponButtons(cHandler);
-        createInventoryWindowUIArmorBodyButton(cHandler);
+        createInventoryWindowUIArmorBodyButtons(cHandler);
+        createInventoryWindowUIAmuletRingButtons(cHandler);
 
     }
 
@@ -552,7 +553,7 @@ public class UI {
     public void createInventoryWindowUIArmorBodyPanelLabel() {
         inventoryArmorBodyPanel = new JPanel();
         inventoryArmorBodyPanel.setBounds(270, 70, 220, 720);
-        inventoryArmorBodyPanel.setBackground(Color.green);
+        inventoryArmorBodyPanel.setBackground(Color.black);
         window.add(inventoryArmorBodyPanel);
 
         inventoryArmorBodyTypeLabel = new JLabel("Body armor", SwingConstants.CENTER);
@@ -570,7 +571,7 @@ public class UI {
     public void createInventoryWindowUIArmorShieldPanelLabel() {
         inventoryArmorShieldPanel = new JPanel();
         inventoryArmorShieldPanel.setBounds(490, 70, 220, 720);
-        inventoryArmorShieldPanel.setBackground(Color.green);
+        inventoryArmorShieldPanel.setBackground(Color.black);
         window.add(inventoryArmorShieldPanel);
 
         inventoryArmorShieldTypeLabel = new JLabel("Shield stash", SwingConstants.CENTER);
@@ -588,7 +589,7 @@ public class UI {
     public void createInventoryWindowUIAmuletRingPanelLabel() {
         inventoryAmuletRingPanel= new JPanel();
         inventoryAmuletRingPanel.setBounds(710, 70, 220, 720);
-        inventoryAmuletRingPanel.setBackground(Color.green);
+        inventoryAmuletRingPanel.setBackground(Color.black);
         window.add(inventoryAmuletRingPanel);
 
         inventoryAmuletRingTypeLabel = new JLabel("Amulets & rings", SwingConstants.CENTER);
@@ -606,7 +607,7 @@ public class UI {
     public void createInventoryWindowUIItemPanelLabel() {
         inventoryItemPanel = new JPanel();
         inventoryItemPanel.setBounds(930, 70, 220, 720);
-        inventoryItemPanel.setBackground(Color.green);
+        inventoryItemPanel.setBackground(Color.black);
         window.add(inventoryItemPanel);
 
         inventoryItemTypeLabel = new JLabel("Items", SwingConstants.CENTER);
@@ -624,7 +625,7 @@ public class UI {
     public void createInventoryWindowUIQuestItemPanelLabel() {
         inventoryQuestItemPanel = new JPanel();
         inventoryQuestItemPanel.setBounds(1150, 70, 220, 720);
-        inventoryQuestItemPanel.setBackground(Color.green);
+        inventoryQuestItemPanel.setBackground(Color.black);
         window.add(inventoryQuestItemPanel);
 
         inventoryQuestItemLabel = new JLabel("Quest items", SwingConstants.CENTER);
@@ -663,8 +664,8 @@ public class UI {
 
     }
 
-    public void createInventoryWindowUIArmorBodyButton (ChoiceHandler cHandler) {
-        armorBodyLeatherArmorButton = new JButton("Leather chest armor");
+    public void createInventoryWindowUIArmorBodyButtons(ChoiceHandler cHandler) {
+        armorBodyLeatherArmorButton = new JButton("Leather chest");
         armorBodyLeatherArmorButton.setBackground(Color.DARK_GRAY);
         armorBodyLeatherArmorButton.setForeground(Color.white);
         armorBodyLeatherArmorButton.setFont(normalFont);
@@ -673,6 +674,18 @@ public class UI {
         armorBodyLeatherArmorButton.setActionCommand("leatherChestArmor");
         armorBodyLeatherArmorButton.setVisible(false);
         inventoryArmorBodyPanel.add(armorBodyLeatherArmorButton);
+    }
+
+    public void createInventoryWindowUIAmuletRingButtons (ChoiceHandler cHandler) {
+        shellAmuletButton = new JButton("Shell amulet");
+        shellAmuletButton.setBackground(Color.DARK_GRAY);
+        shellAmuletButton.setForeground(Color.white);
+        shellAmuletButton.setFont(normalFont);
+        shellAmuletButton.setFocusPainted(false);
+        shellAmuletButton.addActionListener(cHandler);
+        shellAmuletButton.setActionCommand("shellAmulet");
+        shellAmuletButton.setVisible(false);
+        inventoryAmuletRingPanel.add(shellAmuletButton);
     }
 
 }
