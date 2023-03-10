@@ -13,6 +13,8 @@ public class Story {
     SuperMonster greatWoodsEntrance_4_Wolf;
     SuperMonster greatWoodsEntrance_6_NarrowPath_2_Wolf;
     SuperMonster greatWoodsEntranceCave_WolfOne;
+    SuperMonster greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat;
+    SuperMonster greatWoodsEntranceCave_4_Proceed_SleepingWolf;
 
 
     // todo: all variables except for playerLocation should be *game.story._*
@@ -25,6 +27,8 @@ public class Story {
     int greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 0;
     int greatWoodsEntrance_5_RiverDrinks = 0;
     int greatWoodsEntranceCave_WolfOneDefeated = 0;
+    int greatWoodsEntranceCave_WolfTwoDefeated = 0;
+    int greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 0;
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
@@ -34,6 +38,9 @@ public class Story {
     boolean greatWoodsEntranceToCaveDiscovered = false;
     boolean greatWoodsEntrance_6_Discovered = false;
     boolean greatWoodsEntranceCaveDiscovered = false;
+    int greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
+    boolean greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
+    boolean greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = false;
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -60,6 +67,8 @@ public class Story {
         ui.amuletNameLabel.setText(player.amulet.name);
         player.ring = game.amuletRingEmpty;
         ui.amuletNameLabel.setText(player.ring.name);
+
+        player.weapon = game.longSword; // todo: this is for testing fights fast
 
 
         game.inventoryStatus = "closed";
@@ -126,6 +135,15 @@ public class Story {
             case "greatWoodsEntranceCave_3" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_3();
             case "greatWoodsEntranceCave_4" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4();
 
+            case "greatWoodsEntranceCave_4_ClimbTheRocks" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks();
+            case "greatWoodsEntranceCave_4_ClimbTheRocks_Success" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_Success();
+            case "greatWoodsEntranceCave_4_ClimbTheRocks_Failure" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_Failure();
+
+            case "greatWoodsEntranceCave_4_Proceed" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed();
+            case "greatWoodsEntranceCave_4_Proceed_KillingBlow" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_KillingBlow();
+
+            case "greatWoodsEntranceCave_5" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_5();
+
 
             case "fight_greatWoodsEntrance_4_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "startingZone_7");
             case "examine_greatWoodsEntrance_4_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_4");
@@ -144,6 +162,18 @@ public class Story {
             case "playerAttack_greatWoodsEntranceCave_WolfOne" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
             case "monsterAttack_greatWoodsEntranceCave_WolfOne" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
             case "win_greatWoodsEntranceCave_WolfOne" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_4", "ass", 7);
+
+            case "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> fight (game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4");
+            case "examine_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4_ClimbTheRocks_Failure");
+            case "playerAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
+            case "monsterAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
+            case "win_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4", "boob", 2);
+
+            case "fight_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4");
+            case "examine_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_KillingBlow");
+            case "playerAttack_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf);
+            case "monsterAttack_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf);
+            case "win_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_Crates", "asl", 4);
 
             case "lose" -> lose();
             case "toTitle" -> toTitle();
@@ -189,8 +219,6 @@ public class Story {
             ui.currentLocationLabel.setToolTipText("Location yet to be discovered");
         }
     }
-
-    // todo: implement a healing function (several healing values in vars) idea: 15 // 5, solve with modulo...
 
     public void healing(int healingAmount, String healingMessage) {
 
@@ -271,10 +299,13 @@ public class Story {
 
         // int monsterDamage = new java.util.Random().nextInt(monster.attack);
 
-        int monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence - player.amulet.defence);
-        //System.out.println(monster.attack);
-        //System.out.println(monster.attack - player.armorChest.defence);
-        //System.out.println(monster.attack - player.armorChest.defence - player.amulet.defence);
+        int monsterDamage;
+
+        if (monster.attack - player.armorChest.defence - player.amulet.defence - player.ring.defence < 1) {
+            monsterDamage = 0;
+        } else {
+            monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence - player.amulet.defence - player.ring.defence);
+        }
 
         ui.mainTextArea.setText(monster.attackMessage + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
 
@@ -309,12 +340,15 @@ public class Story {
         }
 
 
-        if (monster.objectID.equals("greatWoodsEntrance_4_Wolf")) {
-            game.story.greatWoodsEntrance_4_WolfDefeated = 1;
-        } else if (monster.objectID.equals("greatWoodsEntrance_6_NarrowPath_2_Wolf")) {
-            game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
-        } else if (monster.objectID.equals("greatWoodsEntranceCave_WolfOne")) {
-            game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
+        switch (monster.objectID) {
+            case "greatWoodsEntrance_4_Wolf" -> game.story.greatWoodsEntrance_4_WolfDefeated = 1;
+            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
+            case "greatWoodsEntranceCave_WolfOne" -> game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
+            case "greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> {
+                game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
+                game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
+            }
+            case "greatWoodsEntranceCave_SleepingWolf" -> game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
         }
 
         ui.continueButton.setText("Continue");

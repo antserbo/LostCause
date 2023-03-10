@@ -145,9 +145,6 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-
-        //todo: implement a healing function so that it corresponds to random healing amount and random hp limit
-
         game.story.healing(3, "You take a sip of water and a rejuvenating effect rushes though your body");
 
         ui.continueButton.setText("Stop drinking");
