@@ -11,6 +11,7 @@ public class StartingZone extends Story {
 
     public void startingZone() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("You wake up to the noise of the waterfall in the distance.\n" +
                 "The only vague memory you have is of your name, despite the aching body you try to get up...");
@@ -24,6 +25,7 @@ public class StartingZone extends Story {
 
     public void startingZone_2() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone_2";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("With legs trembling you somehow manage to stand up.\n" +
                 "No idea how you ended up in this place. However, you need to act...");
@@ -37,6 +39,7 @@ public class StartingZone extends Story {
 
     public void startingZone_3() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone_3";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("After looking around you determine that to your right there is a waterfall in the distance.");
 
@@ -49,6 +52,7 @@ public class StartingZone extends Story {
 
     public void startingZone_4() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone_4";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("Beside you there is a dead-end, fallen trees are blocking the southern route.");
 
@@ -59,6 +63,7 @@ public class StartingZone extends Story {
 
     public void startingZone_5() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone_5";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("To your left lies a narrow path, which gives you an eerie feeling.");
 
@@ -70,6 +75,7 @@ public class StartingZone extends Story {
 
     public void startingZone_6() {
         playerLocation = "startingZone";
+        game.story.playerFightLocationHelper = "startingZone_6";
         worldMapLocationDeterminerHelper();
         ui.mainTextArea.setText("The northern direction introduces a road which leads deeper into the forest.");
 
@@ -83,6 +89,7 @@ public class StartingZone extends Story {
     public void startingZone_7() {
         playerLocation = "startingZone";
         game.story.startingZoneDiscovered = true;
+        game.story.playerFightLocationHelper = "startingZone_7";
         worldMapLocationDeterminerHelper();
         // TODO: add location names once discovered. Once you get to the end of waterfall, f.e., you no longer see "go west", rather "to / waterfall"
         ui.continueButtonPanel.setVisible(false);

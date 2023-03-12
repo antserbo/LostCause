@@ -19,6 +19,8 @@ public class Story {
 
     // todo: all variables except for playerLocation should be *game.story._*
     String playerLocation = "";
+    int playerAttackRound = 1;
+    int monsterAttackRound;
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
@@ -28,6 +30,7 @@ public class Story {
     int greatWoodsEntrance_5_RiverDrinks = 0;
     int greatWoodsEntranceCave_WolfOneDefeated = 0;
     int greatWoodsEntranceCave_WolfTwoDefeated = 0;
+    int greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 0;
     int greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 0;
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
@@ -41,6 +44,10 @@ public class Story {
     int greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
     boolean greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
     boolean greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = false;
+    int greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked = 0;
+    int greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked = 0;
+    boolean magicalChaliceAvailability = true;
+    String playerFightLocationHelper = "";
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -52,7 +59,7 @@ public class Story {
 
     public void defaultSetup() {
 
-        player.hp = 15;
+        player.hp = 500;
         player.maxHP = 15;
         player.mp = 0;
         player.gold = 0;
@@ -141,6 +148,8 @@ public class Story {
 
             case "greatWoodsEntranceCave_4_Proceed" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed();
             case "greatWoodsEntranceCave_4_Proceed_KillingBlow" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_KillingBlow();
+            case "greatWoodsEntranceCave_4_Proceed_WalkPast" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_WalkPast();
+            case "greatWoodsEntranceCave_4_Proceed_Crates" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
 
             case "greatWoodsEntranceCave_5" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_5();
 
@@ -199,6 +208,8 @@ public class Story {
     public void worldMapLocationDeterminerHelper() {
         // todo: implement further locations and add to every location_function playerLocation and this helper()
 
+        fightLocationHelper();
+
         if (game.story.startingZoneDiscovered && playerLocation.equals("startingZone")) {
             ui.currentLocationLabel.setText("Crossroad");
             ui.currentLocationLabel.setToolTipText("Beginning of your journey");
@@ -217,6 +228,21 @@ public class Story {
         } else {
             ui.currentLocationLabel.setText("Undiscovered");
             ui.currentLocationLabel.setToolTipText("Location yet to be discovered");
+        }
+    }
+
+    public void fightLocationHelper() {
+        //todo:  populate this function. Function description: if player runs off, the the round counter resets.
+        if (game.story.playerFightLocationHelper.equals("startingZone_7") && game.story.greatWoodsEntrance_4_WolfDefeated == 0) {
+            game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntrance_6") && game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated == 0) {
+            game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_2") && game.story.greatWoodsEntranceCave_WolfOneDefeated == 0) {
+            game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated == 0) {
+            game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated == 0) {
+            game.story.playerAttackRound = 1;
         }
     }
 
@@ -261,8 +287,9 @@ public class Story {
         ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(false);
 
-        ui.mainTextArea.setText(monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
+        //System.out.println("This is fighting sequence initialized.");
 
+        ui.mainTextArea.setText(monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
 
         ui.choiceThree.setText("Attack");
         ui.choiceFour.setText("Flee from battle");
@@ -272,10 +299,13 @@ public class Story {
     }
 
     public void playerAttack(SuperMonster monster) {
+        playerRoundCounter();
+        System.out.println("player attack: playerAttackRound = " + playerAttackRound);
+
+        // todo: try to implement a counter of a round, so that magical chalice can be used once in a fight, chalice_counter = 0
+        // todo: also implement a special attack, which is available every 3rd round, also other counter, round_counter = 0
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
-
-        // todo: set the min and max hit, as well as implement the hit bounds from player's attributes.
 
         int playerDamage = ThreadLocalRandom.current().nextInt(player.weapon.minDamage, player.weapon.maxDamage);
 
@@ -295,7 +325,25 @@ public class Story {
         }
     }
 
+    private void playerRoundCounter() {
+        switch (playerAttackRound) {
+            case 1 -> monsterAttackRound = 1;
+            case 2 -> monsterAttackRound = 2;
+            case 3 -> monsterAttackRound = 3;
+            case 4 -> monsterAttackRound = 4;
+            case 5 -> monsterAttackRound = 5;
+            case 6 -> monsterAttackRound = 6;
+            case 7 -> monsterAttackRound = 7;
+            case 8 -> monsterAttackRound = 8;
+            case 9 -> monsterAttackRound = 9;
+            case 10 -> monsterAttackRound = 10;
+        }
+    }
+
     public void monsterAttack(SuperMonster monster) {
+        monsterRoundCounter();
+        //System.out.println("monster attack: playerAttackRound = " + playerAttackRound);
+        System.out.println("monster attack: monsterAttackRound = " + monsterAttackRound);
 
         // int monsterDamage = new java.util.Random().nextInt(monster.attack);
 
@@ -322,8 +370,26 @@ public class Story {
 
     }
 
+    private void monsterRoundCounter() {
+        switch (monsterAttackRound) {
+            case 1 -> playerAttackRound = 1;
+            case 2 -> playerAttackRound = 2;
+            case 3 -> playerAttackRound = 3;
+            case 4 -> playerAttackRound = 4;
+            case 5 -> playerAttackRound = 5;
+            case 6 -> playerAttackRound = 6;
+            case 7 -> playerAttackRound = 7;
+            case 8 -> playerAttackRound = 8;
+            case 9 -> playerAttackRound = 9;
+            case 10 -> playerAttackRound = 10;
+        }
+
+        playerAttackRound += 1;
+    }
+
     public void win(SuperMonster monster, String continueNextPosition, String loot, Integer coins) {
         // todo: somehow make the fifth argument "int monsterDefeated" work, so that we don't have to implement an extra if block...
+        // todo: add an image for each defeated enemy...
 
         if ((!loot.isEmpty()) && ((coins != 0))) {
             ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
@@ -341,19 +407,21 @@ public class Story {
 
 
         switch (monster.objectID) {
-            case "greatWoodsEntrance_4_Wolf" -> game.story.greatWoodsEntrance_4_WolfDefeated = 1;
-            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
-            case "greatWoodsEntranceCave_WolfOne" -> game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
+            case "greatWoodsEntrance_4_Wolf" -> {game.story.greatWoodsEntrance_4_WolfDefeated = 1; playerAttackRound = 1;}
+            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1; playerAttackRound = 1;}
+            case "greatWoodsEntranceCave_WolfOne" -> {game.story.greatWoodsEntranceCave_WolfOneDefeated = 1; playerAttackRound = 1;}
             case "greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> {
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
+                game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 1;
+                playerAttackRound = 1;
             }
-            case "greatWoodsEntranceCave_SleepingWolf" -> game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
+            case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1; playerAttackRound = 1;}
         }
 
         ui.continueButton.setText("Continue");
 
-        game.continuePosition = "" + continueNextPosition;
+        game.continuePosition = continueNextPosition;
 
     }
 

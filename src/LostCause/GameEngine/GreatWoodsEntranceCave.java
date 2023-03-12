@@ -13,6 +13,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave";
         worldMapLocationDeterminerHelper();
         game.story.greatWoodsEntrance_5_RiverDrinks = 0;
 
@@ -30,6 +31,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_2() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_2";
         worldMapLocationDeterminerHelper();
 
         ui.image = new ImageIcon(".//res//greatWoodsEntranceCave.jpg");
@@ -53,6 +55,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_3() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_3";
         worldMapLocationDeterminerHelper();
 
         if (game.story.greatWoodsEntranceCave_WolfOneDefeated == 1) {
@@ -88,6 +91,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(true);
@@ -119,6 +123,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4_ClimbTheRocks() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_ClimbTheRocks";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -142,6 +147,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4_ClimbTheRocks_Success() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_ClimbTheRocks_Success";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -161,6 +167,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4_ClimbTheRocks_Failure() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_ClimbTheRocks_Failure";
         worldMapLocationDeterminerHelper();
 
         greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat = new MonsterGiantBat("greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat");
@@ -192,6 +199,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4_Proceed() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed";
         worldMapLocationDeterminerHelper();
 
         if (game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated == 1) {
@@ -232,6 +240,7 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_4_Proceed_KillingBlow() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_KillingBlow";
         worldMapLocationDeterminerHelper();
 
         if (!game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered) {
@@ -241,6 +250,7 @@ public class GreatWoodsEntranceCave extends Story{
                 ui.continueButtonPanel.setVisible(true);
 
                 ui.mainTextArea.setText("You managed to kill the sleeping wolf with ease.");
+                game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
                 // todo: add image of the killed wolf
 
                 ui.continueButton.setText("Continue");
@@ -266,7 +276,98 @@ public class GreatWoodsEntranceCave extends Story{
     }
 
     public void greatWoodsEntranceCave_4_Proceed_WalkPast() {
+        playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_WalkPast";
+        worldMapLocationDeterminerHelper();
 
+        if (!game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered) {
+            int walkPastChance = new java.util.Random().nextInt(2);
+            if (walkPastChance == 1) {
+                ui.choiceButtonPanel.setVisible(false);
+                ui.continueButtonPanel.setVisible(true);
+
+                ui.mainTextArea.setText("You managed to walk past the sleeping wolf.");
+                // todo: add image of the killed wolf
+
+                ui.continueButton.setText("Continue");
+                game.continuePosition = "greatWoodsEntranceCave_4_Proceed_Crates";
+            } else {
+                ui.choiceButtonPanel.setVisible(true);
+                ui.continueButtonPanel.setVisible(false);
+                ui.choiceTwo.setVisible(true);
+
+                game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = true;
+
+                dealingWithAwakenedWolf("Looks like you failed and the wolf is ready to attack...");
+            }
+        } else {
+            ui.choiceButtonPanel.setVisible(true);
+            ui.continueButtonPanel.setVisible(false);
+            ui.choiceTwo.setVisible(true);
+
+
+            dealingWithAwakenedWolf("You attempt to take on the now awakened wolf...");
+            game.nextPositionFour = "greatWoodsEntranceCave_4";
+        }
+
+    }
+
+    public void greatWoodsEntranceCave_4_Proceed_Crates() {
+        playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_Crates";
+        worldMapLocationDeterminerHelper();
+
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceTwo.setVisible(true);
+
+        if (game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated == 1) {
+
+            ui.mainTextArea.setText("There are two crates in front of you.");
+            if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked == 1) {
+                ui.choiceTwo.setText("");
+                game.nextPositionTwo = "";
+            } else {
+                ui.choiceTwo.setText("Check the bigger crate");
+                game.nextPositionTwo = "greatWoodsEntranceCave_4_Proceed_Crates_Bigger";
+            }
+
+            if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked == 1) {
+                ui.choiceTwo.setText("");
+                game.nextPositionTwo = "";
+            } else {
+                ui.choiceThree.setText("Check the lesser crate");
+                game.nextPositionThree = "greatWoodsEntranceCave_4_Proceed_Crates_Lesser";
+            }
+
+            ui.choiceFour.setText("Walk away from the crates");
+            game.nextPositionFour = "greatWoodsEntranceCave_5";
+
+        } else {
+            dealingWithAwakenedWolf("While moving silently to the crates, you accidentally hit a pile of rocks.\n" +
+                    "Looks like the wolf is about to attack you.");
+
+            game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = true;
+        }
+    }
+
+    public void greatWoodsEntranceCave_4_Proceed_Crates_Bigger() {
+        playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_Crates_Bigger";
+        worldMapLocationDeterminerHelper();
+
+
+    }
+
+    public void greatWoodsEntranceCave_4_Proceed_Crates_Lesser() {
+        playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_Crates_Lesser";
+        worldMapLocationDeterminerHelper();
+
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButton.setVisible(true);
+
+        ui.mainTextArea.setText("You carefully look inside the lesser crate and find a magical chalice");
     }
 
     private void dealingWithAwakenedWolf(String message) {

@@ -10,6 +10,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone";
         worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
@@ -28,6 +29,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_2() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_2";
         worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(true);
         ui.continueButtonPanel.setVisible(false);
@@ -68,6 +70,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_2_WeaponTake() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_2_WeaponTake";
         worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
@@ -84,6 +87,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_2_SearchSkeleton_Success() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_2_SearchSkeleton_Success";
         worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
@@ -99,6 +103,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_2_SearchSkeleton_Failure() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_2_SearchSkeleton_Failure";
         worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
@@ -116,6 +121,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_3() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_3";
         game.story.waterfallZoneDiscovered = true;
         worldMapLocationDeterminerHelper();
         ui.choiceButtonPanel.setVisible(true);
@@ -141,6 +147,7 @@ public class WaterfallZone extends Story{
 
     public void waterfallZone_3_DrinkWater() {
         playerLocation = "waterfallZone";
+        game.story.playerFightLocationHelper = "waterfallZone_3_DrinkWater";
         worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);

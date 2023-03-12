@@ -451,8 +451,8 @@ public class UI {
         inventoryPanelPageButton.setBackground(Color.black);
         inventoryPanelPageButton.setLayout(new GridLayout(1, 1, 0, 0));
 
-        // add buttons for items here
-
+        // todo, if i click it, then my chalice is used and in order to be able to use it again, i have to win to set the variable to zero
+        // basically, the magical chalice is replenished by killing a monster
         inventoryItemOneButton = new JButton("itemOne");
         inventoryItemOneButton.setBackground(Color.black);
         inventoryItemOneButton.setForeground(Color.white);

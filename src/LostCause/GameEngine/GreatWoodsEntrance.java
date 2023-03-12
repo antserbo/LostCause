@@ -12,6 +12,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -40,6 +41,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_2() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_2";
         worldMapLocationDeterminerHelper();
 
         ui.mainTextArea.setText("This is the first time you have ever seen something so wild, but yet calming.\n" +
@@ -51,6 +53,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_3() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_3";
         worldMapLocationDeterminerHelper();
 
         ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations.\n" +
@@ -62,7 +65,9 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_4() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_4";
         worldMapLocationDeterminerHelper();
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_4";
 
         if (game.story.greatWoodsEntrance_4_WolfDefeated == 1) {
             ui.choiceButtonPanel.setVisible(false);
@@ -99,6 +104,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_5() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_5";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(true);
@@ -130,6 +136,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_5_River() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_5_River";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -150,6 +157,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_6() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_6";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(true);
@@ -178,6 +186,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_7() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_7";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -193,6 +202,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_8() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_8";
         game.story.greatWoodsEntranceDiscovered = true;
         worldMapLocationDeterminerHelper();
 
@@ -206,6 +216,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_6_NarrowPath() {
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_6_NarrowPath";
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
@@ -222,6 +233,7 @@ public class GreatWoodsEntrance extends Story{
 
     public void greatWoodsEntrance_6_NarrowPath_2() { // todo: edit the working image and also check for other stuff if needed
         playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_6_NarrowPath_2";
         worldMapLocationDeterminerHelper();
 
         if (game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated == 1) {
@@ -261,6 +273,9 @@ public class GreatWoodsEntrance extends Story{
     }
 
     public void greatWoodsEntrance_6_NarrowPath_3() {
+        playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_6_NarrowPath_3";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
@@ -271,6 +286,9 @@ public class GreatWoodsEntrance extends Story{
     }
 
     public void greatWoodsEntrance_6_NarrowPath_4() {
+        playerLocation = "greatWoodsEntrance";
+        game.story.playerFightLocationHelper = "greatWoodsEntrance_6_NarrowPath_4";
+        worldMapLocationDeterminerHelper();
         ui.continueButtonPanel.setVisible(false);
         ui.choiceButtonPanel.setVisible(true);
         ui.choiceOne.setVisible(false);
