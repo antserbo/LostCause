@@ -17,6 +17,7 @@ public class Story {
     SuperMonster greatWoodsEntranceCave_WolfOne;
     SuperMonster greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat;
     SuperMonster greatWoodsEntranceCave_4_Proceed_SleepingWolf;
+    SuperMonster greatWoodsEntranceCave_WolfTwo;
 
 
     // todo: all variables except for playerLocation should be *game.story._*
@@ -193,6 +194,12 @@ public class Story {
             case "monsterAttack_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf);
             case "win_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_Crates", "asl", 4);
 
+            case "fight_greatWoodsEntranceCave_WolfTwo" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_4");
+            case "examine_greatWoodsEntranceCave_WolfTwo" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_5");
+            case "playerAttack_greatWoodsEntranceCave_WolfTwo" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo);
+            case "monsterAttack_greatWoodsEntranceCave_WolfTwo" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo);
+            case "win_greatWoodsEntranceCave_WolfTwo" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_5", "boobie", 3);
+
             case "lose" -> lose();
             case "toTitle" -> toTitle();
 
@@ -251,6 +258,8 @@ public class Story {
         } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated == 0) {
             game.story.playerAttackRound = 1;
         } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated == 0) {
+            game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_5") && game.story.greatWoodsEntranceCave_WolfTwoDefeated == 0) {
             game.story.playerAttackRound = 1;
         }
     }
@@ -411,23 +420,31 @@ public class Story {
 
 
         switch (monster.objectID) {
-            case "greatWoodsEntrance_4_Wolf" -> {game.story.greatWoodsEntrance_4_WolfDefeated = 1;
+            case "greatWoodsEntrance_4_Wolf" -> {
+                game.story.greatWoodsEntrance_4_WolfDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);}
-            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
+            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {
+                game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);}
-            case "greatWoodsEntranceCave_WolfOne" -> {game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
+            case "greatWoodsEntranceCave_WolfOne" -> {
+                game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);}
             case "greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> {
+                game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 1;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
-                game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);
             }
-            case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
+            case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {
+                game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+            case "greatWoodsEntranceCave_WolfTwo" -> {
+                game.story.greatWoodsEntranceCave_WolfTwoDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);}
         }

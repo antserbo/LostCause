@@ -411,25 +411,50 @@ public class GreatWoodsEntranceCave extends Story{
 
     public void greatWoodsEntranceCave_5() {
         playerLocation = "greatWoodsEntranceCave";
+        game.story.playerFightLocationHelper = "greatWoodsEntranceCave_5";
         worldMapLocationDeterminerHelper();
 
-        ui.image = new ImageIcon(".//res//greatWoodsEntranceCave.jpg"); // todo: add an image of a sleeping wolf
-        ui.imageLabel.setIcon(ui.image);
+        if (game.story.greatWoodsEntranceCave_WolfTwoDefeated == 0) {
 
-        ui.choiceButtonPanel.setVisible(true);
-        ui.continueButtonPanel.setVisible(false);
-        ui.choiceOne.setVisible(false);
-        ui.choiceTwo.setVisible(false);
+            ui.image = new ImageIcon(".//res//greatWoodsEntranceCave.jpg"); // todo: add an image of a guarding wolf
+            ui.imageLabel.setIcon(ui.image);
+
+            greatWoodsEntranceCave_WolfTwo = new MonsterWolf("greatWoodsEntranceCave_WolfTwo");
+
+            ui.choiceButtonPanel.setVisible(true);
+            ui.continueButtonPanel.setVisible(false);
+            ui.choiceTwo.setVisible(true);
+
+            ui.mainTextArea.setText("You approach a wolf guarding what seems to be a lair.\n" +
+                    "Hopefully this is the last wolf in your way...");
 
 
-        ui.mainTextArea.setText("You find yourself in a large cave with little light, which makes it hard to determine what awaits you.\n" +
-                "The best strategy is to be vigilant and not run into any unnecessary trouble.");
+            ui.choiceTwo.setText("Examine foe");
+            ui.choiceThree.setText("Start the battle");
+            ui.choiceFour.setText("Run");
 
-        ui.choiceThree.setText("Proceed further into the cave");
-        ui.choiceFour.setText("Go back to the crossroad");
+            game.nextPositionTwo = "examine_greatWoodsEntranceCave_WolfTwo";
+            game.nextPositionThree = "fight_greatWoodsEntranceCave_WolfTwo";
+            game.nextPositionFour = "greatWoodsEntranceCave_4";
+        } else {
 
-        game.nextPositionThree = "greatWoodsEntranceCave_3";
-        game.nextPositionFour = "startingZone_7";
+            ui.image = new ImageIcon(".//res//greatWoodsEntranceCave.jpg"); // todo: add an image of a defeated wolf
+            ui.imageLabel.setIcon(ui.image);
+
+            ui.choiceButtonPanel.setVisible(true);
+            ui.continueButtonPanel.setVisible(false);
+            ui.choiceOne.setVisible(false);
+            ui.choiceTwo.setVisible(false);
+
+            ui.mainTextArea.setText("You approach the entrance what seems to be a lair.\n" +
+                    "The dead wolf is lying right in front of it.");
+
+            ui.choiceThree.setText("Enter the cave lair");
+            ui.choiceFour.setText("Go back to the river");
+
+            game.nextPositionThree = "greatWoodsEntranceCaveLair";
+            game.nextPositionFour = "greatWoodsEntrance_5";
+        }
     }
 
 
