@@ -22,6 +22,7 @@ public class ChoiceHandler implements ActionListener {
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
                 //game.startingZone.startingZone_7();
                 game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+                //game.startingZone.startingZone();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);

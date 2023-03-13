@@ -7,10 +7,12 @@ public class MonsterGiantBat extends SuperMonster {
         name = "Giant bat";
         hp = 10;
         attack = 3;
-        String [] giantBatMessages = {"The giant bat flaps its wings and lunges at you forward and bites you.","The giant bat attacks you with its claws."};
-        attackMessage = giantBatMessages[new java.util.Random().nextInt(giantBatMessages.length)];
+        messages = new String[]{"The giant bat flaps its wings and lunges at you.", "The giant bat attacks you with its claws."};
+        attackMessage = messages[new java.util.Random().nextInt(messages.length)];
         this.objectID = objectID;
+        specialAttack = false;
 
         // todo: maybe later apply bleed, that will damage the player every 3rd round.
     }
+
 }

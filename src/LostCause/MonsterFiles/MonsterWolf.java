@@ -5,12 +5,14 @@ public class MonsterWolf extends SuperMonster{
     public MonsterWolf(String objectID) {
 
         name = "Wolf";
-        hp = 15;
+        hp = 200;
         attack = 5;
-        String [] wolfMessages = {"The wolf rushes forward and bites you.","The wolf attacks you with its claws."};
-        attackMessage = wolfMessages[new java.util.Random().nextInt(wolfMessages.length)];
+        messages = new String[]{"The wolf rushes forward and bites you.", "The wolf attacks you with its claws."};
+        attackMessage = messages[new java.util.Random().nextInt(messages.length)];
         this.objectID = objectID;
+        specialAttack = false;
 
         // todo: maybe later apply bleed, that will damage the player every 3rd round.
     }
+
 }

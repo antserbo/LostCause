@@ -63,7 +63,7 @@ public class Story {
     public void defaultSetup() {
         // todo: somehow solve the issue, so that i could read the maxHP and hp from defaultSetup for my Chalice.java
 
-        player.hp = 15;
+        player.hp = 200;
         player.maxHP = 15;
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
@@ -259,7 +259,7 @@ public class Story {
             game.story.playerAttackRound = 1;
         } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated == 0) {
             game.story.playerAttackRound = 1;
-        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_5") && game.story.greatWoodsEntranceCave_WolfTwoDefeated == 0) {
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_WolfTwoDefeated == 0) {
             game.story.playerAttackRound = 1;
         }
     }
@@ -360,15 +360,9 @@ public class Story {
         monsterRoundCounter();
         System.out.println("monster attack: monsterAttackRound = " + monsterAttackRound);
 
-        int monsterDamage;
-        int totalDefence = player.armorHead.defence + player.armorChest.defence + player.armorShield.defence + player.amulet.defence + player.ring.defence;
-        if (monster.attack - totalDefence < 1) {
-            monsterDamage = 0;
-        } else {
-            monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - totalDefence);
-        }
+        int monsterDamage = monster.attack(player);
 
-        ui.mainTextArea.setText(monster.attackMessage + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
+        ui.mainTextArea.setText(monster.message() + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
 
         player.hp -= monsterDamage;
         ui.healthNumberLabel.setText("" + player.hp);

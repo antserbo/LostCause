@@ -106,16 +106,17 @@ public class GreatWoodsEntranceCave extends Story{
         if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered) {
             game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 1;
             ui.mainTextArea.setText("This giant bat is a nuisance, you must tread carefully...");
+            game.nextPositionTwo = "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat";
         } else {
             ui.mainTextArea.setText("Hopefully there are not a lot of wolves in this cave... Otherwise it is going to be even more dangerous from now on.\n" +
                     "You walk to as it seems a bigger area of the cave, where you can choose on how to proceed.");
+            game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks";
         }
 
         ui.choiceTwo.setText("Climb the rocks");
         ui.choiceThree.setText("Proceed walking forth");
         ui.choiceFour.setText("Return to the woods");
 
-        game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks";
         game.nextPositionThree = "greatWoodsEntranceCave_4_Proceed";
         game.nextPositionFour = "greatWoodsEntrance_5";
 
