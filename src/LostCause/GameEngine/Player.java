@@ -2,18 +2,19 @@ package LostCause.GameEngine;
 
 import LostCause.ItemFiles.AmuletRing;
 import LostCause.ItemFiles.ArmorBody;
+import LostCause.ItemFiles.ArmorShield;
 import LostCause.ItemFiles.Weapon;
 
 public class Player {
 
     public int hp;
     public int maxHP;
-    public int mp;
-    public int gold;
+    public int mp = 0;
+    public int gold = 0;
     public Weapon weapon;
     public ArmorBody armorChest;
     public ArmorBody armorHead;
-    public ArmorBody armorBoots;
+    public ArmorShield armorShield;
     public AmuletRing amulet;
     public AmuletRing ring;
 

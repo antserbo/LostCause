@@ -333,11 +333,15 @@ public class GreatWoodsEntranceCave extends Story{
             }
 
             if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked == 1) {
-                ui.choiceTwo.setText("");
-                game.nextPositionTwo = "";
+                ui.choiceThree.setText("");
+                game.nextPositionThree = "";
             } else {
                 ui.choiceThree.setText("Check the lesser crate");
                 game.nextPositionThree = "greatWoodsEntranceCave_4_Proceed_Crates_Lesser";
+            }
+
+            if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked == 1 && game.story.greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked == 1) {
+                ui.mainTextArea.setText("Both crates have been already looted. Nothing interesting here.");
             }
 
             ui.choiceFour.setText("Walk away from the crates");
@@ -356,6 +360,16 @@ public class GreatWoodsEntranceCave extends Story{
         game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_Proceed_Crates_Bigger";
         worldMapLocationDeterminerHelper();
 
+        ui.choiceButtonPanel.setVisible(false);
+        ui.continueButtonPanel.setVisible(true);
+
+        ui.mainTextArea.setText("An old battle-worn bronze shield lies at the bottom of the crate.\n" +
+                "This will prove useful in the upcoming fights.\n" +
+                "(you receive a bronze shield)");
+
+        game.itemInventory.add(game.armorShieldBronzeShield);
+
+        game.story.greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked = 1;
 
     }
 
@@ -365,9 +379,21 @@ public class GreatWoodsEntranceCave extends Story{
         worldMapLocationDeterminerHelper();
 
         ui.choiceButtonPanel.setVisible(false);
-        ui.continueButton.setVisible(true);
+        ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You carefully look inside the lesser crate and find a magical chalice");
+        ui.mainTextArea.setText("You carefully look inside the lesser crate and find a magical chalice\n" +
+                "This chalice can heal the player once and has to be replenished by defeating an enemy.\n" +
+                "(you receive a magical chalice, it can be found in your quick slot)");
+        game.itemInventory.add(game.magicalChalice);
+
+        if (game.itemInventory.contains(game.magicalChalice)) {
+            ui.inventoryItemOneButton.setVisible(true);
+        }
+
+        game.story.greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked = 1;
+
+        ui.continueButton.setText("Continue");
+        game.continuePosition = "greatWoodsEntranceCave_4_Proceed_Crates";
     }
 
     private void dealingWithAwakenedWolf(String message) {

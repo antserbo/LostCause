@@ -27,7 +27,11 @@ public class UI {
     JButton startButton, choiceOne, choiceTwo, choiceThree, choiceFour, continueButton,
             characterButton, worldMapButton,
             inventoryButton, inventoryItemOneButton, inventoryItemTwoButton, inventoryItemThreeButton, inventoryItemFourButton,
-            inventoryPageMainButton, weaponLongSwordButton, weaponStilettoButton, armorBodyLeatherArmorButton, shellAmuletButton;
+            inventoryPageMainButton,
+            weaponLongSwordButton, weaponStilettoButton,
+            armorBodyLeatherArmorButton,
+            armorShieldBronzeShieldButton,
+            shellAmuletButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
@@ -453,13 +457,15 @@ public class UI {
 
         // todo, if i click it, then my chalice is used and in order to be able to use it again, i have to win to set the variable to zero
         // basically, the magical chalice is replenished by killing a monster
-        inventoryItemOneButton = new JButton("itemOne");
-        inventoryItemOneButton.setBackground(Color.black);
+        inventoryItemOneButton = new JButton("Magical chalice");
+        inventoryItemOneButton.setBackground(Color.green);
         inventoryItemOneButton.setForeground(Color.white);
         inventoryItemOneButton.setFont(normalFont);
         inventoryItemOneButton.setFocusPainted(false);
         inventoryItemOneButton.addActionListener(cHandler);
         inventoryItemOneButton.setActionCommand("inventoryItemOne");
+        inventoryItemOneButton.setVisible(false);
+        inventoryItemOneButton.setToolTipText("<html> Heals <font color=red>20 %</font> of your max hp </html>");
         inventoryPanelItemButtons.add(inventoryItemOneButton);
 
         inventoryItemTwoButton = new JButton("itemTwo");
@@ -469,6 +475,7 @@ public class UI {
         inventoryItemTwoButton.setFocusPainted(false);
         inventoryItemTwoButton.addActionListener(cHandler);
         inventoryItemTwoButton.setActionCommand("inventoryItemTwo");
+        inventoryItemTwoButton.setVisible(false);
         inventoryPanelItemButtons.add(inventoryItemTwoButton);
 
         inventoryItemThreeButton = new JButton("itemThree");
@@ -478,6 +485,7 @@ public class UI {
         inventoryItemThreeButton.setFocusPainted(false);
         inventoryItemThreeButton.addActionListener(cHandler); // handler
         inventoryItemThreeButton.setActionCommand("inventoryItemThree");
+        inventoryItemThreeButton.setVisible(false);
         inventoryPanelItemButtons.add(inventoryItemThreeButton);
 
         inventoryItemFourButton = new JButton("itemFour");
@@ -487,6 +495,7 @@ public class UI {
         inventoryItemFourButton.setFocusPainted(false);
         inventoryItemFourButton.addActionListener(cHandler); // handler
         inventoryItemFourButton.setActionCommand("inventoryItemFour");
+        inventoryItemFourButton.setVisible(false);
         inventoryPanelItemButtons.add(inventoryItemFourButton);
 
         // add button for inventory page here
@@ -529,6 +538,7 @@ public class UI {
         createInventoryWindowUIWeaponButtons(cHandler);
         createInventoryWindowUIArmorBodyButtons(cHandler);
         createInventoryWindowUIAmuletRingButtons(cHandler);
+        createInventoryWindowUIArmorShieldButtons(cHandler);
 
     }
 
@@ -674,6 +684,19 @@ public class UI {
         armorBodyLeatherArmorButton.setActionCommand("leatherChestArmor");
         armorBodyLeatherArmorButton.setVisible(false);
         inventoryArmorBodyPanel.add(armorBodyLeatherArmorButton);
+    }
+
+    public void createInventoryWindowUIArmorShieldButtons(ChoiceHandler cHandler) {
+        armorShieldBronzeShieldButton = new JButton("Bronze shield");
+        armorShieldBronzeShieldButton.setBackground(Color.DARK_GRAY);
+        armorShieldBronzeShieldButton.setForeground(Color.white);
+        armorShieldBronzeShieldButton.setFont(normalFont);
+        armorShieldBronzeShieldButton.setFocusPainted(false);
+        armorShieldBronzeShieldButton.addActionListener(cHandler);
+        armorShieldBronzeShieldButton.setActionCommand("bronzeShield");
+        armorShieldBronzeShieldButton.setVisible(false);
+        inventoryArmorShieldPanel.add(armorShieldBronzeShieldButton);
+
     }
 
     public void createInventoryWindowUIAmuletRingButtons (ChoiceHandler cHandler) {

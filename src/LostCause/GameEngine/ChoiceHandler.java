@@ -20,8 +20,8 @@ public class ChoiceHandler implements ActionListener {
             case "start" -> {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
-                game.startingZone.startingZone_7();
-                //game.greatWoodsEntranceCave.greatWoodsEntranceCave_4();
+                //game.startingZone.startingZone_7();
+                game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);
@@ -41,6 +41,20 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.inventoryPanelItemButtons.setVisible(false);
                     game.ui.inventoryPanelPageButton.setVisible(false);
                     game.inventoryStatus = "closed";
+                }
+            }
+
+            case "inventoryItemOne" -> {
+                if (game.ui.inventoryItemOneButton.getBackground().equals(Color.green)) {
+                    game.magicalChalice.chaliceHealing(game.story.player);
+                    if (game.magicalChalice.healthRestoration + game.story.player.hp >= game.story.player.maxHP) {
+                        game.story.player.hp = game.story.player.maxHP;
+                    } else {
+                        game.story.player.hp += game.magicalChalice.healthRestoration;
+                    }
+                    game.ui.healthNumberLabel.setText("" + game.story.player.hp);
+                    game.ui.inventoryItemOneButton.setBackground(Color.DARK_GRAY);
+                    game.story.magicalChaliceAvailability = false;
                 }
             }
 
@@ -74,6 +88,10 @@ public class ChoiceHandler implements ActionListener {
 
                     if (game.itemInventory.contains(game.amuletRingShell)) {
                         game.ui.shellAmuletButton.setVisible(true);
+                    }
+
+                    if (game.itemInventory.contains(game.magicalChalice)) {
+                        game.ui.armorShieldBronzeShieldButton.setVisible(true);
                     }
 
                     /*if (game.story.goblinSkeletonWeaponTaken == 1) {
@@ -171,6 +189,20 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.armorChest = game.leatherChestArmor;
                     game.ui.armorChestNameLabel.setText(game.story.player.armorChest.name);
+                }
+            }
+
+            case "bronzeShield" -> {
+                if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
+                    game.ui.armorShieldBronzeShieldButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.armorShield = game.armorShieldBronzeShield;
+                    game.ui.armorShieldNameLabel.setText(game.story.player.armorShield.name);
+                } else {
+                    game.ui.armorShieldBronzeShieldButton.setBackground(Color.green);
+                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                    game.story.player.armorShield = game.armorShieldBronzeShield;
+                    game.ui.armorShieldNameLabel.setText(game.story.player.armorShield.name);
                 }
             }
 

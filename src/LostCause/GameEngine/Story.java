@@ -1,6 +1,8 @@
 package LostCause.GameEngine;
 
 import LostCause.MonsterFiles.SuperMonster;
+
+import java.awt.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Story {
@@ -58,22 +60,26 @@ public class Story {
     }
 
     public void defaultSetup() {
+        // todo: somehow solve the issue, so that i could read the maxHP and hp from defaultSetup for my Chalice.java
 
-        player.hp = 500;
+        player.hp = 15;
         player.maxHP = 15;
-        player.mp = 0;
-        player.gold = 0;
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
         ui.goldNumberLabel.setText("" + player.gold);
+        player.armorHead = game.armorBodyHeadEmpty;
+        ui.armorHeadNameLabel.setText(player.armorHead.name);
         player.armorChest = game.tornShirt;
         ui.armorChestNameLabel.setText(player.armorChest.name);
+        player.armorShield = game.armorShieldEmpty;
+        ui.armorShieldNameLabel.setText(player.armorShield.name);
         player.weapon = game.fists;
         ui.weaponNameLabel.setText(player.weapon.name);
         player.amulet = game.amuletRingEmpty;
         ui.amuletNameLabel.setText(player.amulet.name);
         player.ring = game.amuletRingEmpty;
-        ui.amuletNameLabel.setText(player.ring.name);
+        ui.ringNameLabel.setText(player.ring.name);
+
 
         player.weapon = game.longSword; // todo: this is for testing fights fast
 
@@ -150,6 +156,9 @@ public class Story {
             case "greatWoodsEntranceCave_4_Proceed_KillingBlow" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_KillingBlow();
             case "greatWoodsEntranceCave_4_Proceed_WalkPast" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_WalkPast();
             case "greatWoodsEntranceCave_4_Proceed_Crates" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+
+            case "greatWoodsEntranceCave_4_Proceed_Crates_Bigger" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates_Bigger();
+            case "greatWoodsEntranceCave_4_Proceed_Crates_Lesser" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates_Lesser();
 
             case "greatWoodsEntranceCave_5" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_5();
 
@@ -287,8 +296,6 @@ public class Story {
         ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(false);
 
-        //System.out.println("This is fighting sequence initialized.");
-
         ui.mainTextArea.setText(monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
 
         ui.choiceThree.setText("Attack");
@@ -342,17 +349,14 @@ public class Story {
 
     public void monsterAttack(SuperMonster monster) {
         monsterRoundCounter();
-        //System.out.println("monster attack: playerAttackRound = " + playerAttackRound);
         System.out.println("monster attack: monsterAttackRound = " + monsterAttackRound);
 
-        // int monsterDamage = new java.util.Random().nextInt(monster.attack);
-
         int monsterDamage;
-
-        if (monster.attack - player.armorChest.defence - player.amulet.defence - player.ring.defence < 1) {
+        int totalDefence = player.armorHead.defence + player.armorChest.defence + player.armorShield.defence + player.amulet.defence + player.ring.defence;
+        if (monster.attack - totalDefence < 1) {
             monsterDamage = 0;
         } else {
-            monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - player.armorChest.defence - player.amulet.defence - player.ring.defence);
+            monsterDamage = ThreadLocalRandom.current().nextInt(0, monster.attack - totalDefence);
         }
 
         ui.mainTextArea.setText(monster.attackMessage + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
@@ -407,16 +411,25 @@ public class Story {
 
 
         switch (monster.objectID) {
-            case "greatWoodsEntrance_4_Wolf" -> {game.story.greatWoodsEntrance_4_WolfDefeated = 1; playerAttackRound = 1;}
-            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1; playerAttackRound = 1;}
-            case "greatWoodsEntranceCave_WolfOne" -> {game.story.greatWoodsEntranceCave_WolfOneDefeated = 1; playerAttackRound = 1;}
+            case "greatWoodsEntrance_4_Wolf" -> {game.story.greatWoodsEntrance_4_WolfDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+            case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+            case "greatWoodsEntranceCave_WolfOne" -> {game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);}
             case "greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> {
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 1;
                 playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
             }
-            case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1; playerAttackRound = 1;}
+            case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);}
         }
 
         ui.continueButton.setText("Continue");
