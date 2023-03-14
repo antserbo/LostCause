@@ -9,5 +9,6 @@ public class WeaponLongSword extends Weapon{
         weaponType = "one-handed sword";
         minDamage = 3;
         maxDamage = 9;
+        message = "You swing your long sword.";
     }
 }

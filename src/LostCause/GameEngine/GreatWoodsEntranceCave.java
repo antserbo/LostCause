@@ -106,7 +106,7 @@ public class GreatWoodsEntranceCave extends Story{
         if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered) {
             game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 1;
             ui.mainTextArea.setText("This giant bat is a nuisance, you must tread carefully...");
-            game.nextPositionTwo = "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat";
+            game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks_Failure";
         } else {
             ui.mainTextArea.setText("Hopefully there are not a lot of wolves in this cave... Otherwise it is going to be even more dangerous from now on.\n" +
                     "You walk to as it seems a bigger area of the cave, where you can choose on how to proceed.");
@@ -171,6 +171,13 @@ public class GreatWoodsEntranceCave extends Story{
         game.story.playerFightLocationHelper = "greatWoodsEntranceCave_4_ClimbTheRocks_Failure";
         worldMapLocationDeterminerHelper();
 
+        if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat == 1) {
+            ui.mainTextArea.setText("You decide to return and take down the giant bat...");
+        } else {
+            ui.mainTextArea.setText("You were not careful enough and fall down, luckily without taking any serious damage.\n" +
+                    "However, you have disturbed a giant bat, looks like you have to cut your way though...");
+        }
+
         greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat = new MonsterGiantBat("greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat");
 
         game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = true;
@@ -183,9 +190,6 @@ public class GreatWoodsEntranceCave extends Story{
 
         //ui.image = new ImageIcon(".//res//great_woods.png"); //todo: change to bat
         //ui.imageLabel.setIcon(ui.image);
-
-        ui.mainTextArea.setText("You were not careful enough and fall down, luckily without taking any serious damage.\n" +
-                "However, you have disturbed a giant bat, looks like you have to cut your way though...");
 
 
         ui.choiceTwo.setText("Examine foe");

@@ -61,9 +61,8 @@ public class Story {
     }
 
     public void defaultSetup() {
-        // todo: somehow solve the issue, so that i could read the maxHP and hp from defaultSetup for my Chalice.java
 
-        player.hp = 200;
+        player.hp = 15;
         player.maxHP = 15;
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
@@ -325,7 +324,7 @@ public class Story {
 
         int playerDamage = ThreadLocalRandom.current().nextInt(player.weapon.minDamage, player.weapon.maxDamage);
 
-        ui.mainTextArea.setText("You attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
+        ui.mainTextArea.setText(player.weapon.message + "\nYou attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
 
         monster.hp -= playerDamage;
 

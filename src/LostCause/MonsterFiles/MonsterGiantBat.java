@@ -8,7 +8,6 @@ public class MonsterGiantBat extends SuperMonster {
         hp = 10;
         attack = 3;
         messages = new String[]{"The giant bat flaps its wings and lunges at you.", "The giant bat attacks you with its claws."};
-        attackMessage = messages[new java.util.Random().nextInt(messages.length)];
         this.objectID = objectID;
         specialAttack = false;
 

@@ -5,12 +5,13 @@ import LostCause.GameEngine.Player;
 
 public class MonsterWolfMatriarch extends SuperMonster{
 
+    int specialAttackChance;
+
     public MonsterWolfMatriarch (String objectID) {
         name = "Wolf";
         hp = 30;
         attack = 5;
         messages = new String[]{"The wolf matriarch rushes forward and bites you.", "The wolf matriarch attacks you with its claws."};
-        attackMessage = messages[new java.util.Random().nextInt(messages.length)];
         this.objectID = objectID;
         specialAttack = true;
 
@@ -18,11 +19,11 @@ public class MonsterWolfMatriarch extends SuperMonster{
     }
 
     public int attack(Player player) {
-        int specialAttackChance = new java.util.Random().nextInt(5);
+        specialAttackChance = new java.util.Random().nextInt(5);
+        System.out.println("in attack chance is " + specialAttackChance);
         int attackDamage;
         int totalPlayerDefence = player.armorHead.defence + player.armorChest.defence + player.armorShield.defence + player.amulet.defence + player.ring.defence;
         if (specialAttackChance == 4) {
-            attackMessage = "The wolf matriarch howls and then attacks you with greater damage";
             attackDamage = (int) (attack * 1.2);
         } else {
             if (attack - totalPlayerDefence < 1) {
@@ -32,5 +33,15 @@ public class MonsterWolfMatriarch extends SuperMonster{
             }
         }
         return attackDamage;
+    }
+
+    public String message() {
+        System.out.println("in message chance is " + specialAttackChance);
+        if (specialAttackChance == 4) {
+            attackMessage = "The wolf matriarch howls and then attacks you with greater damage";
+        } else {
+            attackMessage = messages[new java.util.Random().nextInt(messages.length)];
+        }
+        return attackMessage;
     }
 }

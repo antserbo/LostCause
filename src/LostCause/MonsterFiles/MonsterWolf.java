@@ -5,10 +5,9 @@ public class MonsterWolf extends SuperMonster{
     public MonsterWolf(String objectID) {
 
         name = "Wolf";
-        hp = 200;
+        hp = 15;
         attack = 5;
         messages = new String[]{"The wolf rushes forward and bites you.", "The wolf attacks you with its claws."};
-        attackMessage = messages[new java.util.Random().nextInt(messages.length)];
         this.objectID = objectID;
         specialAttack = false;
 
