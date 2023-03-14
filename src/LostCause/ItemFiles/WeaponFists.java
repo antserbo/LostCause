@@ -10,4 +10,8 @@ public class WeaponFists extends Weapon{
         minDamage = 0;
         maxDamage = 4;
     }
+
+    public String weaponMessage() {
+        return "You hit the enemy with your first";
+    }
 }

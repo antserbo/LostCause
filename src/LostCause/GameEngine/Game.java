@@ -27,6 +27,7 @@ public class Game {
 
     WeaponFists fists = new WeaponFists("fists", "Fists");
     WeaponLongSword longSword = new WeaponLongSword("longSwordOne", "Long sword");
+    WeaponDaggerOfYearn daggerOfYearn = new WeaponDaggerOfYearn("daggerOfYearn", "Dagger of yearn");
 
     ArmorBodyHeadEmpty armorBodyHeadEmpty = new ArmorBodyHeadEmpty("emptyHead", "");
 

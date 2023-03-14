@@ -62,7 +62,7 @@ public class Story {
 
     public void defaultSetup() {
 
-        player.hp = 15;
+        player.hp = 200;
         player.maxHP = 15;
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
@@ -81,7 +81,7 @@ public class Story {
         ui.ringNameLabel.setText(player.ring.name);
 
 
-        player.weapon = game.longSword; // todo: this is for testing fights fast
+        player.weapon = game.daggerOfYearn; // todo: this is for testing fights fast
 
 
         game.inventoryStatus = "closed";
@@ -322,9 +322,17 @@ public class Story {
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        int playerDamage = ThreadLocalRandom.current().nextInt(player.weapon.minDamage, player.weapon.maxDamage);
-
-        ui.mainTextArea.setText(player.weapon.message + "\nYou attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
+        int playerDamage;
+        if (player.weapon.hasPassive) {
+            if (playerAttackRound % 2 == 0) {
+                playerDamage = player.weapon.attack();
+            } else {
+                playerDamage = player.weapon.passiveAttack(monster);
+            }
+        } else {
+            playerDamage = player.weapon.attack();
+        }
+        ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
 
         monster.hp -= playerDamage;
 
@@ -337,21 +345,6 @@ public class Story {
             game.continuePosition = "monsterAttack_" + monster.objectID;
         } else {
             game.continuePosition = "win_" + monster.objectID;
-        }
-    }
-
-    private void playerRoundCounter() {
-        switch (playerAttackRound) {
-            case 1 -> monsterAttackRound = 1;
-            case 2 -> monsterAttackRound = 2;
-            case 3 -> monsterAttackRound = 3;
-            case 4 -> monsterAttackRound = 4;
-            case 5 -> monsterAttackRound = 5;
-            case 6 -> monsterAttackRound = 6;
-            case 7 -> monsterAttackRound = 7;
-            case 8 -> monsterAttackRound = 8;
-            case 9 -> monsterAttackRound = 9;
-            case 10 -> monsterAttackRound = 10;
         }
     }
 
@@ -374,6 +367,21 @@ public class Story {
             game.continuePosition = "lose";
         }
 
+    }
+
+    private void playerRoundCounter() {
+        switch (playerAttackRound) {
+            case 1 -> monsterAttackRound = 1;
+            case 2 -> monsterAttackRound = 2;
+            case 3 -> monsterAttackRound = 3;
+            case 4 -> monsterAttackRound = 4;
+            case 5 -> monsterAttackRound = 5;
+            case 6 -> monsterAttackRound = 6;
+            case 7 -> monsterAttackRound = 7;
+            case 8 -> monsterAttackRound = 8;
+            case 9 -> monsterAttackRound = 9;
+            case 10 -> monsterAttackRound = 10;
+        }
     }
 
     private void monsterRoundCounter() {

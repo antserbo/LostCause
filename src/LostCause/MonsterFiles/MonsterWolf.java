@@ -5,7 +5,7 @@ public class MonsterWolf extends SuperMonster{
     public MonsterWolf(String objectID) {
 
         name = "Wolf";
-        hp = 15;
+        hp = 200;
         attack = 5;
         messages = new String[]{"The wolf rushes forward and bites you.", "The wolf attacks you with its claws."};
         this.objectID = objectID;
