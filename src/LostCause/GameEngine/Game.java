@@ -19,6 +19,7 @@ public class Game {
     GreatWoodsEntrance greatWoodsEntrance = new GreatWoodsEntrance(this, ui, vm);
     GoblinVillageEntrance goblinVillageEntrance = new GoblinVillageEntrance(this, ui, vm);
     GreatWoodsEntranceCave greatWoodsEntranceCave = new GreatWoodsEntranceCave(this, ui, vm);
+    GreatWoodsEntranceCaveLair greatWoodsEntranceCaveLair = new GreatWoodsEntranceCaveLair(this, ui, vm);
 
     String nextPositionOne, nextPositionTwo, nextPositionThree, nextPositionFour, continuePosition;
     String inventoryStatus, inventoryMainStatus;
@@ -39,6 +40,8 @@ public class Game {
 
     AmuletRingEmpty amuletRingEmpty = new AmuletRingEmpty("emptyAmulet", "");
     AmuletRingShell amuletRingShell = new AmuletRingShell("shellAmulet", "Shell amulet");
+
+    QuestItemSilverRing questItemSilverRing = new QuestItemSilverRing("silverRing", "Silver ring");
 
     ActiveItemMagicalChalice magicalChalice = new ActiveItemMagicalChalice("magicalChalice", "Magical chalice");
 

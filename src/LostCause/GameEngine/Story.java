@@ -1,8 +1,10 @@
 package LostCause.GameEngine;
 
+import LostCause.ItemFiles.SuperItem;
 import LostCause.MonsterFiles.SuperMonster;
 
 import java.awt.*;
+import java.util.Locale;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Story {
@@ -18,6 +20,7 @@ public class Story {
     SuperMonster greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat;
     SuperMonster greatWoodsEntranceCave_4_Proceed_SleepingWolf;
     SuperMonster greatWoodsEntranceCave_WolfTwo;
+    SuperMonster greatWoodsEntranceCaveLair_WolfMatriarch;
 
 
     // todo: all variables except for playerLocation should be *game.story._*
@@ -35,18 +38,20 @@ public class Story {
     int greatWoodsEntranceCave_WolfTwoDefeated = 0;
     int greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 0;
     int greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 0;
+    int greatWoodsEntranceCaveLair_WolfMatriarchDefeated = 0;
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
-    boolean goblinVillageEntranceGuardSilverRingDiscovered = true;
     boolean greatWoodsEntranceDiscovered = false;
     boolean greatWoodsEntranceToCaveDiscovered = false;
-    boolean greatWoodsEntrance_6_Discovered = false;
+    boolean greatWoodsEntrance_4_WolfEncountered = false;
+    boolean greatWoodsEntrance_5_Discovered = false;
     boolean greatWoodsEntranceCaveDiscovered = false;
     int greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
     boolean greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
     boolean greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = false;
+    boolean greatWoodsEntranceCaveLair_WolfMatriarchEncountered = false;
     int greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked = 0;
     int greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked = 0;
     boolean magicalChaliceAvailability = true;
@@ -162,42 +167,57 @@ public class Story {
 
             case "greatWoodsEntranceCave_5" -> game.greatWoodsEntranceCave.greatWoodsEntranceCave_5();
 
+            case "greatWoodsEntranceCaveLair" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
+            case "greatWoodsEntranceCaveLair_2" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_2();
+            case "greatWoodsEntranceCaveLair_3" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_3();
+            case "greatWoodsEntranceCaveLair_4" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_4();
+            case "greatWoodsEntranceCaveLair_5" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_5();
+            case "greatWoodsEntranceCaveLair_6" -> game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_6();
+
 
             case "fight_greatWoodsEntrance_4_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "startingZone_7");
             case "examine_greatWoodsEntrance_4_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_4");
             case "playerAttack_greatWoodsEntrance_4_Wolf" -> playerAttack(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf);
             case "monsterAttack_greatWoodsEntrance_4_Wolf" -> monsterAttack(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf);
-            case "win_greatWoodsEntrance_4_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_5", "", 5);
+            case "win_greatWoodsEntrance_4_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_4_Wolf, "greatWoodsEntrance_5", null, 5);
 
-            case "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6");
+            case "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> fight(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_5");
             case "examine_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> examine(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_2");
             case "playerAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> playerAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
             case "monsterAttack_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> monsterAttack(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf);
-            case "win_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_3", "ass", 4);
+            case "win_greatWoodsEntrance_6_NarrowPath_2_Wolf" -> win(game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_2_Wolf, "greatWoodsEntrance_6_NarrowPath_3", null, 4);
 
             case "fight_greatWoodsEntranceCave_WolfOne" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_2");
             case "examine_greatWoodsEntranceCave_WolfOne" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_3");
             case "playerAttack_greatWoodsEntranceCave_WolfOne" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
             case "monsterAttack_greatWoodsEntranceCave_WolfOne" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
-            case "win_greatWoodsEntranceCave_WolfOne" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_4", "ass", 7);
+            case "win_greatWoodsEntranceCave_WolfOne" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_4", null, 7);
 
             case "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> fight (game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4");
             case "examine_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4_ClimbTheRocks_Failure");
             case "playerAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
             case "monsterAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
-            case "win_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4", "boob", 2);
+            case "win_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4", null, 2);
 
             case "fight_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4");
             case "examine_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_KillingBlow");
             case "playerAttack_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf);
             case "monsterAttack_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf);
-            case "win_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_Crates", "asl", 4);
+            case "win_greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_SleepingWolf, "greatWoodsEntranceCave_4_Proceed_Crates", null, 4);
 
             case "fight_greatWoodsEntranceCave_WolfTwo" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_4");
             case "examine_greatWoodsEntranceCave_WolfTwo" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_5");
             case "playerAttack_greatWoodsEntranceCave_WolfTwo" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo);
             case "monsterAttack_greatWoodsEntranceCave_WolfTwo" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo);
-            case "win_greatWoodsEntranceCave_WolfTwo" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_5", "boobie", 3);
+            case "win_greatWoodsEntranceCave_WolfTwo" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfTwo, "greatWoodsEntranceCave_5", null, 3);
+
+            case "fight_greatWoodsEntranceCaveLair_WolfMatriarch" -> fight(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch, "greatWoodsEntranceCave_5");
+            case "examine_greatWoodsEntranceCaveLair_WolfMatriarch" -> examine(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch, "greatWoodsEntranceCaveLair_6");
+            case "playerAttack_greatWoodsEntranceCaveLair_WolfMatriarch" -> playerAttack(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch);
+            case "monsterAttack_greatWoodsEntranceCaveLair_WolfMatriarch" -> monsterAttack(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch);
+            case "win_greatWoodsEntranceCaveLair_WolfMatriarch" -> win(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch, "greatWoodsEntranceCave_5", game.questItemSilverRing, 13);
+
+
 
             case "lose" -> lose();
             case "toTitle" -> toTitle();
@@ -260,7 +280,10 @@ public class Story {
             game.story.playerAttackRound = 1;
         } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_4") && game.story.greatWoodsEntranceCave_WolfTwoDefeated == 0) {
             game.story.playerAttackRound = 1;
+        } else if (game.story.playerFightLocationHelper.equals("greatWoodsEntranceCave_5") && game.story.greatWoodsEntranceCaveLair_WolfMatriarchDefeated == 0) {
+            game.story.playerAttackRound = 1;
         }
+
     }
 
     public void healing(int healingAmount, String healingMessage) {
@@ -288,10 +311,18 @@ public class Story {
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You examine the " + monster.name + " closely.\n" +
-                "Attack: " + monster.attack +
-                "\nHealth: " + monster.hp);
+        if (monster.hasSpecialAttack) {
+            ui.mainTextArea.setText("You examine the " + monster.name.toLowerCase() + " closely.\n" +
+                    "Attack: " + monster.attack +
+                    "\nHealth: " + monster.hp +
+                    "\nSpecial attack: " + monster.specialAttackExamine);
 
+        } else {
+            ui.mainTextArea.setText("You examine the " + monster.name.toLowerCase() + " closely.\n" +
+                    "Attack: " + monster.attack +
+                    "\nHealth: " + monster.hp);
+
+        }
         ui.continueButton.setText("Continue");
         game.continuePosition = fromExamineTo;
 
@@ -326,13 +357,15 @@ public class Story {
         if (player.weapon.hasPassive) {
             if (playerAttackRound % 2 == 0) {
                 playerDamage = player.weapon.attack();
+                ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
             } else {
                 playerDamage = player.weapon.passiveAttack(monster);
+                ui.mainTextArea.setText(player.weapon.weaponMessagePassive() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
             }
         } else {
             playerDamage = player.weapon.attack();
+            ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
         }
-        ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou attacked the " + monster.name + " and dealt " + playerDamage + " damage.");
 
         monster.hp -= playerDamage;
 
@@ -401,22 +434,22 @@ public class Story {
         playerAttackRound += 1;
     }
 
-    public void win(SuperMonster monster, String continueNextPosition, String loot, Integer coins) {
+    public void win(SuperMonster monster, String continueNextPosition, SuperItem loot, Integer coins) {
         // todo: somehow make the fifth argument "int monsterDefeated" work, so that we don't have to implement an extra if block...
         // todo: add an image for each defeated enemy...
 
-        if ((!loot.isEmpty()) && ((coins != 0))) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
-                    "The " + monster.name + " has dropped a " + loot + " and " + coins + " coins.");
-        } else if ((loot.isEmpty()) && ((coins != 0))) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
-                    "The " + monster.name + " has dropped " + coins + " coins.");
-        } else if (!loot.isEmpty()) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
-                    "The " + monster.name + " has dropped " + coins + " coins.");
+        if ((loot != null) && ((coins != 0))) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+                    "The " + monster.name.toLowerCase() + " has dropped a " + loot.name + " and " + coins + " coins.");
+        } else if ((loot == null) && ((coins != 0))) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+                    "The " + monster.name.toLowerCase() + " has dropped " + coins + " coins.");
+        } else if (loot != null) {
+            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+                    "The " + monster.name.toLowerCase() + " has dropped a " + loot.name);
         } else {
-            ui.mainTextArea.setText("You have defeated the " + monster.name + "!\n" +
-                    "The " + monster.name + " has dropped nothing.");
+            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+                    "The " + monster.name.toLowerCase() + " has dropped nothing.");
         }
 
 
@@ -448,6 +481,12 @@ public class Story {
                 game.story.greatWoodsEntranceCave_WolfTwoDefeated = 1;
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);}
+            case "greatWoodsEntranceCaveLair_WolfMatriarch" -> {
+                game.story.greatWoodsEntranceCaveLair_WolfMatriarchDefeated = 1;
+                playerAttackRound = 1;
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+                game.itemInventory.add(game.questItemSilverRing);
+            }
         }
 
         ui.continueButton.setText("Continue");

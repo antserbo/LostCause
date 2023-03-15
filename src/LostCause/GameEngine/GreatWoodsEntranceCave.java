@@ -449,15 +449,17 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceButtonPanel.setVisible(true);
             ui.continueButtonPanel.setVisible(false);
             ui.choiceOne.setVisible(false);
-            ui.choiceTwo.setVisible(false);
+            ui.choiceTwo.setVisible(true);
 
             ui.mainTextArea.setText("You approach the entrance what seems to be a lair.\n" +
                     "The dead wolf is lying right in front of it.");
 
-            ui.choiceThree.setText("Enter the cave lair");
-            ui.choiceFour.setText("Go back to the river");
+            ui.choiceTwo.setText("Enter the cave lair");
+            ui.choiceThree.setText("Go back to cave entrance");
+            ui.choiceFour.setText("Go back to river");
 
-            game.nextPositionThree = "greatWoodsEntranceCaveLair";
+            game.nextPositionTwo = "greatWoodsEntranceCaveLair";
+            game.nextPositionThree = "greatWoodsEntrance_6_NarrowPath_4";
             game.nextPositionFour = "greatWoodsEntrance_5";
         }
     }

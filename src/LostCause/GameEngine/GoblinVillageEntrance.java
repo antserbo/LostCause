@@ -168,7 +168,7 @@ public class GoblinVillageEntrance extends Story{
         ui.imageLabel.setIcon(ui.image);
         ui.mainImagePanel.add(ui.imageLabel);
 
-        if (game.story.goblinVillageEntranceGuardSilverRingDiscovered) {
+        if (game.itemInventory.contains(game.questItemSilverRing)) {
             ui.choiceTwo.setVisible(true);
             ui.choiceTwo.setText("Show the silver ring");
             game.nextPositionTwo = "goblinVillageEntrance_8_SilverRingDialogue";

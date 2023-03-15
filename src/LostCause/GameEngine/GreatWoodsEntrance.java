@@ -18,12 +18,17 @@ public class GreatWoodsEntrance extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        if (greatWoodsEntrance_6_Discovered) {
+        if (game.story.greatWoodsEntrance_5_Discovered) {
             ui.mainTextArea.setText("You decide to increase your tempo.\n" +
                     "Some time later you walk past the killed wolf.");
 
             ui.continueButton.setText("Continue");
             game.continuePosition = "greatWoodsEntrance_5";
+        } else if (game.story.greatWoodsEntrance_4_WolfEncountered) {
+            ui.mainTextArea.setText("You enter the woods and intend to take on the wolf.");
+
+            ui.continueButton.setText("Continue");
+            game.continuePosition = "greatWoodsEntrance_4";
         } else {
 
             ui.mainTextArea.setText("You enter the Great Woods and behold a breathtaking scenery...\n" +
@@ -57,7 +62,8 @@ public class GreatWoodsEntrance extends Story{
         worldMapLocationDeterminerHelper();
 
         ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations.\n" +
-                "The almighty nature is to be feared, yet praised for its beauty.");
+                "The almighty nature is to be feared, yet praised for its beauty.\n" +
+                "You ponder for quite a while");
 
         ui.continueButton.setText("Continue");
         game.continuePosition = "greatWoodsEntrance_4";
@@ -69,37 +75,31 @@ public class GreatWoodsEntrance extends Story{
         worldMapLocationDeterminerHelper();
         game.story.playerFightLocationHelper = "greatWoodsEntrance_4";
 
-        if (game.story.greatWoodsEntrance_4_WolfDefeated == 1) {
-            ui.choiceButtonPanel.setVisible(false);
-            ui.continueButtonPanel.setVisible(true);
+        ui.choiceButtonPanel.setVisible(true);
+        ui.continueButtonPanel.setVisible(false);
+        ui.choiceOne.setVisible(false);
 
-            ui.mainTextArea.setText("You walk past the defeated wolf.");
-
-            ui.image = new ImageIcon(".//res//great_woods.png"); // change to defeated wolf
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            game.continuePosition = "greatWoodsEntrance_5";
+        if (game.story.greatWoodsEntrance_4_WolfEncountered) {
+            ui.mainTextArea.setText("It's time to take on the wolf.");
         } else {
-            ui.choiceButtonPanel.setVisible(true);
-            ui.continueButtonPanel.setVisible(false);
-            ui.choiceOne.setVisible(false);
-
-            ui.mainTextArea.setText("You ponder for quite a while...\n" +
-                    "When all of a sudden you are startled by a hungry wolf.");
-            greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
-
-            ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
-            ui.imageLabel.setIcon(ui.image);
-            ui.mainImagePanel.add(ui.imageLabel);
-
-            ui.choiceTwo.setText("Examine foe");
-            ui.choiceThree.setText("Start the battle");
-            ui.choiceFour.setText("Run");
-            game.nextPositionTwo = "examine_greatWoodsEntrance_4_Wolf";
-            game.nextPositionThree = "fight_greatWoodsEntrance_4_Wolf";
-            game.nextPositionFour = "startingZone_7";
+            ui.mainTextArea.setText("All of a sudden you are startled by a hungry wolf.");
         }
+
+        greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
+
+        game.story.greatWoodsEntrance_4_WolfEncountered = true;
+
+        ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
+        ui.imageLabel.setIcon(ui.image);
+        ui.mainImagePanel.add(ui.imageLabel);
+
+        ui.choiceTwo.setText("Examine foe");
+        ui.choiceThree.setText("Start the battle");
+        ui.choiceFour.setText("Run");
+        game.nextPositionTwo = "examine_greatWoodsEntrance_4_Wolf";
+        game.nextPositionThree = "fight_greatWoodsEntrance_4_Wolf";
+        game.nextPositionFour = "startingZone_7";
+
     }
 
     public void greatWoodsEntrance_5() {
@@ -115,7 +115,7 @@ public class GreatWoodsEntrance extends Story{
         ui.mainTextArea.setText("You traverse deeper into the Great Woods and see a small river to the right.\n" +
                 "The water looks so clear, it must be coming right from that mountain with its top covered in snow");
 
-        game.story.greatWoodsEntrance_6_Discovered = true;
+        game.story.greatWoodsEntrance_5_Discovered = true;
 
         ui.image = new ImageIcon(".//res//great_woods.png");
         ui.imageLabel.setIcon(ui.image);
@@ -267,7 +267,7 @@ public class GreatWoodsEntrance extends Story{
             ui.choiceFour.setText("Run");
             game.nextPositionTwo = "examine_greatWoodsEntrance_6_NarrowPath_2_Wolf";
             game.nextPositionThree = "fight_greatWoodsEntrance_6_NarrowPath_2_Wolf";
-            game.nextPositionFour = "startingZone_7";
+            game.nextPositionFour = "greatWoodsEntrance_5";
         }
 
     }

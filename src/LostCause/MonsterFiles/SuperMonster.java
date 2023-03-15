@@ -11,7 +11,8 @@ public class SuperMonster {
     public int attack;
     public String attackMessage;
     public String objectID;
-    public boolean specialAttack;
+    public boolean hasSpecialAttack;
+    public String specialAttackExamine;
     String [] messages;
 
     public int attack(Player player) {

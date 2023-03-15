@@ -21,8 +21,9 @@ public class ChoiceHandler implements ActionListener {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
                 //game.startingZone.startingZone_7();
-                game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+                //game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
                 //game.startingZone.startingZone();
+                game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);
@@ -93,6 +94,10 @@ public class ChoiceHandler implements ActionListener {
 
                     if (game.itemInventory.contains(game.magicalChalice)) {
                         game.ui.armorShieldBronzeShieldButton.setVisible(true);
+                    }
+
+                    if (game.itemInventory.contains(game.questItemSilverRing)) {
+                        game.ui.questItemSilverRingButton.setVisible(true);
                     }
 
                     /*if (game.story.goblinSkeletonWeaponTaken == 1) {

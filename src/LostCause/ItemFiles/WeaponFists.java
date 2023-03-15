@@ -12,6 +12,6 @@ public class WeaponFists extends Weapon{
     }
 
     public String weaponMessage() {
-        return "You hit the enemy with your first";
+        return "You hit the enemy with your fist";
     }
 }

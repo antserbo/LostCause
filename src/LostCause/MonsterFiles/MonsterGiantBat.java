@@ -9,7 +9,7 @@ public class MonsterGiantBat extends SuperMonster {
         attack = 3;
         messages = new String[]{"The giant bat flaps its wings and lunges at you.", "The giant bat attacks you with its claws."};
         this.objectID = objectID;
-        specialAttack = false;
+        hasSpecialAttack = false;
 
         // todo: maybe later apply bleed, that will damage the player every 3rd round.
     }

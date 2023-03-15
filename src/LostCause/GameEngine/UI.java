@@ -31,7 +31,8 @@ public class UI {
             weaponLongSwordButton, weaponStilettoButton,
             armorBodyLeatherArmorButton,
             armorShieldBronzeShieldButton,
-            shellAmuletButton;
+            shellAmuletButton,
+            questItemSilverRingButton;
     JTextArea mainTextArea;
     Font titleFont = new Font("Times New Roman", Font.ITALIC, 128);
     Font normalFont = new Font("Times New Roman", Font.ITALIC, 28); // initial font size 36
@@ -539,6 +540,7 @@ public class UI {
         createInventoryWindowUIArmorBodyButtons(cHandler);
         createInventoryWindowUIAmuletRingButtons(cHandler);
         createInventoryWindowUIArmorShieldButtons(cHandler);
+        createInventoryWindowUIQuestItemButtons(cHandler);
 
     }
 
@@ -709,6 +711,18 @@ public class UI {
         shellAmuletButton.setActionCommand("shellAmulet");
         shellAmuletButton.setVisible(false);
         inventoryAmuletRingPanel.add(shellAmuletButton);
+    }
+
+    public void createInventoryWindowUIQuestItemButtons (ChoiceHandler cHandler) {
+        questItemSilverRingButton = new JButton("Silver ring");
+        questItemSilverRingButton.setBackground(Color.DARK_GRAY);
+        questItemSilverRingButton.setForeground(Color.white);
+        questItemSilverRingButton.setFont(normalFont);
+        questItemSilverRingButton.setFocusPainted(false);
+        questItemSilverRingButton.addActionListener(cHandler);
+        questItemSilverRingButton.setActionCommand("silverRing");
+        questItemSilverRingButton.setVisible(false);
+        inventoryQuestItemPanel.add(questItemSilverRingButton);
     }
 
 }

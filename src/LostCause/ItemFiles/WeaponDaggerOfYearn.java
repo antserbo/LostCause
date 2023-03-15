@@ -14,6 +14,8 @@ public class WeaponDaggerOfYearn extends Weapon{
         minDamage = 5;
         maxDamage = 11;
 
+        message = "You cut the enemy with your dagger.";
+
         hasPassive = true;
     }
 
@@ -31,17 +33,11 @@ public class WeaponDaggerOfYearn extends Weapon{
         return playerDamage;
     }
 
-    public String weaponMessage() {
-        if (hasPassive) {
-            if (passiveAttackChance == 3) {
-                message = "You manage to inflict a bleeding attack while cutting your foe deep.";
-            } else {
-                message = "You cut the enemy with your dagger.";
-            }
+    public String weaponMessagePassive() {
+        if (passiveAttackChance == 3) {
+            return "You manage to inflict a bleeding attack while cutting your foe deep.";
         } else {
-            message = "You cut the enemy with your dagger.";
+            return "You cut the enemy with your dagger.";
         }
-
-        return message;
     }
 }

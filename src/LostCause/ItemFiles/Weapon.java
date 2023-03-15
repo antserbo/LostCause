@@ -30,4 +30,8 @@ public class Weapon extends SuperItem{
     public String weaponMessage() {
         return message;
     }
+
+    public String weaponMessagePassive() {
+        return message;
+    }
 }
