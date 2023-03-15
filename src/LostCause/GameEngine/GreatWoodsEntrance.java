@@ -25,7 +25,7 @@ public class GreatWoodsEntrance extends Story{
             ui.continueButton.setText("Continue");
             game.continuePosition = "greatWoodsEntrance_5";
         } else if (game.story.greatWoodsEntrance_4_WolfEncountered) {
-            ui.mainTextArea.setText("You enter the woods and intend to take on the wolf.");
+            ui.mainTextArea.setText("You enter the woods and get back on the right path.");
 
             ui.continueButton.setText("Continue");
             game.continuePosition = "greatWoodsEntrance_4";
@@ -79,11 +79,8 @@ public class GreatWoodsEntrance extends Story{
         ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
 
-        if (game.story.greatWoodsEntrance_4_WolfEncountered) {
-            ui.mainTextArea.setText("It's time to take on the wolf.");
-        } else {
-            ui.mainTextArea.setText("All of a sudden you are startled by a hungry wolf.");
-        }
+        ui.mainTextArea.setText("All of a sudden you are startled by a hungry wolf.");
+
 
         greatWoodsEntrance_4_Wolf = new MonsterWolf("greatWoodsEntrance_4_Wolf");
 

@@ -9,8 +9,8 @@ public class MonsterWolfMatriarch extends SuperMonster{
 
     public MonsterWolfMatriarch (String objectID) {
         name = "Wolf matriarch";
-        hp = 1000;
-        attack = 5;
+        hp = 30;
+        attack = 7;
         messages = new String[]{"The wolf matriarch rushes forward and bites you.", "The wolf matriarch attacks you with its claws."};
         this.objectID = objectID;
         hasSpecialAttack = true;
