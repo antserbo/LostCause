@@ -15,11 +15,10 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        ui.mainTextArea.setText("You enter a secluded area with a waterfall.");
+        ui.mainTextArea.setText("\n\nYou enter a secluded area with a waterfall.");
 
-        ui.image = new ImageIcon(".//res//waterfall.png");
+        ui.image = new ImageIcon(".//res//waterfall_inverted.png");
         ui.imageLabel.setIcon(ui.image);
-        ui.mainImagePanel.add(ui.imageLabel);
 
         ui.continueButton.setText("Look around");
 
@@ -35,8 +34,12 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
 
-        ui.mainTextArea.setText("Your eye catches a resting skeleton of a long-forgotten adventurer.\n" +
-                "Even though the skeleton's been resting for quite some time, the equipment might prove useful.");
+        ui.image = new ImageIcon(".//res//waterfall_inverted.png");
+        ui.imageLabel.setIcon(ui.image);
+
+        ui.mainTextArea.setText("\nYour eye catches a resting skeleton of a long-forgotten adventurer.\n" +
+                "Even though the skeleton's been resting for quite some time, \n" +
+                "the equipment might prove useful.");
 
         if (game.story.waterfallSkeletonWeaponTaken == 0) {
             ui.choiceTwo.setText("Take weapon");
@@ -60,7 +63,7 @@ public class WaterfallZone extends Story{
         }
 
         if (((game.story.waterfallSkeletonAmuletTaken == 1) || (game.story.waterfallSkeletonTimesSearched > 2)) && game.story.waterfallSkeletonWeaponTaken == 1) {
-            ui.mainTextArea.setText("There is nothing left to loot from the skeleton's remains.");
+            ui.mainTextArea.setText("\n\nThere is nothing left to loot from the skeleton's remains.");
             game.story.waterfallSkeletonSearched = true;
         }
 
@@ -75,7 +78,7 @@ public class WaterfallZone extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You have found a rusty iron long sword!");
+        ui.mainTextArea.setText("\n\nYou have found a rusty iron long sword!");
         game.story.waterfallSkeletonWeaponTaken = 1;
         game.itemInventory.add(game.longSword); // adding long sword to player's inventory
 
@@ -92,7 +95,7 @@ public class WaterfallZone extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You have found a peculiar amulet!");
+        ui.mainTextArea.setText("\n\nYou have found a peculiar amulet!");
         game.story.waterfallSkeletonAmuletTaken = 1;
         game.itemInventory.add(game.amuletRingShell);
 
@@ -109,9 +112,9 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
 
         if (game.story.waterfallSkeletonTimesSearched < 2) {
-            ui.mainTextArea.setText("You have failed in searching the skeleton.");
+            ui.mainTextArea.setText("\n\nYou have failed in searching the skeleton.");
         } else {
-            ui.mainTextArea.setText("The skeleton has crumbled to dust and searching it is not possible anymore");
+            ui.mainTextArea.setText("\n\nThe skeleton has crumbled to dust and searching it is not possible anymore");
         }
         game.story.waterfallSkeletonTimesSearched += 1;
 
@@ -128,7 +131,10 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(false);
         ui.choiceOne.setVisible(false);
 
-        ui.mainTextArea.setText("You step closer to the waterfall. \n" +
+        ui.image = new ImageIcon(".//res//waterfall_inverted.png");
+        ui.imageLabel.setIcon(ui.image);
+
+        ui.mainTextArea.setText("\nYou step closer to the waterfall. \n" +
                 "The sound of it makes you feel some sort of relief...");
 
         ui.choiceTwo.setText("Drink water");
@@ -152,7 +158,8 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        game.story.healing(3, "You take a sip of water and a rejuvenating effect rushes though your body");
+        game.story.healing(3, "\nYou take a sip of water... \n" +
+                "and a rejuvenating effect rushes though your body");
 
         ui.continueButton.setText("Stop drinking");
         game.continuePosition = "waterfallZone_3";
@@ -163,7 +170,7 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        ui.mainTextArea.setText("Progress has been saved.");
+        ui.mainTextArea.setText("\n\nProgress has been saved.");
         System.out.println(game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated);
         System.out.println(game.story.waterfallSkeletonWeaponTaken);
 

@@ -108,8 +108,9 @@ public class GreatWoodsEntranceCave extends Story{
             ui.mainTextArea.setText("This giant bat is a nuisance, you must tread carefully...");
             game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks_Failure";
         } else {
-            ui.mainTextArea.setText("Hopefully there are not a lot of wolves in this cave... Otherwise it is going to be even more dangerous from now on.\n" +
-                    "You walk to as it seems a bigger area of the cave, where you can choose on how to proceed.");
+            ui.mainTextArea.setText("\nHopefully there are not a lot of wolves in this cave..." +
+                    "\nOtherwise it is going to be even more dangerous from now on." +
+                    "\nYou walk to as it seems a bigger area of the cave.");
             game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks";
         }
 
@@ -130,7 +131,7 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You carefully place your foot on the first rock and start climbing slowly, yet carefully.");
+        ui.mainTextArea.setText("\n\nYou carefully place your foot on the first rock and start climbing slowly, yet carefully.");
         ui.continueButton.setText("Continue");
 
         int greatWoodsEntranceCaveRockClimbChance = new java.util.Random().nextInt(2); // todo :change back to 2

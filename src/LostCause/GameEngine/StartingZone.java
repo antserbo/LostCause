@@ -13,8 +13,9 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("You wake up to the noise of the waterfall in the distance.\n" +
-                "The only vague memory you have is of your name, despite the aching body you try to get up...");
+        ui.mainTextArea.setText("\nYou wake up to the noise of the waterfall in the distance.\n" +
+                "The only vague memory you have is of your name,\n" +
+                "despite the aching body you try to get up...");
 
         ui.continueButton.setText("Continue");
 
@@ -27,7 +28,7 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone_2";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("With legs trembling you somehow manage to stand up.\n" +
+        ui.mainTextArea.setText("\nWith legs trembling you somehow manage to stand up.\n" +
                 "No idea how you ended up in this place. However, you need to act...");
 
 
@@ -41,7 +42,8 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone_3";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("After looking around you determine that to your right there is a waterfall in the distance.");
+        ui.mainTextArea.setText("\nAfter looking around you determine \n" +
+                "that to your right there is a waterfall in the distance.");
 
 
         ui.continueButton.setText("Continue");
@@ -54,7 +56,8 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone_4";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("Beside you there is a dead-end, fallen trees are blocking the southern route.");
+        ui.mainTextArea.setText("\nBeside you there is a dead-end,\n" +
+                "fallen trees are blocking the southern route.");
 
 
         ui.continueButton.setText("Continue");
@@ -65,7 +68,8 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone_5";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("To your left lies a narrow path, which gives you an eerie feeling.");
+        ui.mainTextArea.setText("\nTo your left lies a narrow path,\n" +
+                "which gives you an eerie feeling.");
 
 
         ui.continueButton.setText("Continue");
@@ -77,7 +81,8 @@ public class StartingZone extends Story {
         playerLocation = "startingZone";
         game.story.playerFightLocationHelper = "startingZone_6";
         worldMapLocationDeterminerHelper();
-        ui.mainTextArea.setText("The northern direction introduces a road which leads deeper into the forest.");
+        ui.mainTextArea.setText("\nThe northern direction introduces a road \n" +
+                "which leads deeper into the forest.");
 
 
         ui.continueButton.setText("Continue");
@@ -97,11 +102,11 @@ public class StartingZone extends Story {
         ui.choiceOne.setVisible(true);
         ui.choiceTwo.setVisible(true);
 
-        ui.image = new ImageIcon(".//res//crossroad.jpg");
+        ui.image = new ImageIcon(".//res//crossroad_inverted.png");
         ui.imageLabel.setIcon(ui.image);
         ui.mainImagePanel.add(ui.imageLabel);
 
-        ui.mainTextArea.setText("\nWhere do you want to go?");
+        ui.mainTextArea.setText("\n\nWhere do you want to go?");
 
         if (game.story.greatWoodsEntranceDiscovered) {
             ui.choiceOne.setText("To Great Woods Entrance");

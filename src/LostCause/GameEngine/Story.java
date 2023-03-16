@@ -88,6 +88,7 @@ public class Story {
         player.armorShield = game.armorShieldEmpty;
         ui.armorShieldNameLabel.setText(player.armorShield.name);
         player.weapon = game.fists;
+        ui.weaponNameLabel.setToolTipText(game.fists.getWeaponDescription());
         ui.weaponNameLabel.setText(player.weapon.name);
         player.amulet = game.amuletRingEmpty;
         ui.amuletNameLabel.setText(player.amulet.name);
@@ -298,18 +299,18 @@ public class Story {
 
         if (player.hp <= player.maxHP - healingAmount) {
             player.hp += healingAmount;
-            ui.mainTextArea.setText(healingMessage + "\n\n" +
+            ui.mainTextArea.setText(healingMessage + "\n" +
                     "(you get healed by " + healingAmount + " HP)");
             ui.healthNumberLabel.setText("" + player.hp);
         } else if (player.hp < player.maxHP) {
             int currentHP = player.hp;
             player.hp = player.maxHP;
             int differenceHP = player.hp - currentHP;
-            ui.mainTextArea.setText(healingMessage + "\n\n" +
+            ui.mainTextArea.setText(healingMessage + "\n" +
                     "(you get healed by " + differenceHP + " HP)");
             ui.healthNumberLabel.setText("" + player.hp);
         } else {
-            ui.mainTextArea.setText("You take a sip of water, but it has no effect\n\n" +
+            ui.mainTextArea.setText("\nYou take a sip of water, but it has no effect\n" +
                     "(current hp is maximum)");
         }
 

@@ -37,6 +37,11 @@ public class VisibilityManager {
         ui.utilityLabelPanel.setVisible(true);
         ui.inventoryPanelItemButtons.setVisible(false);
         ui.inventoryPanelPageButton.setVisible(false);
+
+        ui.frameOfMainTextPanelTop.setVisible(true);
+        ui.frameOfMainTextPanelRight.setVisible(true);
+        ui.frameOfMainTextPanelBottom.setVisible(true);
+        ui.frameOfMainTextPanelLeft.setVisible(true);
     }
 
 }

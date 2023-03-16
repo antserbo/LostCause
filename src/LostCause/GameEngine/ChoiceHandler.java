@@ -21,9 +21,9 @@ public class ChoiceHandler implements ActionListener {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
                 //game.startingZone.startingZone_7();
-                game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+                //game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
                 //game.startingZone.startingZone();
-                //game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
+                game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);
@@ -113,6 +113,10 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.equipmentIconPanel.setVisible(false);
                     game.ui.iconLabelPanel.setVisible(false);
                     game.ui.mainTextPanel.setVisible(false);
+                    game.ui.frameOfMainTextPanelBottom.setVisible(false);
+                    game.ui.frameOfMainTextPanelLeft.setVisible(false);
+                    game.ui.frameOfMainTextPanelTop.setVisible(false);
+                    game.ui.frameOfMainTextPanelRight.setVisible(false);
                     game.ui.inventoryPageMainButton.setText("Return back");
                     game.inventoryMainStatus = "opened";
                 } else if (game.inventoryMainStatus.equals("opened") && game.inventoryStatus.equals("opened")) {
@@ -140,6 +144,10 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.equipmentIconPanel.setVisible(true);
                     game.ui.iconLabelPanel.setVisible(true);
                     game.ui.mainTextPanel.setVisible(true);
+                    game.ui.frameOfMainTextPanelBottom.setVisible(true);
+                    game.ui.frameOfMainTextPanelLeft.setVisible(true);
+                    game.ui.frameOfMainTextPanelTop.setVisible(true);
+                    game.ui.frameOfMainTextPanelRight.setVisible(true);
                     game.ui.inventoryPageMainButton.setText("Inventory page");
                     game.inventoryMainStatus = "closed";
                 }
@@ -152,27 +160,29 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.weapon = game.longSword;
                     game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                    game.ui.weaponNameLabel.setToolTipText(game.longSword.getWeaponDescription());
                 } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.weapon = game.longSword;
                     game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                    game.ui.weaponNameLabel.setToolTipText(game.longSword.getWeaponDescription());
                 } else if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)) {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.weapon = game.longSword;
                     game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                    game.ui.weaponNameLabel.setToolTipText(game.longSword.getWeaponDescription());
                 } else if (game.ui.weaponLongSwordButton.getBackground().equals(Color.green)) {
                     game.ui.weaponLongSwordButton.setBackground(Color.DARK_GRAY);
                     game.story.player.weapon = game.fists;
                     game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
+                    game.ui.weaponNameLabel.setToolTipText(game.fists.getWeaponDescription());
                 }else {
                     game.ui.weaponLongSwordButton.setBackground(Color.green);
                     game.story.player.weapon = game.longSword;
                     game.ui.weaponNameLabel.setText(game.story.player.weapon.name);
-                    game.ui.weaponNameLabel.setToolTipText(
-                            "<html>Damage: <font color=red>" + game.longSword.minDamage + "-" + game.longSword.maxDamage +
-                                    "</font><br>Class: " + game.longSword.weaponType + "</html>");
+                    game.ui.weaponNameLabel.setToolTipText(game.longSword.getWeaponDescription());
                 }
 
             }

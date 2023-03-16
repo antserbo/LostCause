@@ -7,6 +7,7 @@ public class UI {
 
     JFrame window, worldMapWindow;
     JPanel titleNamePanel, startButtonPanel, mainTextPanel, mainImagePanel,
+            frameOfMainTextPanelTop, frameOfMainTextPanelRight, frameOfMainTextPanelBottom, frameOfMainTextPanelLeft,
             choiceButtonPanel, continueButtonPanel, equipmentIconPanel,
             utilityIconPanel, utilityLabelPanel, iconLabelPanel,
             worldMapPanel, inventoryPanelItemButtons, inventoryPanelPageButton,
@@ -79,6 +80,7 @@ public class UI {
         window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         window.setTitle("Lost Cause");
         window.getContentPane().setBackground(Color.black);
+        window.setLocationRelativeTo(null);
         /*window.setUndecorated(true); in order to get rid of borders
         window.setExtendedState(JFrame.MAXIMIZED_BOTH);
         window.setUndecorated(true);*/
@@ -97,6 +99,34 @@ public class UI {
     }
 
     private void createTextPanelArea() {
+
+        frameOfMainTextPanelTop = new JPanel();
+        frameOfMainTextPanelTop.setBounds(185,450,1010,1); // height was 200. // y was 500
+        frameOfMainTextPanelTop.setBackground(Color.white);
+        frameOfMainTextPanelTop.setVisible(false);
+        window.add(frameOfMainTextPanelTop);
+
+
+        frameOfMainTextPanelRight = new JPanel();
+        frameOfMainTextPanelRight.setBounds(1195,450,1,202); // height was 200. // y was 500
+        frameOfMainTextPanelRight.setBackground(Color.white);
+        frameOfMainTextPanelRight.setVisible(false);
+        window.add(frameOfMainTextPanelRight);
+
+
+        frameOfMainTextPanelBottom = new JPanel();
+        frameOfMainTextPanelBottom.setBounds(185,650,1010,1); // height was 200. // y was 500
+        frameOfMainTextPanelBottom.setBackground(Color.white);
+        frameOfMainTextPanelBottom.setVisible(false);
+        window.add(frameOfMainTextPanelBottom);
+
+
+        frameOfMainTextPanelLeft = new JPanel();
+        frameOfMainTextPanelLeft.setBounds(185,450,1,202); // height was 200. // y was 500
+        frameOfMainTextPanelLeft.setBackground(Color.white);
+        frameOfMainTextPanelLeft.setVisible(false);
+        window.add(frameOfMainTextPanelLeft);
+
         mainTextPanel = new JPanel();
         mainTextPanel.setBounds(190,450,1000,200); // height was 200. // y was 500
         mainTextPanel.setBackground(Color.black);
@@ -105,9 +135,9 @@ public class UI {
         mainTextArea.setBounds(190, 450, 1000, 200); // height was 400. // second edit 250, now 150, // y was 500
         mainTextArea.setBackground(Color.black);
         mainTextArea.setForeground(Color.white);
-        //mainTextArea.setAlignmentX(JTextField.CENTER_ALIGNMENT);
+        mainTextArea.setAlignmentX(JTextField.CENTER_ALIGNMENT); // this is in-par with setLineWrap
         mainTextArea.setFont(normalFont);
-        mainTextArea.setLineWrap(true); // set line wrap to false, if you want center to activate.
+        mainTextArea.setLineWrap(false); // set line wrap to false, if you want center to activate.
         mainTextArea.setWrapStyleWord(true);
         mainTextArea.setEditable(false);
 
@@ -124,7 +154,7 @@ public class UI {
         window.add(mainImagePanel);
 
         imageLabel = new JLabel();
-        image = new ImageIcon(".//res//crossroad.jpg");
+        image = new ImageIcon(".//res//crossroad_inverted.png");
         imageLabel.setIcon(image);
         mainImagePanel.add(imageLabel);
     }

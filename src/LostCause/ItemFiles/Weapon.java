@@ -34,4 +34,9 @@ public class Weapon extends SuperItem{
     public String weaponMessagePassive() {
         return message;
     }
+
+    public String getWeaponDescription() {
+        return "<html>Damage: <font color=red>" + minDamage + "-" + maxDamage +
+                "</font><br>Class: " + weaponType + "</html>";
+    }
 }
