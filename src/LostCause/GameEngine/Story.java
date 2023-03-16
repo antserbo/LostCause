@@ -4,8 +4,6 @@ import LostCause.ItemFiles.SuperItem;
 import LostCause.MonsterFiles.SuperMonster;
 
 import java.awt.*;
-import java.util.Locale;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Story {
 
@@ -25,29 +23,41 @@ public class Story {
 
     // todo: all variables except for playerLocation should be *game.story._*
     String playerLocation = "";
+    String playerFightLocationHelper;
+
     int playerAttackRound = 1;
     int monsterAttackRound;
+
     int waterfallSkeletonWeaponTaken = 0;
     int waterfallSkeletonTimesSearched = 0;
     int waterfallSkeletonAmuletTaken = 0;
+
     int goblinVillageEntranceGuardBugged = 0;
+    boolean goblinVillageEntranceGuardSilverRingDiscovered = false;
+
+    boolean greatWoodsEntrance_4_WolfEncountered = false;
     int greatWoodsEntrance_4_WolfDefeated = 0;
     int greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 0;
     int greatWoodsEntrance_5_RiverDrinks = 0;
+
     int greatWoodsEntranceCave_WolfOneDefeated = 0;
     int greatWoodsEntranceCave_WolfTwoDefeated = 0;
     int greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 0;
     int greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 0;
     int greatWoodsEntranceCaveLair_WolfMatriarchDefeated = 0;
+
+
+
+    // Discover-location-variables
     boolean startingZoneDiscovered = false;
     boolean waterfallSkeletonSearched = false;
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
     boolean greatWoodsEntranceDiscovered = false;
     boolean greatWoodsEntranceToCaveDiscovered = false;
-    boolean greatWoodsEntrance_4_WolfEncountered = false;
     boolean greatWoodsEntrance_5_Discovered = false;
     boolean greatWoodsEntranceCaveDiscovered = false;
+
     int greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
     boolean greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
     boolean greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = false;
@@ -55,7 +65,6 @@ public class Story {
     int greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked = 0;
     int greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked = 0;
     boolean magicalChaliceAvailability = true;
-    String playerFightLocationHelper = "";
 
     public Story(Game g, UI userInterface, VisibilityManager vManager) {
 
@@ -67,7 +76,7 @@ public class Story {
 
     public void defaultSetup() {
 
-        player.hp = 200;
+        player.hp = 15;
         player.maxHP = 15;
         ui.healthNumberLabel.setText("" + player.hp);
         ui.manaNumberLabel.setText("" + player.mp);
@@ -87,7 +96,6 @@ public class Story {
 
 
         player.weapon = game.daggerOfYearn; // todo: this is for testing fights fast
-
 
         game.inventoryStatus = "closed";
         game.inventoryMainStatus = "closed";
@@ -486,6 +494,7 @@ public class Story {
                 playerAttackRound = 1;
                 game.ui.inventoryItemOneButton.setBackground(Color.green);
                 game.itemInventory.add(game.questItemSilverRing);
+                game.story.goblinVillageEntranceGuardSilverRingDiscovered = true;
             }
         }
 

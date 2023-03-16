@@ -139,7 +139,6 @@ public class GreatWoodsEntrance extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        // todo: review this function for later, because the player's base hp might increase over time.
         if (game.story.greatWoodsEntrance_5_RiverDrinks < 2) {
             game.story.greatWoodsEntrance_5_RiverDrinks += 1;
             game.story.healing(5, "You drink water from the river and feel better.");
@@ -228,7 +227,7 @@ public class GreatWoodsEntrance extends Story{
 
     }
 
-    public void greatWoodsEntrance_6_NarrowPath_2() { // todo: edit the working image and also check for other stuff if needed
+    public void greatWoodsEntrance_6_NarrowPath_2() { // todo: add the wolf/defeated wolf image and also check for other stuff if needed
         playerLocation = "greatWoodsEntrance";
         game.story.playerFightLocationHelper = "greatWoodsEntrance_6_NarrowPath_2";
         worldMapLocationDeterminerHelper();
@@ -255,9 +254,6 @@ public class GreatWoodsEntrance extends Story{
             ui.image = new ImageIcon(".//res//great_woods_entrance_with_wolf.png");
             ui.imageLabel.setIcon(ui.image);
             ui.mainImagePanel.add(ui.imageLabel);
-
-            // todo: check the presence of .add by labels to panels, because i don't need it, only set. it's already in the UI class
-
 
             ui.choiceTwo.setText("Examine foe");
             ui.choiceThree.setText("Start the battle");

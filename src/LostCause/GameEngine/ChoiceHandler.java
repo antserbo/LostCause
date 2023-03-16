@@ -20,8 +20,8 @@ public class ChoiceHandler implements ActionListener {
             case "start" -> {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
-                game.startingZone.startingZone_7();
-                //game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+                //game.startingZone.startingZone_7();
+                game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
                 //game.startingZone.startingZone();
                 //game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
             }
@@ -199,9 +199,9 @@ public class ChoiceHandler implements ActionListener {
             }
 
             case "bronzeShield" -> {
-                if (game.ui.weaponStilettoButton.getBackground().equals(Color.green)){
-                    game.ui.armorShieldBronzeShieldButton.setBackground(Color.green);
-                    game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
+                if (game.ui.armorShieldBronzeShieldButton.getBackground().equals(Color.green)){
+                    game.ui.armorShieldBronzeShieldButton.setBackground(Color.DARK_GRAY);
+                    //game.ui.weaponStilettoButton.setBackground(Color.DARK_GRAY);
                     game.story.player.armorShield = game.armorShieldBronzeShield;
                     game.ui.armorShieldNameLabel.setText(game.story.player.armorShield.name);
                 } else {
