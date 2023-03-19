@@ -321,15 +321,13 @@ public class Story {
         ui.continueButtonPanel.setVisible(true);
 
         if (monster.hasSpecialAttack) {
-            ui.mainTextArea.setText("You examine the " + monster.name.toLowerCase() + " closely.\n" +
-                    "Attack: " + monster.attack +
-                    "\nHealth: " + monster.hp +
+            ui.mainTextArea.setText("\nYou examine the " + monster.name.toLowerCase() + " closely.\n" +
+                    "Attack: " + monster.attack + ".   Health: " + monster.hp + "." +
                     "\nSpecial attack: " + monster.specialAttackExamine);
 
         } else {
-            ui.mainTextArea.setText("You examine the " + monster.name.toLowerCase() + " closely.\n" +
-                    "Attack: " + monster.attack +
-                    "\nHealth: " + monster.hp);
+            ui.mainTextArea.setText("\nYou examine the " + monster.name.toLowerCase() + " closely.\n" +
+                    "Attack: " + monster.attack + ".   Health: " + monster.hp + ".");
 
         }
         ui.continueButton.setText("Continue");
@@ -344,7 +342,11 @@ public class Story {
         ui.choiceOne.setVisible(false);
         ui.choiceTwo.setVisible(false);
 
-        ui.mainTextArea.setText(monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
+        if (playerAttackRound == 1) {
+            ui.mainTextArea.setText("\n\nWhat do you intend to do?");
+        } else {
+            ui.mainTextArea.setText("\n\n" + monster.name + ": " + monster.hp + " HP" + "\nWhat do you intend to do?");
+        }
 
         ui.choiceThree.setText("Attack");
         ui.choiceFour.setText("Flee from battle");
@@ -366,14 +368,14 @@ public class Story {
         if (player.weapon.hasPassive) {
             if (playerAttackRound % 2 == 0) {
                 playerDamage = player.weapon.attack();
-                ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
+                ui.mainTextArea.setText("\n\n" + player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
             } else {
                 playerDamage = player.weapon.passiveAttack(monster);
-                ui.mainTextArea.setText(player.weapon.weaponMessagePassive() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
+                ui.mainTextArea.setText("\n\n" + player.weapon.weaponMessagePassive() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
             }
         } else {
             playerDamage = player.weapon.attack();
-            ui.mainTextArea.setText(player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
+            ui.mainTextArea.setText("\n\n" + player.weapon.weaponMessage() + "\nYou deal " + playerDamage + " damage to the " + monster.name.toLowerCase() + ".");
         }
 
         monster.hp -= playerDamage;
@@ -396,7 +398,7 @@ public class Story {
 
         int monsterDamage = monster.attack(player);
 
-        ui.mainTextArea.setText(monster.message() + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
+        ui.mainTextArea.setText("\n\n" + monster.message() + "\nThe " + monster.name + " dealt " + monsterDamage + " damage.");
 
         player.hp -= monsterDamage;
         ui.healthNumberLabel.setText("" + player.hp);
@@ -448,16 +450,16 @@ public class Story {
         // todo: add an image for each defeated enemy...
 
         if ((loot != null) && ((coins != 0))) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+            ui.mainTextArea.setText("\n\nYou have defeated the " + monster.name.toLowerCase() + "!\n" +
                     "The " + monster.name.toLowerCase() + " has dropped a " + loot.name + " and " + coins + " coins.");
         } else if ((loot == null) && ((coins != 0))) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+            ui.mainTextArea.setText("\n\nYou have defeated the " + monster.name.toLowerCase() + "!\n" +
                     "The " + monster.name.toLowerCase() + " has dropped " + coins + " coins.");
         } else if (loot != null) {
-            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+            ui.mainTextArea.setText("\n\nYou have defeated the " + monster.name.toLowerCase() + "!\n" +
                     "The " + monster.name.toLowerCase() + " has dropped a " + loot.name);
         } else {
-            ui.mainTextArea.setText("You have defeated the " + monster.name.toLowerCase() + "!\n" +
+            ui.mainTextArea.setText("\n\nYou have defeated the " + monster.name.toLowerCase() + "!\n" +
                     "The " + monster.name.toLowerCase() + " has dropped nothing.");
         }
 

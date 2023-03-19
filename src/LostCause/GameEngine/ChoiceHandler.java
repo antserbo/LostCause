@@ -20,10 +20,10 @@ public class ChoiceHandler implements ActionListener {
             case "start" -> {
                 game.vm.showGameScreen();
                 //game.greatWoodsEntrance.greatWoodsEntrance_6_NarrowPath_4();
-                //game.startingZone.startingZone_7();
-                //game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_Proceed_Crates();
+                game.startingZone.startingZone_7();
+                //game.greatWoodsEntranceCave.greatWoodsEntranceCave();
                 //game.startingZone.startingZone();
-                game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
+                //game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair();
             }
             case "map" -> game.ui.createWorldMap(game);
             case "continue" -> game.story.selectPosition(game.continuePosition);
@@ -98,6 +98,8 @@ public class ChoiceHandler implements ActionListener {
 
                     if (game.itemInventory.contains(game.questItemSilverRing)) {
                         game.ui.questItemSilverRingButton.setVisible(true);
+                    } else {
+                        game.ui.questItemSilverRingButton.setVisible(false);
                     }
 
                     /*if (game.story.goblinSkeletonWeaponTaken == 1) {

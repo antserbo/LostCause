@@ -11,7 +11,7 @@ public class Game {
     VisibilityManager vm = new VisibilityManager(ui);
     Story story = new Story(this, ui, vm);
 
-    // todo: for interections with player in location classes use game.story.player! as an interesting item - scythe of peril (-1hp, +50% damage)
+    // todo: for interactions with player in location classes use game.story.player! as an interesting item - scythe of peril (-1hp, +50% damage)
     // todo: try to add a special attack every 3 rounds, keep in mind about the action points
 
     StartingZone startingZone = new StartingZone(this, ui, vm);

@@ -235,6 +235,11 @@ public class GoblinVillageEntrance extends Story{
 
         ui.continueButton.setText("Continue");
         game.continuePosition = "goblinVillageEntrance_8_SilverRingDialogue_2";
+
+        game.itemInventory.remove(game.questItemSilverRing);
+
+        System.out.println(game.itemInventory);
+
     }
 
     public void goblinVillageEntrance_8_SilverRingDialogue_2() {

@@ -20,7 +20,7 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You are entering a cave, yet have no idea what lies below...");
+        ui.mainTextArea.setText("\n\nYou are entering a cave, yet have no idea what lies below...");
         ui.image = new ImageIcon(); // todo: add an image of entering the cave
         ui.imageLabel.setIcon(ui.image);
 
@@ -43,8 +43,9 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceTwo.setVisible(false);
 
 
-        ui.mainTextArea.setText("You find yourself in a large cave with little light, which makes it hard to determine what awaits you.\n" +
-                "The best strategy is to be vigilant and not run into any unnecessary trouble.");
+        ui.mainTextArea.setText("\nYou find yourself in a large cave with little light," +
+                "\nwhich makes it hard to determine what awaits you." +
+                "\nThe best strategy is to be vigilant and not run into any unnecessary trouble.");
 
         ui.choiceThree.setText("Proceed further into the cave");
         ui.choiceFour.setText("Go back to the crossroad");
@@ -74,8 +75,9 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceOne.setVisible(false);
             ui.choiceTwo.setVisible(true);
 
-            ui.mainTextArea.setText("Unfortunately, you have been spotted the moment you had been attempting to enter the cave.\n" +
-                    "Brace yourself, a wolf was lurking in the shadows and now stepped towards you.");
+            ui.mainTextArea.setText("\nUnfortunately you have been spotted the moment" +
+                    "\nyou had been attempting to enter the cave." +
+                    "\nBrace yourself, a wolf was lurking in the shadows and now stepped towards you.");
 
             greatWoodsEntranceCave_WolfOne = new MonsterWolf("greatWoodsEntranceCave_WolfOne");
 
@@ -105,7 +107,7 @@ public class GreatWoodsEntranceCave extends Story{
 
         if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered) {
             game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 1;
-            ui.mainTextArea.setText("This giant bat is a nuisance, you must tread carefully...");
+            ui.mainTextArea.setText("\n\nThis giant bat is a nuisance, you must tread carefully...");
             game.nextPositionTwo = "greatWoodsEntranceCave_4_ClimbTheRocks_Failure";
         } else {
             ui.mainTextArea.setText("\nHopefully there are not a lot of wolves in this cave..." +
@@ -156,9 +158,11 @@ public class GreatWoodsEntranceCave extends Story{
         ui.continueButtonPanel.setVisible(true);
 
         if (greatWoodsEntranceCave_WolfTwoDefeated == 0) {
-            ui.mainTextArea.setText("Looks like you managed to climb the wall and see a wolf in front of another entrance from the top");
+            ui.mainTextArea.setText("\nLooks like you managed to climb the wall" +
+                    "\nand see a wolf in front of another entrance from the top");
         } else {
-            ui.mainTextArea.setText("Looks like you managed to climb the wall and see another entrance from the top");
+            ui.mainTextArea.setText("Looks like you managed to climb the wall" +
+                    "\nand see another entrance from the top");
         }
 
         ui.continueButton.setText("Proceed");
@@ -173,10 +177,12 @@ public class GreatWoodsEntranceCave extends Story{
         worldMapLocationDeterminerHelper();
 
         if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat == 1) {
-            ui.mainTextArea.setText("You decide to return and take down the giant bat...");
+            ui.mainTextArea.setText("\n\nYou decide to return and take down the giant bat...");
         } else {
-            ui.mainTextArea.setText("You were not careful enough and fall down, luckily without taking any serious damage.\n" +
-                    "However, you have disturbed a giant bat, looks like you have to cut your way though...");
+            ui.mainTextArea.setText("\nYou were not careful enough and fall down, " +
+                    "\nluckily without taking any serious damage." +
+                    "\nHowever, you have disturbed a giant bat," +
+                    "\nlooks like you have to cut your way though...");
         }
 
         greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat = new MonsterGiantBat("greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat");
@@ -228,10 +234,10 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceTwo.setVisible(true);
 
             if (game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered) {
-                dealingWithAwakenedWolf("You attempt to take on the now awakened wolf...");
+                dealingWithAwakenedWolf("\n\nYou attempt to take on the now awakened wolf...");
             } else {
-                ui.mainTextArea.setText("You tread lightly and notice a wolf sleeping in front of some dusty crates.\n" +
-                        "This allows you to plan your next strategy.");
+                ui.mainTextArea.setText("\n\nYou tread lightly and notice a wolf sleeping in front of some dusty crates.\n" +
+                        "\nThis allows you to plan your next strategy.");
 
                 ui.choiceTwo.setText("Lay a killing blow on a sleeping wolf");
                 ui.choiceThree.setText("Walk past the sleeping wolf");
@@ -255,7 +261,7 @@ public class GreatWoodsEntranceCave extends Story{
                 ui.choiceButtonPanel.setVisible(false);
                 ui.continueButtonPanel.setVisible(true);
 
-                ui.mainTextArea.setText("You managed to kill the sleeping wolf with ease.");
+                ui.mainTextArea.setText("\n\nYou managed to kill the sleeping wolf with ease.");
                 game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
                 // todo: add image of the killed wolf
 
@@ -268,7 +274,7 @@ public class GreatWoodsEntranceCave extends Story{
 
                 game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = true;
 
-                dealingWithAwakenedWolf("Looks like you failed and the wolf is ready to attack...");
+                dealingWithAwakenedWolf("\n\nLooks like you failed and the wolf is ready to attack...");
             }
         } else {
             ui.choiceButtonPanel.setVisible(true);
@@ -276,7 +282,7 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceTwo.setVisible(true);
 
 
-            dealingWithAwakenedWolf("You attempt to take on the now awakened wolf...");
+            dealingWithAwakenedWolf("\n\nYou attempt to take on the now awakened wolf...");
             game.nextPositionFour = "greatWoodsEntranceCave_4";
         }
     }
@@ -292,7 +298,7 @@ public class GreatWoodsEntranceCave extends Story{
                 ui.choiceButtonPanel.setVisible(false);
                 ui.continueButtonPanel.setVisible(true);
 
-                ui.mainTextArea.setText("You managed to walk past the sleeping wolf.");
+                ui.mainTextArea.setText("\n\nYou managed to walk past the sleeping wolf.");
                 // todo: add image of the killed wolf
 
                 ui.continueButton.setText("Continue");
@@ -304,7 +310,7 @@ public class GreatWoodsEntranceCave extends Story{
 
                 game.story.greatWoodsEntranceCave_4_Proceed_SleepingWolfEncountered = true;
 
-                dealingWithAwakenedWolf("Looks like you failed and the wolf is ready to attack...");
+                dealingWithAwakenedWolf("\n\nLooks like you failed and the wolf is ready to attack...");
             }
         } else {
             ui.choiceButtonPanel.setVisible(true);
@@ -312,7 +318,7 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceTwo.setVisible(true);
 
 
-            dealingWithAwakenedWolf("You attempt to take on the now awakened wolf...");
+            dealingWithAwakenedWolf("\n\nYou attempt to take on the now awakened wolf...");
             game.nextPositionFour = "greatWoodsEntranceCave_4";
         }
 
@@ -329,12 +335,12 @@ public class GreatWoodsEntranceCave extends Story{
 
         if (game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated == 1) {
 
-            ui.mainTextArea.setText("There are two crates in front of you.");
+            ui.mainTextArea.setText("\n\nThere are two crates in front of you.");
             if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked == 1) {
                 ui.choiceTwo.setText("");
                 game.nextPositionTwo = "";
             } else {
-                ui.choiceTwo.setText("Check the bigger crate");
+                ui.choiceTwo.setText("\n\nCheck the bigger crate");
                 game.nextPositionTwo = "greatWoodsEntranceCave_4_Proceed_Crates_Bigger";
             }
 
@@ -342,12 +348,12 @@ public class GreatWoodsEntranceCave extends Story{
                 ui.choiceThree.setText("");
                 game.nextPositionThree = "";
             } else {
-                ui.choiceThree.setText("Check the lesser crate");
+                ui.choiceThree.setText("\n\nCheck the lesser crate");
                 game.nextPositionThree = "greatWoodsEntranceCave_4_Proceed_Crates_Lesser";
             }
 
             if (game.story.greatWoodsEntranceCave_4_Proceed_Crates_LesserChecked == 1 && game.story.greatWoodsEntranceCave_4_Proceed_Crates_BiggerChecked == 1) {
-                ui.mainTextArea.setText("Both crates have been already looted. Nothing interesting here.");
+                ui.mainTextArea.setText("\n\nBoth crates have been already looted. Nothing interesting here.");
             }
 
             ui.choiceFour.setText("Walk away from the crates");
@@ -369,9 +375,9 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("An old battle-worn bronze shield lies at the bottom of the crate.\n" +
-                "This will prove useful in the upcoming fights.\n" +
-                "(you receive a bronze shield)");
+        ui.mainTextArea.setText("\nAn old battle-worn bronze shield lies at the bottom of the crate." +
+                "\nThis will prove useful in the upcoming fights." +
+                "\n(you receive a bronze shield)");
 
         game.itemInventory.add(game.armorShieldBronzeShield);
 
@@ -387,9 +393,9 @@ public class GreatWoodsEntranceCave extends Story{
         ui.choiceButtonPanel.setVisible(false);
         ui.continueButtonPanel.setVisible(true);
 
-        ui.mainTextArea.setText("You carefully look inside the lesser crate and find a magical chalice\n" +
-                "This chalice can heal the player once and has to be replenished by defeating an enemy.\n" +
-                "(you receive a magical chalice, it can be found in your quick slot)");
+        ui.mainTextArea.setText("\nYou carefully look inside the lesser crate and find a magical chalice" +
+                "\nThis chalice can heal the player once and has to be replenished by defeating an enemy." +
+                "\n(you receive a magical chalice, it can be found in your quick slot)");
         game.itemInventory.add(game.magicalChalice);
 
         if (game.itemInventory.contains(game.magicalChalice)) {
@@ -431,8 +437,8 @@ public class GreatWoodsEntranceCave extends Story{
             ui.continueButtonPanel.setVisible(false);
             ui.choiceTwo.setVisible(true);
 
-            ui.mainTextArea.setText("You approach a wolf guarding what seems to be a lair.\n" +
-                    "Hopefully this is the last wolf in your way...");
+            ui.mainTextArea.setText("\n\nYou approach a wolf guarding what seems to be a lair." +
+                    "\nHopefully this is the last wolf in your way...");
 
 
             ui.choiceTwo.setText("Examine foe");
@@ -452,8 +458,8 @@ public class GreatWoodsEntranceCave extends Story{
             ui.choiceOne.setVisible(false);
             ui.choiceTwo.setVisible(true);
 
-            ui.mainTextArea.setText("You approach the entrance what seems to be a lair.\n" +
-                    "The dead wolf is lying right in front of it.");
+            ui.mainTextArea.setText("\n\nYou approach the entrance what seems to be a lair.\n" +
+                    "\nThe dead wolf is lying right in front of it.");
 
             ui.choiceTwo.setText("Enter the cave lair");
             ui.choiceThree.setText("Go back to cave entrance");
