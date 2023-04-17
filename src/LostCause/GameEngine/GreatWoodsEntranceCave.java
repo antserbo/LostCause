@@ -179,10 +179,9 @@ public class GreatWoodsEntranceCave extends Story{
         if (game.story.greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat == 1) {
             ui.mainTextArea.setText("\n\nYou decide to return and take down the giant bat...");
         } else {
-            ui.mainTextArea.setText("\nYou were not careful enough and fall down, " +
-                    "\nluckily without taking any serious damage." +
-                    "\nHowever, you have disturbed a giant bat," +
-                    "\nlooks like you have to cut your way though...");
+            ui.mainTextArea.setText("\nYou were not careful enough and fall down, luckily without" +
+                    "\ntaking any serious damage. However, you have disturbed" +
+                    "\na giant bat, looks like you have to cut your way though...");
         }
 
         greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat = new MonsterGiantBat("greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat");

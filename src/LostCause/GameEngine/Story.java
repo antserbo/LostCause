@@ -54,9 +54,8 @@ public class Story {
     boolean waterfallZoneDiscovered = false;
     boolean goblinVillageEntranceDiscovered = false;
     boolean greatWoodsEntranceDiscovered = false;
-    boolean greatWoodsEntranceToCaveDiscovered = false;
-    boolean greatWoodsEntrance_5_Discovered = false;
     boolean greatWoodsEntranceCaveDiscovered = false;
+    boolean greatWoodsEntrance_5_Discovered = false;
 
     int greatWoodsEntranceCave_4_ClimbTheRocks_RanAwayFromBat = 0;
     boolean greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
@@ -310,8 +309,8 @@ public class Story {
                     "(you get healed by " + differenceHP + " HP)");
             ui.healthNumberLabel.setText("" + player.hp);
         } else {
-            ui.mainTextArea.setText("\nYou take a sip of water, but it has no effect\n" +
-                    "(current hp is maximum)");
+            ui.mainTextArea.setText("\nYou take a sip of water, but it has no effect" +
+                    "\n(current hp is maximum)");
         }
 
     }
@@ -510,7 +509,7 @@ public class Story {
     public void lose() {
 
         ui.healthNumberLabel.setText("" + player.hp);
-        ui.mainTextArea.setText("You are dead! \n\n<GAME OVER>");
+        ui.mainTextArea.setText("\nYou are dead! \n<GAME OVER>");
 
         ui.continueButton.setText("To the title screen");
 

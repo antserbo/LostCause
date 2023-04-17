@@ -685,9 +685,9 @@ public class UI {
 
     public void createInventoryWindowUIWeaponButtons (ChoiceHandler cHandler) { //todo: add weapon buttons here
         weaponLongSwordButton = new JButton("Long sword");
+        fontAdjuster(weaponLongSwordButton);
         weaponLongSwordButton.setBackground(Color.DARK_GRAY);
         weaponLongSwordButton.setForeground(Color.white);
-        weaponLongSwordButton.setFont(normalFont);
         weaponLongSwordButton.setFocusPainted(false);
         weaponLongSwordButton.addActionListener(cHandler); // handler
         weaponLongSwordButton.setActionCommand("weaponLongSword");
@@ -695,9 +695,9 @@ public class UI {
         inventoryWeaponPanel.add(weaponLongSwordButton);
 
         weaponStilettoButton = new JButton("Stiletto");
+        fontAdjuster(weaponStilettoButton);
         weaponStilettoButton.setBackground(Color.DARK_GRAY);
         weaponStilettoButton.setForeground(Color.white);
-        weaponStilettoButton.setFont(normalFont);
         weaponStilettoButton.setFocusPainted(false);
         weaponStilettoButton.addActionListener(cHandler); // handler
         weaponStilettoButton.setActionCommand("weaponStiletto");
@@ -707,10 +707,10 @@ public class UI {
     }
 
     public void createInventoryWindowUIArmorBodyButtons(ChoiceHandler cHandler) {
-        armorBodyLeatherArmorButton = new JButton("Leather chest");
+        armorBodyLeatherArmorButton = new JButton("Leather chest armor");
+        fontAdjuster(armorBodyLeatherArmorButton);
         armorBodyLeatherArmorButton.setBackground(Color.DARK_GRAY);
         armorBodyLeatherArmorButton.setForeground(Color.white);
-        armorBodyLeatherArmorButton.setFont(normalFont);
         armorBodyLeatherArmorButton.setFocusPainted(false);
         armorBodyLeatherArmorButton.addActionListener(cHandler); // handler
         armorBodyLeatherArmorButton.setActionCommand("leatherChestArmor");
@@ -720,9 +720,9 @@ public class UI {
 
     public void createInventoryWindowUIArmorShieldButtons(ChoiceHandler cHandler) {
         armorShieldBronzeShieldButton = new JButton("Bronze shield");
+        fontAdjuster(armorShieldBronzeShieldButton);
         armorShieldBronzeShieldButton.setBackground(Color.DARK_GRAY);
         armorShieldBronzeShieldButton.setForeground(Color.white);
-        armorShieldBronzeShieldButton.setFont(normalFont);
         armorShieldBronzeShieldButton.setFocusPainted(false);
         armorShieldBronzeShieldButton.addActionListener(cHandler);
         armorShieldBronzeShieldButton.setActionCommand("bronzeShield");
@@ -733,9 +733,9 @@ public class UI {
 
     public void createInventoryWindowUIAmuletRingButtons (ChoiceHandler cHandler) {
         shellAmuletButton = new JButton("Shell amulet");
+        fontAdjuster(shellAmuletButton);
         shellAmuletButton.setBackground(Color.DARK_GRAY);
         shellAmuletButton.setForeground(Color.white);
-        shellAmuletButton.setFont(normalFont);
         shellAmuletButton.setFocusPainted(false);
         shellAmuletButton.addActionListener(cHandler);
         shellAmuletButton.setActionCommand("shellAmulet");
@@ -745,14 +745,24 @@ public class UI {
 
     public void createInventoryWindowUIQuestItemButtons (ChoiceHandler cHandler) {
         questItemSilverRingButton = new JButton("Silver ring");
+        fontAdjuster(questItemSilverRingButton);
         questItemSilverRingButton.setBackground(Color.DARK_GRAY);
         questItemSilverRingButton.setForeground(Color.white);
-        questItemSilverRingButton.setFont(normalFont);
         questItemSilverRingButton.setFocusPainted(false);
         questItemSilverRingButton.addActionListener(cHandler);
         questItemSilverRingButton.setActionCommand("silverRing");
         questItemSilverRingButton.setVisible(false);
         inventoryQuestItemPanel.add(questItemSilverRingButton);
+    }
+
+    private void fontAdjuster (JButton button) {
+        if (button.getText().length() > 19) {
+            button.setFont(new Font("Times New Roman", Font.ITALIC, 18));
+        } else if (button.getText().length() > 15) {
+            button.setFont(new Font("Times New Roman", Font.ITALIC, 20));
+        } else {
+            button.setFont(new Font("Times New Roman", Font.ITALIC, 24));
+        }
     }
 
 }

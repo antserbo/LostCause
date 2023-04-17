@@ -238,8 +238,6 @@ public class GoblinVillageEntrance extends Story{
 
         game.itemInventory.remove(game.questItemSilverRing);
 
-        System.out.println(game.itemInventory);
-
     }
 
     public void goblinVillageEntrance_8_SilverRingDialogue_2() {

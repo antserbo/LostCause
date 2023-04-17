@@ -134,8 +134,8 @@ public class WaterfallZone extends Story{
         ui.image = new ImageIcon(".//res//waterfall_inverted.png");
         ui.imageLabel.setIcon(ui.image);
 
-        ui.mainTextArea.setText("\nYou step closer to the waterfall. \n" +
-                "The sound of it makes you feel some sort of relief...");
+        ui.mainTextArea.setText("\nYou step closer to the waterfall." +
+                "\nThe sound of it makes you feel some sort of relief...");
 
         ui.choiceTwo.setText("Drink water");
         game.nextPositionTwo = "waterfallZone_3_DrinkWater";
@@ -158,8 +158,8 @@ public class WaterfallZone extends Story{
         ui.continueButtonPanel.setVisible(true);
         ui.choiceButtonPanel.setVisible(false);
 
-        game.story.healing(3, "\nYou take a sip of water... \n" +
-                "and a rejuvenating effect rushes though your body");
+        game.story.healing(3, "\nYou take a sip of water..." +
+                "\nand a rejuvenating effect rushes though your body");
 
         ui.continueButton.setText("Stop drinking");
         game.continuePosition = "waterfallZone_3";

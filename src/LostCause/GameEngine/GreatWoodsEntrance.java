@@ -61,9 +61,9 @@ public class GreatWoodsEntrance extends Story{
         game.story.playerFightLocationHelper = "greatWoodsEntrance_3";
         worldMapLocationDeterminerHelper();
 
-        ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations.\n" +
-                "The almighty nature is to be feared, yet praised for its beauty.\n" +
-                "You ponder for quite a while");
+        ui.mainTextArea.setText("Tales of this place have been passed through dozens of generations." +
+                "\nThe almighty nature is to be feared, yet praised for its beauty." +
+                "\nYou ponder for quite a while");
 
         ui.continueButton.setText("Continue");
         game.continuePosition = "greatWoodsEntrance_4";
@@ -165,7 +165,7 @@ public class GreatWoodsEntrance extends Story{
 
         ui.choiceTwo.setText("Continue walking the road");
 
-        if (game.story.greatWoodsEntranceToCaveDiscovered) {
+        if (game.story.greatWoodsEntranceCaveDiscovered) {
             ui.choiceThree.setText("Go to cave");
             game.nextPositionThree = "greatWoodsEntranceCave";
         } else {
@@ -293,7 +293,7 @@ public class GreatWoodsEntrance extends Story{
         ui.choiceThree.setText("Enter the cave (might be dangerous!)");
         ui.choiceFour.setText("Return to crossroad");
 
-        game.story.greatWoodsEntranceToCaveDiscovered = true;
+        game.story.greatWoodsEntranceCaveDiscovered = true;
 
         game.nextPositionThree = "greatWoodsEntranceCave";
         game.nextPositionFour = "startingZone_7";

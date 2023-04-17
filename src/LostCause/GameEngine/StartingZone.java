@@ -108,7 +108,7 @@ public class StartingZone extends Story {
 
         ui.mainTextArea.setText("\n\nWhere do you want to go?");
 
-        if (game.story.greatWoodsEntranceDiscovered) {
+        if (game.story.greatWoodsEntranceDiscovered && game.story.greatWoodsEntranceCaveDiscovered) {
             ui.choiceOne.setText("To Great Woods Entrance");
             game.nextPositionOne = "greatWoodsEntrance_5";
         } else {

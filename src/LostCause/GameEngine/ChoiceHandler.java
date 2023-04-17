@@ -1,5 +1,6 @@
 package LostCause.GameEngine;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -121,6 +122,10 @@ public class ChoiceHandler implements ActionListener {
                     game.ui.frameOfMainTextPanelRight.setVisible(false);
                     game.ui.inventoryPageMainButton.setText("Return back");
                     game.inventoryMainStatus = "opened";
+
+                    //todo: introduce the buttons names through objects -> play with the length and adjust the right fonts
+                    //game.ui.shellAmuletButton.setText(game.amuletRingShell.name);
+
                 } else if (game.inventoryMainStatus.equals("opened") && game.inventoryStatus.equals("opened")) {
 
                     game.ui.inventoryWindowPanel.setVisible(false);
@@ -250,6 +255,13 @@ public class ChoiceHandler implements ActionListener {
                     game.story.player.maxHP += game.amuletRingShell.healthIncrease;
                 }
             }
+        }
+    }
+
+    private void equipHandler (JButton button) {
+        if (button.getBackground().equals(Color.green)) {
+            button.setBackground(Color.DARK_GRAY);
+
         }
     }
 }

@@ -22,6 +22,11 @@ public class VisibilityManager {
         ui.mainImagePanel.setVisible(false);
         ui.inventoryPanelItemButtons.setVisible(false);
         ui.inventoryPanelPageButton.setVisible(false);
+
+        ui.frameOfMainTextPanelTop.setVisible(false);
+        ui.frameOfMainTextPanelRight.setVisible(false);
+        ui.frameOfMainTextPanelBottom.setVisible(false);
+        ui.frameOfMainTextPanelLeft.setVisible(false);
     }
 
     public void showGameScreen() {
