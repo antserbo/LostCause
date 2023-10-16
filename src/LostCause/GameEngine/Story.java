@@ -413,32 +413,14 @@ public class Story {
     }
 
     private void playerRoundCounter() {
-        switch (playerAttackRound) {
-            case 1 -> monsterAttackRound = 1;
-            case 2 -> monsterAttackRound = 2;
-            case 3 -> monsterAttackRound = 3;
-            case 4 -> monsterAttackRound = 4;
-            case 5 -> monsterAttackRound = 5;
-            case 6 -> monsterAttackRound = 6;
-            case 7 -> monsterAttackRound = 7;
-            case 8 -> monsterAttackRound = 8;
-            case 9 -> monsterAttackRound = 9;
-            case 10 -> monsterAttackRound = 10;
+        if (playerAttackRound >= 1 && playerAttackRound <= 100) {
+            monsterAttackRound = playerAttackRound;
         }
     }
 
     private void monsterRoundCounter() {
-        switch (monsterAttackRound) {
-            case 1 -> playerAttackRound = 1;
-            case 2 -> playerAttackRound = 2;
-            case 3 -> playerAttackRound = 3;
-            case 4 -> playerAttackRound = 4;
-            case 5 -> playerAttackRound = 5;
-            case 6 -> playerAttackRound = 6;
-            case 7 -> playerAttackRound = 7;
-            case 8 -> playerAttackRound = 8;
-            case 9 -> playerAttackRound = 9;
-            case 10 -> playerAttackRound = 10;
+        if (monsterAttackRound >= 1 && monsterAttackRound <= 100) {
+            playerAttackRound = monsterAttackRound;
         }
 
         playerAttackRound += 1;

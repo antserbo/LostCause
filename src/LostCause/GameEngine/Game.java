@@ -41,11 +41,6 @@ public class Game {
     AmuletRingEmpty amuletRingEmpty = new AmuletRingEmpty("emptyAmulet", "");
     AmuletRingShell amuletRingShell = new AmuletRingShell("shellAmulet", "Shell amulet");
 
-    public String bababa = "Shell amulet";
-    public String bababa1 = "Shell amulet am";
-    public String bababa2 = "Shell amulet amg";
-    public String bababa3 = "Shell amulet of strength";
-
     QuestItemSilverRing questItemSilverRing = new QuestItemSilverRing("silverRing", "Silver ring");
 
     ActiveItemMagicalChalice magicalChalice = new ActiveItemMagicalChalice("magicalChalice", "Magical chalice");
@@ -59,10 +54,6 @@ public class Game {
 
         ui.createUI(cHandler);
         story.defaultSetup();
-        System.out.println(bababa.length());
-        System.out.println(bababa1.length());
-        System.out.println(bababa2.length());
-        System.out.println(bababa3.length());
         vm.showTitleScreen();
 
     }
