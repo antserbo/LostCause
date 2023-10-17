@@ -12,8 +12,6 @@ public class Story {
     VisibilityManager vm;
 
     boolean isMusicPlaying = false;
-    Music startingZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\My Reaper\\sold soul 2018\\soldoul.wav");
-    Music waterFallZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\hrjukalo.wav");
 
     Player player = new Player();
     SuperMonster greatWoodsEntrance_4_Wolf;
@@ -519,13 +517,13 @@ public class Story {
 
         if (isMusicPlaying) {
             if (playerLocation.contains("startingZone")) {
-                //startingZoneMusicObj.play();
+                game.startingZoneMusicObj.play();
             } else if (playerLocation.contains("waterfall")) {
-                startingZoneMusicObj.stop();
-                waterFallZoneMusicObj.play();
+                game.startingZoneMusicObj.stop();
+                game.waterFallZoneMusicObj.play();
             }
         } else {
-            startingZoneMusicObj.play();
+            game.startingZoneMusicObj.play();
             isMusicPlaying = true;
         }
 

@@ -14,6 +14,9 @@ public class Game {
     // todo: for interactions with player in location classes use game.story.player! as an interesting item - scythe of peril (-1hp, +50% damage)
     // todo: try to add a special attack every 3 rounds, keep in mind about the action points
 
+    Music startingZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\My Reaper\\sold soul 2018\\soldoul.wav");
+    Music waterFallZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\hrjukalo.wav");
+
     StartingZone startingZone = new StartingZone(this, ui, vm);
     WaterfallZone waterfallZone = new WaterfallZone(this, ui, vm);
     GreatWoodsEntrance greatWoodsEntrance = new GreatWoodsEntrance(this, ui, vm);
