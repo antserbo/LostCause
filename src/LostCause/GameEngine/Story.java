@@ -11,6 +11,10 @@ public class Story {
     UI ui;
     VisibilityManager vm;
 
+    boolean isMusicPlaying = false;
+    Music startingZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\My Reaper\\sold soul 2018\\soldoul.wav");
+    Music waterFallZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\hrjukalo.wav");
+
     Player player = new Player();
     SuperMonster greatWoodsEntrance_4_Wolf;
     SuperMonster greatWoodsEntrance_6_NarrowPath_2_Wolf;
@@ -45,7 +49,6 @@ public class Story {
     int greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 0;
     int greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 0;
     int greatWoodsEntranceCaveLair_WolfMatriarchDefeated = 0;
-
 
 
     // Discover-location-variables
@@ -201,7 +204,7 @@ public class Story {
             case "monsterAttack_greatWoodsEntranceCave_WolfOne" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne);
             case "win_greatWoodsEntranceCave_WolfOne" -> win(game.greatWoodsEntranceCave.greatWoodsEntranceCave_WolfOne, "greatWoodsEntranceCave_4", null, 7);
 
-            case "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> fight (game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4");
+            case "fight_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> fight(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4");
             case "examine_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> examine(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat, "greatWoodsEntranceCave_4_ClimbTheRocks_Failure");
             case "playerAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> playerAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
             case "monsterAttack_greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> monsterAttack(game.greatWoodsEntranceCave.greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat);
@@ -224,7 +227,6 @@ public class Story {
             case "playerAttack_greatWoodsEntranceCaveLair_WolfMatriarch" -> playerAttack(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch);
             case "monsterAttack_greatWoodsEntranceCaveLair_WolfMatriarch" -> monsterAttack(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch);
             case "win_greatWoodsEntranceCaveLair_WolfMatriarch" -> win(game.greatWoodsEntranceCaveLair.greatWoodsEntranceCaveLair_WolfMatriarch, "greatWoodsEntranceCave_5", game.questItemSilverRing, 13);
-
 
 
             case "lose" -> lose();
@@ -252,6 +254,7 @@ public class Story {
         // todo: implement further locations and add to every location_function playerLocation and this helper()
 
         fightLocationHelper();
+        musicMachine();
 
         if (game.story.startingZoneDiscovered && playerLocation.equals("startingZone")) {
             ui.currentLocationLabel.setText("Crossroad");
@@ -449,15 +452,18 @@ public class Story {
             case "greatWoodsEntrance_4_Wolf" -> {
                 game.story.greatWoodsEntrance_4_WolfDefeated = 1;
                 playerAttackRound = 1;
-                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+            }
             case "greatWoodsEntrance_6_NarrowPath_2_Wolf" -> {
                 game.story.greatWoodsEntrance_6_NarrowPath_2_WolfDefeated = 1;
                 playerAttackRound = 1;
-                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+            }
             case "greatWoodsEntranceCave_WolfOne" -> {
                 game.story.greatWoodsEntranceCave_WolfOneDefeated = 1;
                 playerAttackRound = 1;
-                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+            }
             case "greatWoodsEntranceCave_4_ClimbTheRocks_GiantBat" -> {
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatDefeated = 1;
                 game.story.greatWoodsEntranceCave_4_ClimbTheRocks_BatEncountered = false;
@@ -468,11 +474,13 @@ public class Story {
             case "greatWoodsEntranceCave_4_Proceed_SleepingWolf" -> {
                 game.story.greatWoodsEntranceCave_Proceed_SleepingWolfDefeated = 1;
                 playerAttackRound = 1;
-                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+            }
             case "greatWoodsEntranceCave_WolfTwo" -> {
                 game.story.greatWoodsEntranceCave_WolfTwoDefeated = 1;
                 playerAttackRound = 1;
-                game.ui.inventoryItemOneButton.setBackground(Color.green);}
+                game.ui.inventoryItemOneButton.setBackground(Color.green);
+            }
             case "greatWoodsEntranceCaveLair_WolfMatriarch" -> {
                 game.story.greatWoodsEntranceCaveLair_WolfMatriarchDefeated = 1;
                 playerAttackRound = 1;
@@ -503,4 +511,40 @@ public class Story {
         vm.showTitleScreen();
     }
 
+    public void musicMachine() {
+
+        System.out.println(playerLocation);
+
+        //todo: make sure that nextposition and continue are inter-connected, so music could flow normally.
+
+        if (isMusicPlaying) {
+            if (playerLocation.contains("startingZone")) {
+                //startingZoneMusicObj.play();
+            } else if (playerLocation.contains("waterfall")) {
+                startingZoneMusicObj.stop();
+                waterFallZoneMusicObj.play();
+            }
+        } else {
+            startingZoneMusicObj.play();
+            isMusicPlaying = true;
+        }
+
+        /*if (playerLocation.contains("startingZone") && !isMusicPlaying) {
+            startingZoneMusicObj.play();
+            isMusicPlaying = true;
+        } else {
+            startingZoneMusicObj.stop();
+            waterFallZoneMusicObj.play();
+        }*/
+
+        /*if (playerLocation.contains("waterfallZone") && isMusicPlaying) {
+            startingZoneMusicObj.stop();
+            waterFallZoneMusicObj.play();
+        } else if(playerLocation.contains("greatWoodsEntrance")) {
+            startingZoneMusicObj.stop();
+            waterFallZoneMusicObj.stop();
+        }*/
+
+    }
 }
+
