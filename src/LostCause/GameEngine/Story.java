@@ -3,7 +3,10 @@ package LostCause.GameEngine;
 import LostCause.ItemFiles.SuperItem;
 import LostCause.MonsterFiles.SuperMonster;
 
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
 
 public class Story {
 
@@ -515,17 +518,46 @@ public class Story {
 
         //todo: make sure that nextposition and continue are inter-connected, so music could flow normally.
 
-        if (isMusicPlaying) {
-            if (playerLocation.contains("startingZone")) {
-                game.startingZoneMusicObj.play();
-            } else if (playerLocation.contains("waterfall")) {
-                game.startingZoneMusicObj.stop();
+        //todo: check the paths and then stop the location audio from where the player is coming!
+
+        if (playerLocation.contains("waterfallZone")) {
+
+            game.startingZoneMusicObj.fadeOutMusic();
+            game.startingZoneMusicObj.stop();
+            game.startingZoneMusicObj.resetPosition();
+
+            game.waterFallZoneMusicObj.isActiveClip();
+
+        } else if (playerLocation.contains("startingZone")) {
+
+            game.startMusicObj.fadeOutMusic();
+
+            game.startMusicObj.stop();
+            game.startMusicObj.normalizeMusic();
+            game.startMusicObj.resetPosition();
+
+
+            game.waterFallZoneMusicObj.fadeOutMusic();
+            game.waterFallZoneMusicObj.stop();
+            game.waterFallZoneMusicObj.resetPosition();
+
+            game.startingZoneMusicObj.isActiveClip();
+        }
+
+        /*if (isMusicPlaying) {
+            if (playerLocation.contains("waterfallZone")) {
+                game.startMusicObj.stop();
+                game.startMusicObj.resetPosition();
                 game.waterFallZoneMusicObj.play();
+            } else if (playerLocation.contains("startingZone")) {
+                game.startMusicObj.stop();
+                game.startingZoneMusicObj.resetPosition();
+                game.startingZoneMusicObj.play();
             }
         } else {
-            game.startingZoneMusicObj.play();
+            game.waterFallZoneMusicObj.stop();
             isMusicPlaying = true;
-        }
+        }*/
 
         /*if (playerLocation.contains("startingZone") && !isMusicPlaying) {
             startingZoneMusicObj.play();
@@ -544,5 +576,6 @@ public class Story {
         }*/
 
     }
+
 }
 
