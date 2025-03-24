@@ -15,9 +15,9 @@ public class Game {
     // todo: try to add a special attack every 3 rounds, keep in mind about the action points
 
     // todo: create music object for title screen! everything is already set.
-    Music startMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\baba\\BIG FANTASY RPG MUSIC BUNDLE\\Themes\\Main_Theme\\Main_Theme_FULL_TRACK.wav");
-    Music startingZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\baba\\BIG FANTASY RPG MUSIC BUNDLE\\Exploration-Landscapes\\Peaceful_Valley\\Peaceful_Valley_LONG_LOOP.wav");
-    Music waterFallZoneMusicObj = new Music("C:\\Users\\FuVuC\\Desktop\\baba\\BIG FANTASY RPG MUSIC BUNDLE\\Exploration-Landscapes\\Peaceful_Valley\\Peaceful_Valley_LONG_LOOP_AMBIENT_ONLY.wav");
+    Music startMusicObj = new Music("E:\\BIG FANTASY RPG MUSIC BUNDLE\\Themes\\Main_Theme\\Main_Theme_FULL_TRACK.wav");
+    Music startingZoneMusicObj = new Music("E:\\BIG FANTASY RPG MUSIC BUNDLE\\Exploration-Landscapes\\Peaceful_Valley\\Peaceful_Valley_LONG_LOOP.wav");
+    Music waterFallZoneMusicObj = new Music("E:\\BIG FANTASY RPG MUSIC BUNDLE\\Exploration-Landscapes\\Peaceful_Valley\\Peaceful_Valley_LONG_LOOP_AMBIENT_ONLY.wav");
 
     StartingZone startingZone = new StartingZone(this, ui, vm);
     WaterfallZone waterfallZone = new WaterfallZone(this, ui, vm);

@@ -5,7 +5,6 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import java.io.File;
-import java.util.concurrent.TimeUnit;
 
 public class Music {
 
@@ -48,37 +47,50 @@ public class Music {
 
     public void isActiveClip() {
         //System.out.println(clip.isActive());
-        System.out.println(clip.isActive());
         FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
         //System.out.println(clip.isRunning());
-        if (!clip.isActive()) {
-            for (int i = 1; i < 21; i++) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+        if (!clip.isRunning()) {
+
+            new Thread(() -> {
+                for (int i = 0; i < 41; i++) {
+                    try {
+                        Thread.sleep(25);
+                        volume.setValue(-40f + (1f * i)); // 1f - (float) (i / 10)
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+
+                    }
+                    play();
                 }
-                System.out.println("increasing volume of track... i = " + i);
-                volume.setValue(-40f + (2f * i) ); // 1f - (float) (i / 10)
-            }
-            play();
+
+            }).start();
 
         }
     }
 
-    public void fadeOutMusic() {
+    public void fadeOutMusic(Runnable onComplete) {
 
-        if (clip.isActive()) {
+        if (clip.isRunning()) { // TODO: ask ChatGPT to elaborate lambdas and controlling with threads.
+
             FloatControl volume = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
-            for (int i = 1; i < 21; i++) {
-                try {
-                    TimeUnit.MILLISECONDS.sleep(50);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+            new Thread(() -> {
+
+                for (int i = 0; i < 41; i++) {
+                    try {
+                        Thread.sleep(25);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    volume.setValue(0f - (1f * i));
                 }
-                System.out.println("reducing volume of track... i = " + i);
-                volume.setValue(0f - (2f * i) ); // 1f - (float) (i / 10)
-            }
+                if (onComplete != null) {
+                    onComplete.run();
+                }
+            }).start();
+
+        } else {
+            if (onComplete != null) onComplete.run();
         }
     }
 
